@@ -10,7 +10,27 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>Narrative Timeline | Midnight Hour</title>
+  <meta
+    name="theme-color"
+    content="#08080d"
+  />
+
+  <title>Timeline | Midnight Hour</title>
+
+
+  <!-- FAVICON -->
+
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="/favicon.ico?v=3"
+  />
+
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/favicon.ico?v=3"
+  />
 
 
   <style>
@@ -25,17 +45,19 @@
 
 
     :root {
-
       --bg: #08080d;
 
       --text: #f3f2f7;
+
+      --muted: rgba(243,242,247,.56);
+
+      --line: rgba(255,255,255,.10);
 
       --purple-deep: #7566c7;
       --purple: #9580f2;
       --purple-mid: #aa99ef;
       --purple-light: #c1b5f7;
       --purple-soft: #b2a5ed;
-
     }
 
 
@@ -50,7 +72,6 @@
 
 
     body {
-
       margin: 0;
 
       min-height: 100vh;
@@ -67,21 +88,22 @@
       font-weight: 300;
 
       background:
-
         radial-gradient(
-          circle at 88% 8%,
-          rgba(86, 77, 158, .14),
-          transparent 33%
+          circle at 10% 5%,
+          rgba(111,96,187,.11),
+          transparent 31%
         ),
-
         radial-gradient(
-          circle at 5% 80%,
-          rgba(74, 95, 180, .07),
-          transparent 28%
+          circle at 91% 34%,
+          rgba(120,82,161,.09),
+          transparent 30%
         ),
-
-        #08080d;
-
+        radial-gradient(
+          circle at 20% 89%,
+          rgba(107,93,166,.05),
+          transparent 26%
+        ),
+        var(--bg);
     }
 
 
@@ -100,12 +122,11 @@
        PAGE
     ========================================================= */
 
-    .mh-tl-page {
-
+    .page {
       width:
         min(
-          1140px,
-          calc(100% - 54px)
+          1080px,
+          calc(100% - 56px)
         );
 
       margin:
@@ -114,8 +135,7 @@
       padding:
         38px
         0
-        145px;
-
+        150px;
     }
 
 
@@ -123,57 +143,51 @@
        TOP
     ========================================================= */
 
-    .mh-tl-top {
-
+    .topbar {
       display: flex;
 
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
 
       padding-bottom: 22px;
 
       border-bottom:
         1px solid
         rgba(255,255,255,.10);
-
     }
 
 
-    .mh-tl-back {
-
+    .back {
       color:
-        rgba(255,255,255,.57);
+        rgba(255,255,255,.58);
 
-      font-size: 12px;
+      font-size: 11px;
 
       letter-spacing: .14em;
 
       transition:
         color .2s ease,
         transform .2s ease;
-
     }
 
 
-    .mh-tl-back:hover {
-
-      color: white;
+    .back:hover {
+      color: #fff;
 
       transform:
         translateX(-3px);
-
     }
 
 
-    .mh-tl-index {
-
+    .page-index {
       color:
-        rgba(174,161,232,.72);
+        rgba(178,165,239,.70);
 
-      font-size: 11px;
+      font-size: 10px;
 
       letter-spacing: .23em;
-
     }
 
 
@@ -181,141 +195,119 @@
        HEADER
     ========================================================= */
 
-    .mh-tl-header {
+    .timeline-header {
+      display: flex;
+
+      align-items: flex-end;
+      justify-content: space-between;
+
+      gap: 50px;
 
       padding:
-        58px
+        61px
         0
-        68px;
-
+        72px;
     }
 
 
-    .mh-tl-kicker {
-
+    .timeline-kicker {
       margin-bottom: 13px;
 
       color:
-        #b8a7ff;
-
-      font-size: 12px;
-
-      letter-spacing: .25em;
-
-    }
-
-
-    .mh-tl-title {
-
-      margin: 0;
-
-      font-size:
-        clamp(
-          58px,
-          7.8vw,
-          102px
-        );
-
-      font-weight: 300;
-
-      line-height: .89;
-
-      letter-spacing: -.065em;
-
-    }
-
-
-    .mh-tl-title span {
-
-      color:
-        rgba(255,255,255,.35);
-
-    }
-
-
-    .mh-tl-sub {
-
-      margin-top: 23px;
-
-      color:
-        rgba(255,255,255,.38);
+        var(--purple-light);
 
       font-size: 11px;
 
-      letter-spacing: .15em;
+      letter-spacing: .25em;
+    }
 
+
+    .timeline-title {
+      margin: 0;
+
+      color:
+        #f3f2f7;
+
+      font-size:
+        clamp(
+          62px,
+          8.5vw,
+          108px
+        );
+
+      line-height: .89;
+
+      font-weight: 300;
+
+      letter-spacing: -.07em;
+    }
+
+
+    .timeline-title span {
+      color:
+        rgba(255,255,255,.34);
+    }
+
+
+    .timeline-meta {
+      padding-bottom: 9px;
+
+      color:
+        rgba(255,255,255,.36);
+
+      font-size: 10px;
+
+      line-height: 1.8;
+
+      letter-spacing: .17em;
+
+      text-align: right;
     }
 
 
     /* =========================================================
-       TIMELINE TRACK
+       TIMELINE
     ========================================================= */
 
     .mh-timeline {
-
       position: relative;
-
-      /*
-        선 / ACT 노드 / 사건 노드의 중심
-        전부 이 값 하나만 사용
-      */
 
       --track-x: 24px;
 
-      padding-bottom: 24px;
-
+      padding-bottom: 12px;
     }
 
 
-    .mh-timeline::before {
+    /* vertical line */
 
+    .mh-timeline::before {
       content: "";
 
       position: absolute;
 
       z-index: 0;
 
-      top: 12px;
-      bottom: 0;
+      top: 10px;
+      bottom: 12px;
 
-      left:
-        var(--track-x);
+      left: var(--track-x);
 
-      width: 2px;
+      width: 1px;
 
       transform:
         translateX(-50%);
 
-      border-radius:
-        999px;
-
-      /*
-        전체 보라색 계열
-      */
-
       background:
-
         linear-gradient(
           to bottom,
-
           #7768ca 0%,
-
-          #8c78e2 22%,
-
-          #a087ed 48%,
-
-          #917ce2 73%,
-
+          #8c78e2 23%,
+          #a087ed 50%,
+          #917ce2 76%,
           #7768ca 100%
         );
 
-      opacity: .84;
-
-      box-shadow:
-
-        0 0 17px
-        rgba(151,128,242,.25);
-
+      opacity: .62;
     }
 
 
@@ -323,108 +315,98 @@
        ACT
     ========================================================= */
 
-    .mh-tl-act {
-
+    .act {
       position: relative;
 
       z-index: 2;
 
+      display: flex;
+
+      align-items: center;
+
+      min-height: 72px;
+
       margin:
-        58px
+        21px
         0
-        25px;
+        19px;
 
-      padding-left:
-        86px;
-
+      padding-left: 66px;
     }
 
 
-    .mh-tl-act:first-child {
-
+    .act:first-child {
       margin-top: 0;
-
     }
 
 
-    /*
-      ACT 큰 원
-    */
-
-    .mh-tl-act-dot {
+    .act::before {
+      content: "";
 
       position: absolute;
 
-      left:
-        var(--track-x);
+      left: var(--track-x);
+      top: 50%;
 
-      top: 0;
-
-      width: 30px;
-      height: 30px;
+      width: 15px;
+      height: 15px;
 
       transform:
-        translateX(-50%);
-
-      display: grid;
-
-      place-items: center;
-
-      border-radius: 50%;
-
-      background:
-        var(--bg);
+        translate(-50%, -50%);
 
       border:
-        1px solid
-        rgba(194,181,255,.72);
-
-      box-shadow:
-
-        0 0 0 6px
-        var(--bg),
-
-        0 0 17px
-        rgba(151,128,242,.20);
-
-    }
-
-
-    .mh-tl-act-dot::after {
-
-      content: "";
-
-      width: 13px;
-      height: 13px;
+        4px solid
+        var(--bg);
 
       border-radius: 50%;
 
       background:
-        var(--purple);
+        var(--purple-light);
 
       box-shadow:
-
-        0 0 12px
-        rgba(157,132,255,.38);
-
+        0
+        0
+        0
+        1px
+        rgba(193,181,247,.55);
     }
 
 
-    .mh-tl-act-title {
+    .act-inner {
+      display: flex;
 
+      align-items: baseline;
+
+      gap: 12px;
+    }
+
+
+    .act-number {
+      color:
+        var(--purple);
+
+      font-size: 10px;
+
+      letter-spacing: .23em;
+    }
+
+
+    .act-title {
       margin: 0;
 
-      padding-top: 6px;
-
       color:
-        var(--purple-mid);
+        var(--purple-light);
 
-      font-size: 13px;
+      font-size:
+        clamp(
+          17px,
+          2vw,
+          22px
+        );
 
-      letter-spacing: .24em;
+      font-weight: 300;
 
-      line-height: 1.5;
-
+      letter-spacing: .07em;
     }
 
 
@@ -432,67 +414,62 @@
        EVENT
     ========================================================= */
 
-    .mh-tl-item {
-
+    .event {
       position: relative;
 
       z-index: 1;
 
-      padding-left:
-        86px;
+      margin:
+        0
+        0
+        22px;
 
-      margin-bottom: 24px;
-
+      padding-left: 66px;
     }
 
 
-    /*
-      사건 노드
-      전부 같은 보라색
-    */
-
-    .mh-tl-dot {
+    .event::before {
+      content: "";
 
       position: absolute;
 
-      z-index: 5;
+      z-index: 3;
 
-      left:
-        var(--track-x);
-
+      left: var(--track-x);
       top: 36px;
 
-      width: 19px;
-      height: 19px;
+      width: 11px;
+      height: 11px;
 
       transform:
         translateX(-50%);
 
-      border-radius: 50%;
-
       border:
-        4px solid
+        3px solid
         var(--bg);
+
+      border-radius: 50%;
 
       background:
         var(--purple);
 
       box-shadow:
-
-        0 0 0 1px
-        rgba(205,192,255,.68),
-
-        0 0 15px
-        rgba(151,128,242,.42);
-
+        0
+        0
+        0
+        1px
+        rgba(170,153,239,.48);
     }
 
 
     /* =========================================================
-       EVENT CARD
+       CARD
     ========================================================= */
 
-    .mh-tl-card {
+    .event-card {
+      position: relative;
+
+      overflow: hidden;
 
       padding:
         36px
@@ -501,123 +478,138 @@
 
       border:
         1px solid
-        rgba(255,255,255,.10);
+        rgba(255,255,255,.095);
 
       border-radius:
-        28px;
+        26px;
 
       background:
-
         linear-gradient(
-          135deg,
-
-          rgba(113,85,190,.058),
-
-          rgba(255,255,255,.014)
+          115deg,
+          rgba(119,93,183,.065),
+          rgba(255,255,255,.018) 58%,
+          rgba(93,76,155,.035)
         );
 
+      transition:
+        border-color .25s ease,
+        transform .25s ease,
+        background .25s ease;
     }
 
 
-    .mh-tl-head {
+    .event-card:hover {
+      transform:
+        translateY(-2px);
 
-      display: flex;
+      border-color:
+        rgba(177,159,241,.25);
 
-      align-items: baseline;
-
-      gap: 19px;
-
-      margin-bottom: 13px;
-
+      background:
+        linear-gradient(
+          115deg,
+          rgba(119,93,183,.09),
+          rgba(255,255,255,.022) 58%,
+          rgba(93,76,155,.05)
+        );
     }
 
 
-    .mh-tl-no {
-
-      flex:
-        0
-        0
-        auto;
+    .event-number {
+      margin-bottom:
+        13px;
 
       color:
-        rgba(255,255,255,.30);
+        var(--purple);
 
-      font-size: 10px;
+      font-size:
+        9px;
 
-      letter-spacing: .19em;
-
+      letter-spacing:
+        .24em;
     }
 
 
-    /*
-      모든 사건 제목도
-      동일한 연보라색
-    */
-
-    .mh-tl-event-title {
-
-      margin: 0;
+    .event-title {
+      margin:
+        0;
 
       color:
         var(--purple-light);
 
       font-size:
         clamp(
-          27px,
-          3.3vw,
-          40px
+          23px,
+          2.8vw,
+          31px
         );
 
-      font-weight: 300;
+      font-weight:
+        300;
 
-      line-height: 1.15;
+      line-height:
+        1.2;
 
-      letter-spacing: -.047em;
-
+      letter-spacing:
+        -.035em;
     }
 
 
-    /*
-      모든 부제도
-      동일 보라색 계열
-    */
-
-    .mh-tl-event-sub {
-
-      margin-bottom: 20px;
+    .event-subtitle {
+      margin-top:
+        8px;
 
       color:
         var(--purple-soft);
 
-      font-size: 13.5px;
+      font-size:
+        14px;
 
-      line-height: 1.7;
+      line-height:
+        1.65;
 
+      letter-spacing:
+        -.01em;
     }
 
 
-    .mh-tl-event-text {
+    .event-body {
+      margin-top:
+        28px;
 
       color:
-        rgba(255,255,255,.78);
+        rgba(243,242,247,.81);
 
-      font-size: 15.5px;
+      font-size:
+        15.5px;
 
-      line-height: 2.05;
+      line-height:
+        2.05;
 
-      word-break: keep-all;
+      word-break:
+        keep-all;
+    }
 
-      white-space: pre-line;
 
+    .event-body p {
+      margin:
+        0
+        0
+        1.12em;
+    }
+
+
+    .event-body p:last-child {
+      margin-bottom:
+        0;
     }
 
 
     /* =========================================================
-       MUSIC PLAYER
+       MUSIC
     ========================================================= */
 
     .music-player {
-
       position: fixed;
 
       z-index: 100;
@@ -634,14 +626,20 @@
           calc(100% - 36px)
         );
 
-      min-height: 61px;
+      min-height:
+        61px;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
-      justify-content: space-between;
+      align-items:
+        center;
 
-      gap: 16px;
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
 
       padding:
         9px
@@ -670,107 +668,115 @@
 
       -webkit-backdrop-filter:
         blur(20px);
-
     }
 
 
     .music-left,
     .music-controls {
+      display:
+        flex;
 
-      display: flex;
-
-      align-items: center;
-
+      align-items:
+        center;
     }
 
 
     .music-left {
+      min-width:
+        0;
 
-      min-width: 0;
-
-      gap: 11px;
-
+      gap:
+        11px;
     }
 
 
     .music-icon {
-
       color:
         #a998ff;
 
-      font-size: 17px;
-
+      font-size:
+        17px;
     }
 
 
     .music-title {
+      overflow:
+        hidden;
 
-      overflow: hidden;
+      white-space:
+        nowrap;
 
-      white-space: nowrap;
-
-      text-overflow: ellipsis;
+      text-overflow:
+        ellipsis;
 
       color:
         rgba(255,255,255,.72);
 
-      font-size: 11px;
-
+      font-size:
+        11px;
     }
 
 
     .music-controls {
-
       flex:
         0
         0
         auto;
 
-      gap: 3px;
-
+      gap:
+        3px;
     }
 
 
     .music-btn {
+      width:
+        39px;
 
-      width: 39px;
-      height: 39px;
+      height:
+        39px;
 
-      display: grid;
+      display:
+        grid;
 
-      place-items: center;
+      place-items:
+        center;
 
-      padding: 0;
+      padding:
+        0;
 
       border:
         1px solid
         rgba(255,255,255,.14);
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
-      color: white;
+      color:
+        white;
 
       background:
         rgba(255,255,255,.045);
 
-      cursor: pointer;
-
+      cursor:
+        pointer;
     }
 
 
     .music-btn.small {
+      width:
+        31px;
 
-      width: 31px;
-      height: 31px;
+      height:
+        31px;
 
-      border: 0;
+      border:
+        0;
 
       background:
         transparent;
 
       color:
         rgba(255,255,255,.55);
-
     }
 
 
@@ -778,100 +784,135 @@
        MOBILE
     ========================================================= */
 
-    @media (max-width: 700px) {
+    @media (max-width: 720px) {
 
-      .mh-tl-page {
-
+      .page {
         width:
           calc(100% - 28px);
 
+        padding-top:
+          25px;
       }
 
 
-      .mh-tl-header {
+      .timeline-header {
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        gap:
+          24px;
 
         padding:
-          46px
+          48px
           0
-          54px;
+          55px;
+      }
 
+
+      .timeline-title {
+        font-size:
+          17vw;
+      }
+
+
+      .timeline-meta {
+        padding:
+          0;
+
+        text-align:
+          left;
       }
 
 
       .mh-timeline {
-
-        --track-x: 13px;
-
+        --track-x:
+          13px;
       }
 
 
-      .mh-tl-act {
-
+      .act,
+      .event {
         padding-left:
-          52px;
-
-        margin-top:
           46px;
-
       }
 
 
-      .mh-tl-item {
+      .act {
+        min-height:
+          62px;
 
-        padding-left:
-          52px;
-
+        margin:
+          16px
+          0
+          14px;
       }
 
 
-      .mh-tl-card {
+      .act-inner {
+        flex-direction:
+          column;
 
-        padding:
-          27px
-          23px
+        gap:
+          5px;
+      }
+
+
+      .act-title {
+        font-size:
+          15px;
+
+        line-height:
+          1.5;
+      }
+
+
+      .event::before {
+        top:
           29px;
 
-        border-radius:
-          22px;
+        width:
+          10px;
 
+        height:
+          10px;
       }
 
 
-      .mh-tl-event-title {
+      .event-card {
+        padding:
+          29px
+          25px
+          31px;
 
+        border-radius:
+          21px;
+      }
+
+
+      .event-title {
         font-size:
           23px;
-
       }
 
 
-      .mh-tl-event-sub {
-
+      .event-subtitle {
         font-size:
-          12.5px;
-
+          13px;
       }
 
 
-      .mh-tl-event-text {
+      .event-body {
+        margin-top:
+          23px;
 
         font-size:
-          13.5px;
+          14px;
 
         line-height:
           1.95;
-
-      }
-
-
-      .mh-tl-act-title {
-
-        font-size:
-          10px;
-
-        letter-spacing:
-          .18em;
-
       }
 
     }
@@ -884,23 +925,23 @@
 <body>
 
 
-<main class="mh-tl-page">
+<main class="page">
 
 
-  <!-- =====================================================
+  <!-- =========================================================
        TOP
-  ====================================================== -->
+  ========================================================== -->
 
-  <nav class="mh-tl-top">
+  <nav class="topbar">
 
     <a
-      class="mh-tl-back"
+      class="back"
       href="../index.html"
     >
       ← BACK TO MAIN
     </a>
 
-    <span class="mh-tl-index">
+    <span class="page-index">
       02 · TIMELINE
     </span>
 
@@ -908,47 +949,59 @@
 
 
 
-  <!-- =====================================================
+  <!-- =========================================================
        HEADER
-  ====================================================== -->
+  ========================================================== -->
 
-  <header class="mh-tl-header">
+  <header class="timeline-header">
 
-    <div class="mh-tl-kicker">
-      NARRATIVE TIMELINE
+    <div>
+
+      <div class="timeline-kicker">
+        NARRATIVE TIMELINE
+      </div>
+
+      <h1 class="timeline-title">
+        Midnight<span> / Hour.</span>
+      </h1>
+
     </div>
 
-    <h1 class="mh-tl-title">
-      Midnight<br>
-      <span>Hour.</span>
-    </h1>
 
-    <div class="mh-tl-sub">
-      READER · CHARACTER · DISTANCE · LOVE
+    <div class="timeline-meta">
+      READER · CHARACTER<br>
+      DISTANCE · LOVE
     </div>
 
   </header>
 
 
 
-  <!-- =====================================================
+  <!-- =========================================================
        TIMELINE
-  ====================================================== -->
+  ========================================================== -->
 
   <section class="mh-timeline">
+
 
 
     <!-- =====================================================
          ACT I
     ====================================================== -->
 
-    <div class="mh-tl-act">
+    <div class="act">
 
-      <span class="mh-tl-act-dot"></span>
+      <div class="act-inner">
 
-      <h2 class="mh-tl-act-title">
-        ACT I · THE READER ENTERS
-      </h2>
+        <span class="act-number">
+          ACT I
+        </span>
+
+        <h2 class="act-title">
+          THE READER ENTERS
+        </h2>
+
+      </div>
 
     </div>
 
@@ -956,36 +1009,37 @@
 
     <!-- 01 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            01
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Opening Shot
-          </h3>
-
+        <div class="event-number">
+          01
         </div>
 
+        <h2 class="event-title">
+          Opening Shot
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           이야기 속으로 들어온 독자
         </div>
 
 
-        <div class="mh-tl-event-text">
-정희솔은 &lt;상영관 0번&gt;의 진입 조건을 충족해 자신의 최애인 직원 D, 이자헌의 앞으로 트립한다. 시점은 『괴담에 떨어져도 출근을 해야 하는구나』 본편 이전으로, 당시 이자헌은 주임이었다.
+        <div class="event-body">
 
-이자헌을 구하며 함께 어둠을 파훼한 정희솔은 연구팀의 실험체가 될 뻔하지만, 이자헌의 도움으로 그의 관리하에 있는 비공식 어둠이 되어 D조에 입사한다.
+          <p>
+            정희솔은 &lt;상영관 0번&gt;의 진입 조건을 충족해 자신의 최애인 직원 D, 이자헌의 앞으로 트립한다. 시점은 『괴담에 떨어져도 출근을 해야 하는구나』 본편 이전으로, 당시 이자헌은 주임이었다.
+          </p>
 
-원래 세계로 돌아갈 때마다 모두에게 잊히는 정희솔을 유일하게 기억한 이자헌은 이를 통해 연합에서 벗어난 자아를 갖기 시작하고, 자신을 동등하게 보지 않는 정희솔에게 점차 집착하며 동등한 관계를 요구한다.
+          <p>
+            이자헌을 구하며 함께 어둠을 파훼한 정희솔은 연구팀의 실험체가 될 뻔하지만, 이자헌의 도움으로 그의 관리하에 있는 비공식 어둠이 되어 D조에 입사한다.
+          </p>
+
+          <p>
+            원래 세계로 돌아갈 때마다 모두에게 잊히는 정희솔을 유일하게 기억한 이자헌은 이를 통해 연합에서 벗어난 자아를 갖기 시작하고, 자신을 동등하게 보지 않는 정희솔에게 점차 집착하며 동등한 관계를 요구한다.
+          </p>
+
         </div>
 
       </div>
@@ -996,36 +1050,37 @@
 
     <!-- 02 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            02
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Inciting Incident
-          </h3>
-
+        <div class="event-number">
+          02
         </div>
 
+        <h2 class="event-title">
+          Inciting Incident
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           등장인물이 독자에게 사랑을 묻다
         </div>
 
 
-        <div class="mh-tl-event-text">
-정희솔은 이자헌과 거리를 두기 위해 원래 세계에서 연인을 사귄다. 더 이상 자신을 최우선으로 여기지 않는 정희솔을 보며 이자헌은 자신과 정희솔 역시 연인과 다를 바 없으며 충분히 연인이 될 수 있음을 지적한다.
+        <div class="event-body">
 
-동시에 정희솔이 자신을 떠날 가능성이 싫다는 사실을 자각하며 자신의 욕망을 더욱 분명하게 드러내기 시작한다.
+          <p>
+            정희솔은 이자헌과 거리를 두기 위해 원래 세계에서 연인을 사귄다. 더 이상 자신을 최우선으로 여기지 않는 정희솔을 보며 이자헌은 자신과 정희솔 역시 연인과 다를 바 없으며 충분히 연인이 될 수 있음을 지적한다.
+          </p>
 
-인간처럼 자신을 원하는 이자헌을 버거워한 정희솔은 두려움을 느끼고 한동안 괴담출근 세계에 나타나지 않는다.
+          <p>
+            동시에 정희솔이 자신을 떠날 가능성이 싫다는 사실을 자각하며 자신의 욕망을 더욱 분명하게 드러내기 시작한다.
+          </p>
+
+          <p>
+            인간처럼 자신을 원하는 이자헌을 버거워한 정희솔은 두려움을 느끼고 한동안 괴담출근 세계에 나타나지 않는다.
+          </p>
+
         </div>
 
       </div>
@@ -1038,13 +1093,19 @@
          ACT II
     ====================================================== -->
 
-    <div class="mh-tl-act">
+    <div class="act">
 
-      <span class="mh-tl-act-dot"></span>
+      <div class="act-inner">
 
-      <h2 class="mh-tl-act-title">
-        ACT II · DISTANCE DISTORTED
-      </h2>
+        <span class="act-number">
+          ACT II
+        </span>
+
+        <h2 class="act-title">
+          DISTANCE DISTORTED
+        </h2>
+
+      </div>
 
     </div>
 
@@ -1052,38 +1113,41 @@
 
     <!-- 03 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            03
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Fourth Wall Distortion
-          </h3>
-
+        <div class="event-number">
+          03
         </div>
 
+        <h2 class="event-title">
+          Fourth Wall Distortion
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           가족이라는 이름의 구속
         </div>
 
 
-        <div class="mh-tl-event-text">
-정희솔을 기다리던 이자헌은 주변과의 대화를 통해 연인보다 우선시할 수 있는 존재가 가족임을 알고, 정희솔과 가족이 되겠다는 결론을 내린다.
+        <div class="event-body">
 
-정희솔이 이를 받아들이자 이자헌은 가족이기에 함께해야 한다고 주장하며, 결국 자신을 외면하지 말라고 강제하고 정희솔의 귀환을 막기 위해 대신 부상을 입는다.
+          <p>
+            정희솔을 기다리던 이자헌은 주변과의 대화를 통해 연인보다 우선시할 수 있는 존재가 가족임을 알고, 정희솔과 가족이 되겠다는 결론을 내린다.
+          </p>
 
-이후 &lt;한 박자 늦은 증언&gt;에서 사망해 원래 세계로 돌아간 정희솔은 이자헌과의 관계에 대한 혼란으로 연인과 이별한다.
+          <p>
+            정희솔이 이를 받아들이자 이자헌은 가족이기에 함께해야 한다고 주장하며, 결국 자신을 외면하지 말라고 강제하고 정희솔의 귀환을 막기 위해 대신 부상을 입는다.
+          </p>
 
-다시 돌아온 정희솔은 이자헌에 대한 애정을 인정하면서도 그를 피하고, 이자헌은 그런 태도를 통해 오히려 자신의 감정을 명확히 자각한다.
+          <p>
+            이후 &lt;한 박자 늦은 증언&gt;에서 사망해 원래 세계로 돌아간 정희솔은 이자헌과의 관계에 대한 혼란으로 연인과 이별한다.
+          </p>
+
+          <p>
+            다시 돌아온 정희솔은 이자헌에 대한 애정을 인정하면서도 그를 피하고, 이자헌은 그런 태도를 통해 오히려 자신의 감정을 명확히 자각한다.
+          </p>
+
         </div>
 
       </div>
@@ -1094,38 +1158,41 @@
 
     <!-- 04 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            04
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Confrontation Scene
-          </h3>
-
+        <div class="event-number">
+          04
         </div>
 
+        <h2 class="event-title">
+          Confrontation Scene
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           기억보다 오래 남은 감정
         </div>
 
 
-        <div class="mh-tl-event-text">
-&lt;종소리가 울리면 돌아가세요&gt;에서 팀원들을 구하기 위해 종지기가 된 정희솔은 그 부작용으로 자신의 일부가 해당 어둠에 귀속되고, 원래 세계로 돌아온 뒤 괴담출근 세계의 기억을 잃는다.
+        <div class="event-body">
 
-정희솔을 기다리던 이자헌은 그녀가 사는 세계를 탐구하며 직접 찾아가고 싶다는 생각을 품고, 자신의 자아를 완전히 자각한다.
+          <p>
+            &lt;종소리가 울리면 돌아가세요&gt;에서 팀원들을 구하기 위해 종지기가 된 정희솔은 그 부작용으로 자신의 일부가 해당 어둠에 귀속되고, 원래 세계로 돌아온 뒤 괴담출근 세계의 기억을 잃는다.
+          </p>
 
-이후 다시 트립한 정희솔은 처음처럼 최애인 이자헌에게 호감을 보이면서도 무의식적으로 축적된 감정을 느끼고, 어느 순간 가까워진 둘의 거리를 경계한다.
+          <p>
+            정희솔을 기다리던 이자헌은 그녀가 사는 세계를 탐구하며 직접 찾아가고 싶다는 생각을 품고, 자신의 자아를 완전히 자각한다.
+          </p>
 
-그 순간 이자헌은 정희솔이 그어 둔 선 앞에서 멈추는 대신 직접 그 안으로 들어선다.
+          <p>
+            이후 다시 트립한 정희솔은 처음처럼 최애인 이자헌에게 호감을 보이면서도 무의식적으로 축적된 감정을 느끼고, 어느 순간 가까워진 둘의 거리를 경계한다.
+          </p>
+
+          <p>
+            그 순간 이자헌은 정희솔이 그어 둔 선 앞에서 멈추는 대신 직접 그 안으로 들어선다.
+          </p>
+
         </div>
 
       </div>
@@ -1138,13 +1205,19 @@
          ACT III
     ====================================================== -->
 
-    <div class="mh-tl-act">
+    <div class="act">
 
-      <span class="mh-tl-act-dot"></span>
+      <div class="act-inner">
 
-      <h2 class="mh-tl-act-title">
-        ACT III · THE FALL
-      </h2>
+        <span class="act-number">
+          ACT III
+        </span>
+
+        <h2 class="act-title">
+          THE FALL
+        </h2>
+
+      </div>
 
     </div>
 
@@ -1152,38 +1225,41 @@
 
     <!-- 05 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            05
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Climax
-          </h3>
-
+        <div class="event-number">
+          05
         </div>
 
+        <h2 class="event-title">
+          Climax
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           사랑의 대가를 바치는 선택
         </div>
 
 
-        <div class="mh-tl-event-text">
-&lt;꼭두각시의 결혼식&gt;에서 정희솔은 사회자 인형에게 사랑을 이룰 수 없는 이유는 자신에게 돌아갈 곳이 있기 때문이며, 돌아갈 길이 사라지면 해결될 것이라는 말을 듣는다.
+        <div class="event-body">
 
-기억 일부를 되찾은 정희솔은 이자헌과 함께 더 깊은 어둠인 &lt;검은 혼례&gt;에 들어가고, 그곳에서 두 사람의 과거 관계와 서로가 원했던 거리에 대해 다시 마주한다.
+          <p>
+            &lt;꼭두각시의 결혼식&gt;에서 정희솔은 사회자 인형에게 사랑을 이룰 수 없는 이유는 자신에게 돌아갈 곳이 있기 때문이며, 돌아갈 길이 사라지면 해결될 것이라는 말을 듣는다.
+          </p>
 
-이자헌은 정희솔과 달리 자신은 거리를 두고 싶지 않다고 분명히 말한다.
+          <p>
+            기억 일부를 되찾은 정희솔은 이자헌과 함께 더 깊은 어둠인 &lt;검은 혼례&gt;에 들어가고, 그곳에서 두 사람의 과거 관계와 서로가 원했던 거리에 대해 다시 마주한다.
+          </p>
 
-혼례를 치르면 괴담출근 세계에 종속된다는 사실을 알게 된 정희솔은 다른 탈출 조건인 ‘사랑의 대가’를 선택하고, 절벽에서 떨어지기로 한다.
+          <p>
+            이자헌은 정희솔과 달리 자신은 거리를 두고 싶지 않다고 분명히 말한다.
+          </p>
+
+          <p>
+            혼례를 치르면 괴담출근 세계에 종속된다는 사실을 알게 된 정희솔은 다른 탈출 조건인 ‘사랑의 대가’를 선택하고, 절벽에서 떨어지기로 한다.
+          </p>
+
         </div>
 
       </div>
@@ -1194,38 +1270,41 @@
 
     <!-- 06 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            06
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Narrative Reset
-          </h3>
-
+        <div class="event-number">
+          06
         </div>
 
+        <h2 class="event-title">
+          Narrative Reset
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           동등한 자리에서 함께 추락하다
         </div>
 
 
-        <div class="mh-tl-event-text">
-자신이 원하는 것을 이미 명확히 알고 있던 이자헌은 정희솔과 동등한 입장에서 마주하기 위해 그녀를 끌어안고 함께 추락한다.
+        <div class="event-body">
 
-그는 정희솔이 원래 세계로 돌아가더라도 자신을 보러 다시 와줄 수 있는지를 묻고, 정희솔은 그 질문을 들으며 원래 세계에서 눈을 뜬다.
+          <p>
+            자신이 원하는 것을 이미 명확히 알고 있던 이자헌은 정희솔과 동등한 입장에서 마주하기 위해 그녀를 끌어안고 함께 추락한다.
+          </p>
 
-이후 괴담출근 세계로 돌아왔을 때 행방불명되어 있던 이자헌은 시간이 지나 부상을 입은 채 돌아오고, 어둠에서 얻은 두 개의 반지 중 하나를 정희솔에게 건넨다.
+          <p>
+            그는 정희솔이 원래 세계로 돌아가더라도 자신을 보러 다시 와줄 수 있는지를 묻고, 정희솔은 그 질문을 들으며 원래 세계에서 눈을 뜬다.
+          </p>
 
-정희솔은 반지를 소지에 끼우며 아직 명확히 자각하지 못한 채 이자헌과 괴담출근 세계를 조금씩 자신의 삶으로 받아들이기 시작한다.
+          <p>
+            이후 괴담출근 세계로 돌아왔을 때 행방불명되어 있던 이자헌은 시간이 지나 부상을 입은 채 돌아오고, 어둠에서 얻은 두 개의 반지 중 하나를 정희솔에게 건넨다.
+          </p>
+
+          <p>
+            정희솔은 반지를 소지에 끼우며 아직 명확히 자각하지 못한 채 이자헌과 괴담출근 세계를 조금씩 자신의 삶으로 받아들이기 시작한다.
+          </p>
+
         </div>
 
       </div>
@@ -1235,16 +1314,22 @@
 
 
     <!-- =====================================================
-         AFTER THE END
+         ACT IV
     ====================================================== -->
 
-    <div class="mh-tl-act">
+    <div class="act">
 
-      <span class="mh-tl-act-dot"></span>
+      <div class="act-inner">
 
-      <h2 class="mh-tl-act-title">
-        AFTER THE END
-      </h2>
+        <span class="act-number">
+          ACT IV
+        </span>
+
+        <h2 class="act-title">
+          CHOOSING TO STAY
+        </h2>
+
+      </div>
 
     </div>
 
@@ -1252,38 +1337,41 @@
 
     <!-- 07 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            07
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Close-Up
-          </h3>
-
+        <div class="event-number">
+          07
         </div>
 
+        <h2 class="event-title">
+          Close-Up
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           부재가 사랑의 이름을 얻는 순간
         </div>
 
 
-        <div class="mh-tl-event-text">
-관계가 어느 정도 가라앉은 뒤에도 이자헌은 변함없이 정희솔의 곁을 지키고, 정희솔은 그런 그를 어떻게 받아들여야 할지 계속 고민한다.
+        <div class="event-body">
 
-그러던 어느 날 원래 세계의 텅 빈 집으로 돌아온 정희솔은 이전에는 익숙했던 고독이 더 이상 익숙하지 않다는 사실을 깨닫는다.
+          <p>
+            관계가 어느 정도 가라앉은 뒤에도 이자헌은 변함없이 정희솔의 곁을 지키고, 정희솔은 그런 그를 어떻게 받아들여야 할지 계속 고민한다.
+          </p>
 
-이자헌이 보고 싶고 함께 있고 싶다는 감정 끝에 정희솔은 마침내 자신의 사랑을 인정한다.
+          <p>
+            그러던 어느 날 원래 세계의 텅 빈 집으로 돌아온 정희솔은 이전에는 익숙했던 고독이 더 이상 익숙하지 않다는 사실을 깨닫는다.
+          </p>
 
-다시 이자헌에게 돌아온 정희솔은 그의 사랑을 확인한 뒤, 처음으로 자신의 곁을 떠나지 말아 달라고 부탁한다.
+          <p>
+            이자헌이 보고 싶고 함께 있고 싶다는 감정 끝에 정희솔은 마침내 자신의 사랑을 인정한다.
+          </p>
+
+          <p>
+            다시 이자헌에게 돌아온 정희솔은 그의 사랑을 확인한 뒤, 처음으로 자신의 곁을 떠나지 말아 달라고 부탁한다.
+          </p>
+
         </div>
 
       </div>
@@ -1294,38 +1382,41 @@
 
     <!-- 08 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            08
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Two Shot
-          </h3>
-
+        <div class="event-number">
+          08
         </div>
 
+        <h2 class="event-title">
+          Two Shot
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           서로를 책임지는 두 사람
         </div>
 
 
-        <div class="mh-tl-event-text">
-연인이 된 두 사람은 서로를 단순히 사랑하는 것을 넘어 상대를 책임지고 싶다는 마음을 갖는다.
+        <div class="event-body">
 
-정희솔은 이자헌이 지금과 같은 자아와 욕망을 갖게 된 데 자신의 존재가 영향을 주었다는 사실을 받아들이며 더 이상 그를 외면하지 않기로 한다.
+          <p>
+            연인이 된 두 사람은 서로를 단순히 사랑하는 것을 넘어 상대를 책임지고 싶다는 마음을 갖는다.
+          </p>
 
-이자헌 역시 자신 때문에 정희솔이 오랫동안 혼란스러워했음을 알고 있기에 더욱 분명한 애정과 확신을 주려 한다.
+          <p>
+            정희솔은 이자헌이 지금과 같은 자아와 욕망을 갖게 된 데 자신의 존재가 영향을 주었다는 사실을 받아들이며 더 이상 그를 외면하지 않기로 한다.
+          </p>
 
-한쪽이 붙잡고 한쪽이 도망치던 관계는 이제 서로의 곁에 남기를 선택하는 관계로 변한다.
+          <p>
+            이자헌 역시 자신 때문에 정희솔이 오랫동안 혼란스러워했음을 알고 있기에 더욱 분명한 애정과 확신을 주려 한다.
+          </p>
+
+          <p>
+            한쪽이 붙잡고 한쪽이 도망치던 관계는 이제 서로의 곁에 남기를 선택하는 관계로 변한다.
+          </p>
+
         </div>
 
       </div>
@@ -1336,38 +1427,41 @@
 
     <!-- 09 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            09
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Montage
-          </h3>
-
+        <div class="event-number">
+          09
         </div>
 
+        <h2 class="event-title">
+          Montage
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           허락된 욕망, 사라지는 거리
         </div>
 
 
-        <div class="mh-tl-event-text">
-연인이라는 이름이 붙은 뒤부터 두 사람 사이의 거리는 빠르게 좁아진다.
+        <div class="event-body">
 
-이자헌은 질투와 소유욕처럼 독립된 개인으로서는 처음 경험하는 감정을 하나씩 알아가고, 정희솔은 그런 감정을 느끼고 표현해도 된다고 받아들인다.
+          <p>
+            연인이라는 이름이 붙은 뒤부터 두 사람 사이의 거리는 빠르게 좁아진다.
+          </p>
 
-이자헌이 새로운 욕망을 드러낼 때마다 정희솔은 이전과 달리 그것을 허락하며, 자신이 그만큼 원해진다는 사실에서 작은 기쁨까지 느낀다.
+          <p>
+            이자헌은 질투와 소유욕처럼 독립된 개인으로서는 처음 경험하는 감정을 하나씩 알아가고, 정희솔은 그런 감정을 느끼고 표현해도 된다고 받아들인다.
+          </p>
 
-가장 가까워지는 것을 두려워했던 두 사람은 한 번 경계를 허문 뒤 빠르게 서로에게 깊어진다.
+          <p>
+            이자헌이 새로운 욕망을 드러낼 때마다 정희솔은 이전과 달리 그것을 허락하며, 자신이 그만큼 원해진다는 사실에서 작은 기쁨까지 느낀다.
+          </p>
+
+          <p>
+            가장 가까워지는 것을 두려워했던 두 사람은 한 번 경계를 허문 뒤 빠르게 서로에게 깊어진다.
+          </p>
+
         </div>
 
       </div>
@@ -1378,38 +1472,41 @@
 
     <!-- 10 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            10
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Foreshadowing
-          </h3>
-
+        <div class="event-number">
+          10
         </div>
 
+        <h2 class="event-title">
+          Foreshadowing
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           사랑을 얻은 뒤 생겨난 두려움
         </div>
 
 
-        <div class="mh-tl-event-text">
-하지만 이자헌의 사랑을 받아들인 정희솔에게는 이전에 없던 새로운 불안이 생긴다.
+        <div class="event-body">
 
-이제는 이자헌이 없는 삶이 얼마나 공허한지를 알게 되었기에, 언젠가 그가 사라지거나 자신을 더 이상 사랑하지 않는 미래를 두려워한다.
+          <p>
+            하지만 이자헌의 사랑을 받아들인 정희솔에게는 이전에 없던 새로운 불안이 생긴다.
+          </p>
 
-정희솔은 여전히 이자헌이 자신을 이토록 사랑하는 이유를 완전히 이해하지 못한 채 그 의문을 덮어 두고 있다.
+          <p>
+            이제는 이자헌이 없는 삶이 얼마나 공허한지를 알게 되었기에, 언젠가 그가 사라지거나 자신을 더 이상 사랑하지 않는 미래를 두려워한다.
+          </p>
 
-이자헌의 사랑은 정희솔의 공허함을 채워 주었지만, 동시에 그를 잃는 일을 가장 큰 두려움으로 만들어 버린다.
+          <p>
+            정희솔은 여전히 이자헌이 자신을 이토록 사랑하는 이유를 완전히 이해하지 못한 채 그 의문을 덮어 두고 있다.
+          </p>
+
+          <p>
+            이자헌의 사랑은 정희솔의 공허함을 채워 주었지만, 동시에 그를 잃는 일을 가장 큰 두려움으로 만들어 버린다.
+          </p>
+
         </div>
 
       </div>
@@ -1420,38 +1517,41 @@
 
     <!-- 11 -->
 
-    <article class="mh-tl-item">
+    <article class="event">
 
-      <span class="mh-tl-dot"></span>
+      <div class="event-card">
 
-      <div class="mh-tl-card">
-
-        <div class="mh-tl-head">
-
-          <span class="mh-tl-no">
-            11
-          </span>
-
-          <h3 class="mh-tl-event-title">
-            Long Take
-          </h3>
-
+        <div class="event-number">
+          11
         </div>
 
+        <h2 class="event-title">
+          Long Take
+        </h2>
 
-        <div class="mh-tl-event-sub">
+        <div class="event-subtitle">
           사건이 끝난 뒤에도 같은 화면에
         </div>
 
 
-        <div class="mh-tl-event-text">
-그러한 불안과 별개로 두 사람은 연인으로서 서로의 성향과 결핍을 자연스럽게 보완한다.
+        <div class="event-body">
 
-정희솔은 이자헌이 스스로도 알아차리지 못한 감정을 이해하고 받아줄 수 있으며, 이자헌은 정희솔이 오랫동안 필요로 했던 애정과 안정감을 아낌없이 건넨다.
+          <p>
+            그러한 불안과 별개로 두 사람은 연인으로서 서로의 성향과 결핍을 자연스럽게 보완한다.
+          </p>
 
-앞으로의 문제는 서로가 맞지 않아서라기보다 각자가 가진 상처와 불안을 어떻게 함께 견뎌 낼 것인가에 가깝다.
+          <p>
+            정희솔은 이자헌이 스스로도 알아차리지 못한 감정을 이해하고 받아줄 수 있으며, 이자헌은 정희솔이 오랫동안 필요로 했던 애정과 안정감을 아낌없이 건넨다.
+          </p>
 
-등장인물과 독자로 시작한 두 사람의 관계는 이제 하나의 결말에 머물지 않고, 서로를 선택한 이후의 시간까지 계속 이어진다.
+          <p>
+            앞으로의 문제는 서로가 맞지 않아서라기보다 각자가 가진 상처와 불안을 어떻게 함께 견뎌 낼 것인가에 가깝다.
+          </p>
+
+          <p>
+            등장인물과 독자로 시작한 두 사람의 관계는 이제 하나의 결말에 머물지 않고, 서로를 선택한 이후의 시간까지 계속 이어진다.
+          </p>
+
         </div>
 
       </div>
@@ -1494,26 +1594,28 @@
   <div class="music-controls">
 
     <button
-      aria-label="previous track"
       class="music-btn small"
       onclick="prevTrack()"
+      aria-label="previous track"
     >
       ‹
     </button>
 
+
     <button
-      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
+      aria-label="play or pause"
     >
       ▶
     </button>
 
+
     <button
-      aria-label="next track"
       class="music-btn small"
       onclick="nextTrack()"
+      aria-label="next track"
     >
       ›
     </button>
@@ -1529,8 +1631,10 @@
 </div>
 
 
+
 <script src="../common.js"></script>
 
 
 </body>
+
 </html>
