@@ -24,6 +24,11 @@
     }
 
 
+    :root {
+      --subtitle-purple: #b7abf4;
+    }
+
+
     * {
       box-sizing: border-box;
     }
@@ -122,6 +127,7 @@
 
     .mh-fr-back:hover {
       color: white;
+
       transform: translateX(-3px);
     }
 
@@ -278,10 +284,14 @@
     }
 
 
+    /*
+      네 카드 모두 동일한 보라색
+    */
+
     .mh-fr-card-subtitle {
       margin-top: 16px;
 
-      color: #b8c7ff;
+      color: var(--subtitle-purple);
 
       font-size:
         clamp(
@@ -293,24 +303,6 @@
       line-height: 1.7;
 
       word-break: keep-all;
-    }
-
-
-    .mh-fr-card:nth-child(2)
-    .mh-fr-card-subtitle {
-      color: #b8b0ff;
-    }
-
-
-    .mh-fr-card:nth-child(3)
-    .mh-fr-card-subtitle {
-      color: #d29dcb;
-    }
-
-
-    .mh-fr-card:nth-child(4)
-    .mh-fr-card-subtitle {
-      color: #d68da3;
     }
 
 
@@ -412,7 +404,7 @@
     .mh-fr-reader-subtitle {
       margin-top: 9px;
 
-      color: rgba(183,172,244,.72);
+      color: var(--subtitle-purple);
 
       font-size: 13px;
 
@@ -484,7 +476,7 @@
 
 
     .mh-fr-reader-text em {
-      color: rgba(218,210,255,.92);
+      color: #c6baf9;
 
       font-style: italic;
     }
@@ -830,9 +822,7 @@
 
 
 
-<!-- =========================================================
-     READER MODAL
-========================================================= -->
+<!-- READER -->
 
 <div
   class="mh-fr-modal"
@@ -890,9 +880,7 @@
 
 
 
-<!-- =========================================================
-     FRAGMENT 003 TEMPLATE
-========================================================= -->
+<!-- FRAGMENT 003 -->
 
 <template id="fragment-three-template">
 
@@ -996,9 +984,7 @@
 
 
 
-<!-- =========================================================
-     MUSIC
-========================================================= -->
+<!-- MUSIC -->
 
 <div
   class="music-player"
@@ -1078,7 +1064,6 @@
     document.getElementById("mh-fr-reader-text");
 
 
-
   function prepareFragment(
     title,
     subtitle
@@ -1105,7 +1090,6 @@
       "hidden";
 
   }
-
 
 
   async function openFragmentText(
@@ -1159,7 +1143,6 @@
   }
 
 
-
   function openFragmentThree() {
 
     prepareFragment(
@@ -1186,7 +1169,6 @@
   }
 
 
-
   function closeFragment() {
 
     fragmentModal.classList.remove(
@@ -1197,7 +1179,6 @@
       "";
 
   }
-
 
 
   function closeFragmentOutside(
@@ -1213,7 +1194,6 @@
     }
 
   }
-
 
 
   document.addEventListener(
