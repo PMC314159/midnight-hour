@@ -29,6 +29,11 @@
     }
 
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+
     body {
       margin: 0;
 
@@ -38,13 +43,23 @@
 
       font-family:
         "GmarketSans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
         sans-serif;
+
+      font-weight: 300;
 
       background:
         radial-gradient(
-          circle at 85% 10%,
-          rgba(82,77,150,.12),
-          transparent 34%
+          circle at 88% 8%,
+          rgba(86, 77, 158, .14),
+          transparent 33%
+        ),
+        radial-gradient(
+          circle at 5% 80%,
+          rgba(74, 95, 180, .07),
+          transparent 28%
         ),
         #08080d;
     }
@@ -56,8 +71,17 @@
     }
 
 
+    button {
+      font: inherit;
+    }
+
+
+    /* =========================================================
+       PAGE
+    ========================================================= */
+
     .mh-person-page {
-      width: min(1160px, calc(100% - 58px));
+      width: min(1200px, calc(100% - 58px));
 
       margin: 0 auto;
 
@@ -68,15 +92,23 @@
     }
 
 
+    /* =========================================================
+       TOP
+    ========================================================= */
+
     .mh-person-top {
       display: flex;
 
       align-items: center;
       justify-content: space-between;
 
+      gap: 30px;
+
       padding-bottom: 22px;
 
-      border-bottom: 1px solid rgba(255,255,255,.11);
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.11);
     }
 
 
@@ -86,6 +118,17 @@
       font-size: 11px;
 
       letter-spacing: .14em;
+
+      transition:
+        color .2s ease,
+        transform .2s ease;
+    }
+
+
+    .mh-person-back:hover {
+      color: #fff;
+
+      transform: translateX(-3px);
     }
 
 
@@ -97,6 +140,10 @@
       letter-spacing: .23em;
     }
 
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
 
     .mh-person-header {
       padding:
@@ -120,44 +167,54 @@
     .mh-person-page-title {
       margin: 0;
 
-      font-size: clamp(54px, 7vw, 92px);
+      font-size:
+        clamp(
+          56px,
+          7.2vw,
+          96px
+        );
 
-      line-height: .93;
+      line-height: .92;
 
-      letter-spacing: -.055em;
+      letter-spacing: -.057em;
 
       font-weight: 300;
     }
 
 
     .mh-person-subtitle {
-      margin-top: 18px;
+      margin-top: 19px;
 
-      color: rgba(255,255,255,.38);
+      color: rgba(255,255,255,.40);
 
-      font-size: 11px;
+      font-size: 12px;
 
       letter-spacing: .12em;
     }
 
 
-    /* =====================================================
-       PROFILE
-    ====================================================== */
+    /* =========================================================
+       PROFILE ROW
+    ========================================================= */
 
     .mh-person-profile {
       display: grid;
 
       grid-template-columns:
-        minmax(300px, .82fr)
+        minmax(310px, .82fr)
         minmax(0, 1.18fr);
 
-      align-items: center;
+      /*
+        핵심:
+        image와 description 양쪽을
+        같은 row 높이로 늘린다.
+      */
+      align-items: stretch;
 
-      gap: 60px;
+      gap: 44px;
 
       padding:
-        54px
+        52px
         0;
 
       border-top:
@@ -185,25 +242,34 @@
     }
 
 
-    /*
-       핵심:
-       이자헌 / 정희솔 이미지 칸 완전 동일
-    */
+    /* =========================================================
+       IMAGE
+    ========================================================= */
 
     .mh-person-image {
+      position: relative;
+
       width: 100%;
 
-      height: 520px;
+      min-height: 570px;
 
       overflow: hidden;
 
-      border-radius: 27px;
+      border-radius: 28px;
 
       background: #111118;
+
+      border:
+        1px solid
+        rgba(255,255,255,.07);
     }
 
 
     .mh-person-image img {
+      position: absolute;
+
+      inset: 0;
+
       display: block;
 
       width: 100%;
@@ -213,24 +279,58 @@
     }
 
 
-    .mh-person-profile:first-of-type
+    /* 필요하면 캐릭터별 크롭 위치 여기서 조절 */
+
+    .mh-person-profile:nth-of-type(1)
     .mh-person-image img {
       object-position: center center;
     }
 
 
-    .mh-person-profile:last-of-type
+    .mh-person-profile:nth-of-type(2)
     .mh-person-image img {
       object-position: center center;
+    }
+
+
+    /* =========================================================
+       DESCRIPTION PANEL
+    ========================================================= */
+
+    .mh-person-copy {
+      min-height: 570px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      padding:
+        38px
+        40px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.09);
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(123, 98, 191, .045),
+          rgba(255,255,255,.014)
+        );
     }
 
 
     .mh-person-number {
-      margin-bottom: 17px;
+      margin-bottom: 18px;
 
-      color: rgba(166,153,233,.68);
+      color: rgba(166,153,233,.72);
 
-      font-size: 10px;
+      font-size: 11px;
 
       letter-spacing: .23em;
     }
@@ -240,24 +340,47 @@
       margin:
         0
         0
-        11px;
+        13px;
 
-      font-size: clamp(38px, 5vw, 62px);
+      font-size:
+        clamp(
+          40px,
+          5vw,
+          65px
+        );
 
       font-weight: 300;
+
+      line-height: 1;
 
       letter-spacing: -.05em;
     }
 
 
+    .mh-person-name a {
+      transition: opacity .2s ease;
+    }
+
+
+    .mh-person-name a:hover {
+      opacity: .68;
+    }
+
+
+    /*
+      기존보다 살짝 키움
+    */
+
     .mh-person-role {
       margin-bottom: 38px;
 
-      color: rgba(255,255,255,.48);
+      color: rgba(255,255,255,.58);
 
-      font-size: 13px;
+      font-size: 15px;
 
-      line-height: 1.8;
+      line-height: 1.85;
+
+      word-break: keep-all;
     }
 
 
@@ -265,42 +388,50 @@
       display: grid;
 
       grid-template-columns:
-        105px
+        110px
         1fr;
 
-      gap: 24px;
+      gap: 25px;
 
       padding:
-        22px
+        24px
         0;
 
       border-top:
         1px solid
-        rgba(255,255,255,.085);
+        rgba(255,255,255,.09);
     }
 
 
     .mh-person-label {
-      color: #9e94db;
+      color: #a29adf;
 
-      font-size: 10px;
+      font-size: 11px;
 
       letter-spacing: .18em;
+
+      padding-top: 2px;
     }
 
 
+    /*
+      설명 글씨 확대
+    */
+
     .mh-person-text {
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.76);
 
-      font-size: 14px;
+      font-size: 16px;
 
-      line-height: 1.95;
+      line-height: 2;
 
       word-break: keep-all;
     }
 
 
-    /* MUSIC */
+    /* =========================================================
+       MUSIC
+    ========================================================= */
 
     .music-player {
       position: fixed;
@@ -312,7 +443,11 @@
 
       transform: translateX(-50%);
 
-      width: min(660px, calc(100% - 36px));
+      width:
+        min(
+          660px,
+          calc(100% - 36px)
+        );
 
       min-height: 61px;
 
@@ -329,13 +464,25 @@
         9px
         19px;
 
-      border: 1px solid rgba(255,255,255,.13);
+      border:
+        1px solid
+        rgba(255,255,255,.13);
 
       border-radius: 999px;
 
-      background: rgba(20,18,29,.89);
+      color: white;
+
+      background:
+        rgba(20,18,29,.89);
+
+      box-shadow:
+        0
+        15px
+        43px
+        rgba(0,0,0,.32);
 
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
 
@@ -347,16 +494,22 @@
 
 
     .music-left {
+      min-width: 0;
       gap: 11px;
     }
 
 
     .music-icon {
       color: #a998ff;
+      font-size: 17px;
     }
 
 
     .music-title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
       color: rgba(255,255,255,.72);
 
       font-size: 11px;
@@ -364,6 +517,7 @@
 
 
     .music-controls {
+      flex: 0 0 auto;
       gap: 3px;
     }
 
@@ -375,13 +529,18 @@
       display: grid;
       place-items: center;
 
-      border: 1px solid rgba(255,255,255,.14);
+      padding: 0;
+
+      border:
+        1px solid
+        rgba(255,255,255,.14);
 
       border-radius: 50%;
 
       color: white;
 
-      background: rgba(255,255,255,.045);
+      background:
+        rgba(255,255,255,.045);
 
       cursor: pointer;
     }
@@ -394,8 +553,14 @@
       border: 0;
 
       background: transparent;
+
+      color: rgba(255,255,255,.55);
     }
 
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
 
     @media (max-width: 780px) {
 
@@ -404,11 +569,23 @@
       }
 
 
+      .mh-person-header {
+        padding:
+          48px
+          0
+          54px;
+      }
+
+
       .mh-person-profile,
       .mh-person-profile.mh-person-reverse {
         grid-template-columns: 1fr;
 
-        gap: 32px;
+        gap: 18px;
+
+        padding:
+          34px
+          0;
       }
 
 
@@ -421,7 +598,18 @@
 
 
       .mh-person-image {
-        height: 420px;
+        min-height: 0;
+
+        height: 440px;
+      }
+
+
+      .mh-person-copy {
+        min-height: 0;
+
+        padding:
+          31px
+          26px;
       }
 
 
@@ -429,6 +617,16 @@
         grid-template-columns: 1fr;
 
         gap: 8px;
+      }
+
+
+      .mh-person-text {
+        font-size: 14px;
+      }
+
+
+      .mh-person-role {
+        font-size: 14px;
       }
 
     }
@@ -480,9 +678,12 @@
 
 
 
-  <!-- 이자헌 -->
+  <!-- =====================================================
+       이자헌
+  ====================================================== -->
 
   <article class="mh-person-profile">
+
 
     <div class="mh-person-image">
 
@@ -499,6 +700,7 @@
       <div class="mh-person-number">
         PERSONNEL · 01
       </div>
+
 
       <h2 class="mh-person-name">
 
@@ -526,7 +728,8 @@
 
         <div class="mh-person-text">
           백일몽 주식회사 D조 조장.
-          원래 세계로 돌아가면 기억이 잊히는 정희솔을 유일하게 기억하는 인물이며,
+          원래 세계로 돌아가면 기억이 잊히는 정희솔을
+          유일하게 기억하는 인물이며,
           그 기억을 통해 연합에서 벗어난 자아를 갖게 된다.
         </div>
 
@@ -549,13 +752,17 @@
 
     </div>
 
+
   </article>
 
 
 
-  <!-- 정희솔 -->
+  <!-- =====================================================
+       정희솔
+  ====================================================== -->
 
   <article class="mh-person-profile mh-person-reverse">
+
 
     <div class="mh-person-image">
 
@@ -572,6 +779,7 @@
       <div class="mh-person-number">
         PERSONNEL · 02
       </div>
+
 
       <h2 class="mh-person-name">
 
@@ -600,7 +808,8 @@
         </div>
 
         <div class="mh-person-text">
-          &lt;상영관 0번&gt; 괴담을 통해 괴담출근 세계로 트립한 인물.
+          &lt;상영관 0번&gt; 괴담을 통해
+          괴담출근 세계로 트립한 인물.
           이자헌의 관리 하에 있는 비공식 어둠으로 등록된다.
         </div>
 
@@ -622,6 +831,7 @@
       </div>
 
     </div>
+
 
   </article>
 
@@ -654,6 +864,7 @@
   <div class="music-controls">
 
     <button
+      aria-label="previous track"
       class="music-btn small"
       onclick="prevTrack()"
     >
@@ -661,6 +872,7 @@
     </button>
 
     <button
+      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
@@ -669,6 +881,7 @@
     </button>
 
     <button
+      aria-label="next track"
       class="music-btn small"
       onclick="nextTrack()"
     >
