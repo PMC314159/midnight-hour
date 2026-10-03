@@ -69,7 +69,7 @@
     ========================================================= */
 
     .mh-person-page {
-      width: min(1120px, calc(100% - 58px));
+      width: min(1080px, calc(100% - 58px));
       margin: 0 auto;
 
       padding:
@@ -127,15 +127,15 @@
 
     .mh-person-header {
       padding:
-        56px
+        54px
         0
-        52px;
+        46px;
     }
 
     .mh-person-kicker {
       margin-bottom: 12px;
 
-      color: #b3a3ff;
+      color: #b6a8ff;
 
       font-size: 11px;
       letter-spacing: .24em;
@@ -146,9 +146,9 @@
 
       font-size:
         clamp(
-          50px,
-          6.3vw,
-          84px
+          48px,
+          6vw,
+          80px
         );
 
       line-height: .92;
@@ -159,7 +159,7 @@
     }
 
     .mh-person-subtitle {
-      margin-top: 18px;
+      margin-top: 17px;
 
       color: rgba(255,255,255,.40);
 
@@ -175,16 +175,24 @@
     .mh-person-profile {
       display: grid;
 
+      /*
+        왼쪽은 320px 정사각형.
+        오른쪽은 나머지 전체.
+      */
+
       grid-template-columns:
-        minmax(250px, .76fr)
-        minmax(0, 1.24fr);
+        320px
+        minmax(0, 1fr);
+
+      grid-template-rows:
+        320px;
 
       align-items: stretch;
 
-      gap: 30px;
+      gap: 26px;
 
       padding:
-        34px
+        30px
         0;
 
       border-top:
@@ -216,8 +224,10 @@
     .mh-person-image {
       position: relative;
 
-      width: 100%;
-      height: 360px;
+      width: 320px;
+      height: 320px;
+
+      aspect-ratio: 1 / 1;
 
       overflow: hidden;
 
@@ -258,15 +268,17 @@
     ========================================================= */
 
     .mh-person-copy {
-      height: 360px;
+      height: 320px;
+
+      min-width: 0;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       padding:
-        24px
-        28px;
+        19px
+        25px;
 
       border:
         1px solid
@@ -283,25 +295,25 @@
     }
 
     .mh-person-number {
-      margin-bottom: 10px;
+      margin-bottom: 7px;
 
-      color: rgba(166,153,233,.72);
+      color: rgba(182,168,255,.74);
 
-      font-size: 10px;
-      letter-spacing: .23em;
+      font-size: 9px;
+      letter-spacing: .21em;
     }
 
     .mh-person-name {
       margin:
         0
         0
-        9px;
+        7px;
 
       font-size:
         clamp(
-          32px,
-          4vw,
-          48px
+          30px,
+          3.5vw,
+          40px
         );
 
       font-weight: 300;
@@ -320,13 +332,13 @@
     }
 
     .mh-person-role {
-      margin-bottom: 18px;
+      margin-bottom: 12px;
 
       color: rgba(255,255,255,.62);
 
-      font-size: 14px;
+      font-size: 13.5px;
 
-      line-height: 1.7;
+      line-height: 1.55;
 
       word-break: keep-all;
     }
@@ -335,13 +347,13 @@
       display: grid;
 
       grid-template-columns:
-        86px
-        1fr;
+        78px
+        minmax(0, 1fr);
 
-      gap: 16px;
+      gap: 14px;
 
       padding:
-        14px
+        10px
         0;
 
       border-top:
@@ -350,10 +362,10 @@
     }
 
     .mh-person-label {
-      color: #a29adf;
+      color: #aba0ed;
 
-      font-size: 10.5px;
-      letter-spacing: .15em;
+      font-size: 10px;
+      letter-spacing: .14em;
 
       padding-top: 2px;
     }
@@ -361,9 +373,14 @@
     .mh-person-text {
       color: rgba(255,255,255,.79);
 
-      font-size: 15px;
+      font-size:
+        clamp(
+          13px,
+          1.15vw,
+          14.2px
+        );
 
-      line-height: 1.75;
+      line-height: 1.58;
 
       word-break: keep-all;
     }
@@ -492,30 +509,92 @@
 
 
     /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 920px) {
+
+      .mh-person-profile {
+        grid-template-columns:
+          270px
+          minmax(0, 1fr);
+
+        grid-template-rows:
+          270px;
+      }
+
+      .mh-person-image {
+        width: 270px;
+        height: 270px;
+      }
+
+      .mh-person-copy {
+        height: 270px;
+
+        padding:
+          16px
+          21px;
+      }
+
+      .mh-person-name {
+        font-size: 29px;
+      }
+
+      .mh-person-role {
+        margin-bottom: 8px;
+
+        font-size: 12px;
+      }
+
+      .mh-person-info {
+        grid-template-columns:
+          68px
+          1fr;
+
+        gap: 10px;
+
+        padding:
+          8px
+          0;
+      }
+
+      .mh-person-text {
+        font-size: 12.2px;
+
+        line-height: 1.52;
+      }
+
+    }
+
+
+    /* =========================================================
        MOBILE
     ========================================================= */
 
-    @media (max-width: 780px) {
+    @media (max-width: 720px) {
 
       .mh-person-page {
-        width: calc(100% - 30px);
+        width: calc(100% - 28px);
       }
 
       .mh-person-header {
         padding:
-          45px
+          44px
           0
-          44px;
+          42px;
       }
 
       .mh-person-profile,
       .mh-person-profile.mh-person-reverse {
+        display: grid;
+
         grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
 
         gap: 13px;
 
         padding:
-          28px
+          27px
           0;
       }
 
@@ -527,29 +606,44 @@
       }
 
       .mh-person-image {
-        height: 350px;
+        width: 100%;
+        height: auto;
+
+        aspect-ratio: 1 / 1;
       }
 
       .mh-person-copy {
         height: auto;
 
         padding:
-          27px
-          24px;
+          25px
+          23px;
       }
 
       .mh-person-info {
         grid-template-columns: 1fr;
 
-        gap: 7px;
+        gap: 6px;
+
+        padding:
+          13px
+          0;
+      }
+
+      .mh-person-name {
+        font-size: 34px;
+      }
+
+      .mh-person-role {
+        font-size: 13.5px;
+
+        margin-bottom: 15px;
       }
 
       .mh-person-text {
         font-size: 14px;
-      }
 
-      .mh-person-role {
-        font-size: 13px;
+        line-height: 1.7;
       }
 
     }
@@ -601,9 +695,7 @@
 
 
 
-  <!-- =====================================================
-       이자헌
-  ====================================================== -->
+  <!-- 이자헌 -->
 
   <article class="mh-person-profile">
 
@@ -677,9 +769,7 @@
 
 
 
-  <!-- =====================================================
-       정희솔
-  ====================================================== -->
+  <!-- 정희솔 -->
 
   <article class="mh-person-profile mh-person-reverse">
 
@@ -727,8 +817,7 @@
         </div>
 
         <div class="mh-person-text">
-          &lt;상영관 0번&gt; 괴담을 통해
-          괴담출근 세계로 트립한 인물.
+          &lt;상영관 0번&gt; 괴담을 통해 괴담출근 세계로 트립한 인물.
           이자헌의 관리 하에 있는 비공식 어둠으로 등록된다.
         </div>
 
