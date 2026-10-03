@@ -49,13 +49,9 @@
 
       --line: rgba(255,255,255,.11);
 
-      --blue: #788eff;
-
       --violet: #9d87ff;
 
       --violet-light: #b8aaff;
-
-      --red: #cf607c;
     }
 
 
@@ -98,7 +94,7 @@
         ),
         radial-gradient(
           circle at 14% 90%,
-          rgba(167,63,89,.06),
+          rgba(118,84,163,.06),
           transparent 25%
         ),
         var(--bg);
@@ -107,7 +103,6 @@
 
     a {
       color: inherit;
-
       text-decoration: none;
     }
 
@@ -145,7 +140,6 @@
       display: flex;
 
       align-items: center;
-
       justify-content: space-between;
 
       gap: 30px;
@@ -159,7 +153,8 @@
 
 
     .stills-back {
-      color: rgba(255,255,255,.56);
+      color:
+        rgba(255,255,255,.56);
 
       font-size: 11px;
 
@@ -174,12 +169,14 @@
     .stills-back:hover {
       color: #fff;
 
-      transform: translateX(-3px);
+      transform:
+        translateX(-3px);
     }
 
 
     .stills-index {
-      color: rgba(173,161,229,.68);
+      color:
+        rgba(173,161,229,.68);
 
       font-size: 10px;
 
@@ -210,7 +207,8 @@
     .stills-kicker {
       margin-bottom: 12px;
 
-      color: var(--violet-light);
+      color:
+        var(--violet-light);
 
       font-size: 11px;
 
@@ -221,7 +219,8 @@
     .stills-title {
       margin: 0;
 
-      color: #f2f1f6;
+      color:
+        #f2f1f6;
 
       font-size:
         clamp(
@@ -239,7 +238,8 @@
 
 
     .stills-title span {
-      color: rgba(255,255,255,.34);
+      color:
+        rgba(255,255,255,.34);
     }
 
 
@@ -248,7 +248,8 @@
 
       padding-bottom: 8px;
 
-      color: rgba(255,255,255,.38);
+      color:
+        rgba(255,255,255,.38);
 
       font-size: 11px;
 
@@ -262,14 +263,16 @@
 
     /* =========================================================
        GALLERY
+       전부 정사각형
     ========================================================= */
 
     .still-grid {
-      columns:
-        3
-        300px;
+      display: grid;
 
-      column-gap: 17px;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 17px;
     }
 
 
@@ -280,22 +283,17 @@
     .still-card {
       position: relative;
 
-      display: inline-block;
-
       width: 100%;
 
-      margin:
-        0
-        0
-        17px;
+      aspect-ratio:
+        1 / 1;
 
       overflow: hidden;
 
-      break-inside: avoid;
-
       border-radius: 22px;
 
-      background: #111117;
+      background:
+        #111117;
 
       cursor: pointer;
 
@@ -316,18 +314,26 @@
 
       border:
         1px solid
-        rgba(255,255,255,.05);
+        rgba(255,255,255,.06);
 
       border-radius: inherit;
     }
 
 
+    /*
+      썸네일은 정사각형 안을 꽉 채움.
+      원본 비율이 달라도 자동 크롭.
+    */
+
     .still-card img {
       display: block;
 
       width: 100%;
+      height: 100%;
 
-      height: auto;
+      object-fit: cover;
+
+      object-position: center;
 
       transition:
         transform .65s cubic-bezier(.18,.75,.22,1),
@@ -336,14 +342,17 @@
 
 
     .still-card:hover img {
-      transform: scale(1.02);
+      transform:
+        scale(1.035);
 
-      filter: brightness(.72);
+      filter:
+        brightness(.72);
     }
 
 
     /* =========================================================
        INFO
+       Midnight Hour 문구 제거
     ========================================================= */
 
     .still-info {
@@ -372,13 +381,14 @@
         linear-gradient(
           to top,
           rgba(5,5,9,.90),
-          rgba(5,5,9,.36) 55%,
+          rgba(5,5,9,.34) 55%,
           transparent
         );
 
       opacity: 0;
 
-      transform: translateY(8px);
+      transform:
+        translateY(8px);
 
       transition:
         opacity .3s ease,
@@ -386,48 +396,40 @@
     }
 
 
-    .still-card:hover .still-info {
+    .still-card:hover
+    .still-info {
       opacity: 1;
 
-      transform: translateY(0);
-    }
-
-
-    .still-left {
-      min-width: 0;
+      transform:
+        translateY(0);
     }
 
 
     .still-number {
-      margin-bottom: 7px;
+      color:
+        #b3a2f2;
 
-      color: rgba(174,162,236,.78);
-
-      font-size: 8px;
+      font-size: 9px;
 
       letter-spacing: .22em;
-    }
-
-
-    .still-title {
-      color: white;
-
-      font-size: 15px;
-
-      letter-spacing: -.015em;
     }
 
 
     .still-credit {
       flex: 0 0 auto;
 
-      color: rgba(255,255,255,.48);
+      color:
+        rgba(255,255,255,.62);
 
-      font-size: 9px;
+      font-size: 10px;
 
       text-align: right;
     }
 
+
+    /* =========================================================
+       OPEN BUTTON
+    ========================================================= */
 
     .still-open {
       position: absolute;
@@ -450,17 +452,22 @@
 
       border-radius: 50%;
 
-      color: rgba(255,255,255,.88);
+      color:
+        rgba(255,255,255,.88);
 
-      background: rgba(5,5,9,.18);
+      background:
+        rgba(5,5,9,.18);
 
       opacity: 0;
 
-      transform: translateY(-5px);
+      transform:
+        translateY(-5px);
 
-      backdrop-filter: blur(8px);
+      backdrop-filter:
+        blur(8px);
 
-      -webkit-backdrop-filter: blur(8px);
+      -webkit-backdrop-filter:
+        blur(8px);
 
       transition:
         opacity .3s ease,
@@ -470,44 +477,27 @@
     }
 
 
-    .still-card:hover .still-open {
+    .still-card:hover
+    .still-open {
       opacity: 1;
 
-      transform: translateY(0);
+      transform:
+        translateY(0);
     }
 
 
     .still-open:hover {
-      background: rgba(255,255,255,.92);
+      background:
+        rgba(255,255,255,.92);
 
-      color: #111117;
-    }
-
-
-    /* =========================================================
-       ACCENTS
-    ========================================================= */
-
-    .still-card:nth-child(3n + 1)
-    .still-number {
-      color: #91a4ff;
-    }
-
-
-    .still-card:nth-child(3n + 2)
-    .still-number {
-      color: #b39eff;
-    }
-
-
-    .still-card:nth-child(3n)
-    .still-number {
-      color: #dd7891;
+      color:
+        #111117;
     }
 
 
     /* =========================================================
        MODAL
+       클릭하면 원본 비율 그대로 표시
     ========================================================= */
 
     .image-modal {
@@ -520,16 +510,18 @@
       display: none;
 
       align-items: center;
-
       justify-content: center;
 
       padding: 34px;
 
-      background: rgba(3,3,7,.91);
+      background:
+        rgba(3,3,7,.91);
 
-      backdrop-filter: blur(18px);
+      backdrop-filter:
+        blur(18px);
 
-      -webkit-backdrop-filter: blur(18px);
+      -webkit-backdrop-filter:
+        blur(18px);
     }
 
 
@@ -547,7 +539,6 @@
       display: flex;
 
       align-items: center;
-
       justify-content: center;
     }
 
@@ -586,9 +577,11 @@
 
       border: 0;
 
-      color: rgba(255,255,255,.62);
+      color:
+        rgba(255,255,255,.62);
 
-      background: transparent;
+      background:
+        transparent;
 
       font-size: 10px;
 
@@ -596,7 +589,8 @@
 
       cursor: pointer;
 
-      transition: color .2s ease;
+      transition:
+        color .2s ease;
     }
 
 
@@ -613,11 +607,174 @@
       left: 30px;
       bottom: 25px;
 
-      color: rgba(255,255,255,.58);
+      color:
+        rgba(255,255,255,.58);
 
       font-size: 10px;
 
       letter-spacing: .09em;
+    }
+
+
+    /* =========================================================
+       MUSIC PLAYER
+    ========================================================= */
+
+    .music-player {
+      position: fixed;
+
+      z-index: 100;
+
+      left: 50%;
+      bottom: 17px;
+
+      transform:
+        translateX(-50%);
+
+      width:
+        min(
+          660px,
+          calc(100% - 36px)
+        );
+
+      min-height: 61px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 16px;
+
+      padding:
+        9px
+        13px
+        9px
+        19px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.13);
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(20,18,29,.89);
+
+      box-shadow:
+        0
+        15px
+        43px
+        rgba(0,0,0,.32);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+    }
+
+
+    .music-left,
+    .music-controls {
+      display: flex;
+
+      align-items: center;
+    }
+
+
+    .music-left {
+      min-width: 0;
+
+      gap: 11px;
+    }
+
+
+    .music-icon {
+      color:
+        #a998ff;
+
+      font-size: 17px;
+    }
+
+
+    .music-title {
+      overflow: hidden;
+
+      white-space: nowrap;
+
+      text-overflow: ellipsis;
+
+      color:
+        rgba(255,255,255,.72);
+
+      font-size: 11px;
+    }
+
+
+    .music-controls {
+      flex:
+        0
+        0
+        auto;
+
+      gap: 3px;
+    }
+
+
+    .music-btn {
+      width: 39px;
+      height: 39px;
+
+      display: grid;
+
+      place-items: center;
+
+      padding: 0;
+
+      border:
+        1px solid
+        rgba(255,255,255,.14);
+
+      border-radius: 50%;
+
+      color: white;
+
+      background:
+        rgba(255,255,255,.045);
+
+      cursor: pointer;
+    }
+
+
+    .music-btn.small {
+      width: 31px;
+      height: 31px;
+
+      border: 0;
+
+      background:
+        transparent;
+
+      color:
+        rgba(255,255,255,.55);
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 900px) {
+
+      .still-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+      }
+
     }
 
 
@@ -628,16 +785,20 @@
     @media (max-width: 760px) {
 
       .stills-wrap {
-        width: calc(100% - 28px);
+        width:
+          calc(100% - 28px);
 
-        padding-top: 25px;
+        padding-top:
+          25px;
       }
 
 
       .stills-heading {
-        flex-direction: column;
+        flex-direction:
+          column;
 
-        align-items: flex-start;
+        align-items:
+          flex-start;
 
         gap: 22px;
 
@@ -649,32 +810,37 @@
 
 
       .stills-title {
-        font-size: 18vw;
+        font-size:
+          18vw;
       }
 
 
       .stills-description {
         padding: 0;
 
-        text-align: left;
+        text-align:
+          left;
       }
 
 
       .still-grid {
-        columns:
-          2
-          145px;
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
 
-        column-gap: 10px;
+        gap: 10px;
       }
 
 
       .still-card {
-        margin-bottom: 10px;
-
-        border-radius: 15px;
+        border-radius:
+          15px;
       }
 
+
+      /*
+        모바일은 hover가 없으므로
+        번호와 크레딧 항상 표시
+      */
 
       .still-info {
         padding:
@@ -684,7 +850,20 @@
 
         opacity: 1;
 
-        transform: none;
+        transform:
+          none;
+      }
+
+
+      .still-number {
+        font-size:
+          8px;
+      }
+
+
+      .still-credit {
+        font-size:
+          8px;
       }
 
 
@@ -697,29 +876,23 @@
 
         opacity: .8;
 
-        transform: none;
-      }
-
-
-      .still-title {
-        font-size: 12px;
-      }
-
-
-      .still-credit {
-        font-size: 8px;
+        transform:
+          none;
       }
 
 
       .image-modal {
-        padding: 15px;
+        padding:
+          15px;
       }
 
 
       .image-modal-target {
-        max-width: 96vw;
+        max-width:
+          96vw;
 
-        max-height: 82vh;
+        max-height:
+          82vh;
       }
 
 
@@ -732,6 +905,30 @@
       .image-modal-meta {
         left: 16px;
         bottom: 16px;
+      }
+
+    }
+
+
+    @media (max-width: 420px) {
+
+      .still-info {
+        padding:
+          35px
+          10px
+          10px;
+      }
+
+
+      .still-number {
+        font-size:
+          7px;
+      }
+
+
+      .still-credit {
+        font-size:
+          7px;
       }
 
     }
@@ -825,16 +1022,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 001
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 001
         </div>
 
         <div class="still-credit">
@@ -869,16 +1058,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 002
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 002
         </div>
 
         <div class="still-credit">
@@ -913,16 +1094,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 003
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 003
         </div>
 
         <div class="still-credit">
@@ -957,16 +1130,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 004
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 004
         </div>
 
         <div class="still-credit">
@@ -1001,16 +1166,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 005
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 005
         </div>
 
         <div class="still-credit">
@@ -1045,16 +1202,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 006
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 006
         </div>
 
         <div class="still-credit">
@@ -1089,16 +1238,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 007
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 007
         </div>
 
         <div class="still-credit">
@@ -1133,16 +1274,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 008
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 008
         </div>
 
         <div class="still-credit">
@@ -1177,16 +1310,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 009
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 009
         </div>
 
         <div class="still-credit">
@@ -1221,16 +1346,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 010
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 010
         </div>
 
         <div class="still-credit">
@@ -1265,16 +1382,8 @@
 
       <div class="still-info">
 
-        <div class="still-left">
-
-          <div class="still-number">
-            STILL · 011
-          </div>
-
-          <div class="still-title">
-            Midnight Hour
-          </div>
-
+        <div class="still-number">
+          STILL · 011
         </div>
 
         <div class="still-credit">
@@ -1426,12 +1535,16 @@
     credit
   ) {
 
-    stillTarget.src = src;
+    stillTarget.src =
+      src;
 
-    stillTarget.alt = title;
+    stillTarget.alt =
+      title;
 
     stillMeta.textContent =
-      title + " · " + credit;
+      title +
+      " · " +
+      credit;
 
     stillModal.classList.add(
       "open"
@@ -1449,13 +1562,17 @@
       "open"
     );
 
-    stillTarget.src = "";
+    stillTarget.src =
+      "";
 
-    stillTarget.alt = "";
+    stillTarget.alt =
+      "";
 
-    stillMeta.textContent = "";
+    stillMeta.textContent =
+      "";
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+      "";
 
   }
 
@@ -1481,7 +1598,9 @@
 
       if (
         event.key === "Escape" &&
-        stillModal.classList.contains("open")
+        stillModal.classList.contains(
+          "open"
+        )
       ) {
 
         closeStill();
