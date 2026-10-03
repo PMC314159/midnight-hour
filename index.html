@@ -20,82 +20,45 @@
 
   <style>
 
-    /* =========================================================
-       FONT
-    ========================================================= */
-
     @font-face {
-
       font-family: "GmarketSans";
-
-      src:
-        url("./GmarketSansTTFLight.ttf")
-        format("truetype");
-
+      src: url("./GmarketSansTTFLight.ttf") format("truetype");
       font-weight: 300;
-
       font-style: normal;
-
       font-display: swap;
-
     }
 
 
-    /* =========================================================
-       ROOT
-    ========================================================= */
-
     :root {
-
       --bg: #0b0a10;
-
       --panel: #111016;
-
       --text: #f1f0f5;
-
       --muted: rgba(241,240,245,.48);
-
       --line: rgba(255,255,255,.11);
 
       --blue: #768cff;
-
       --violet: #9c86ff;
-
       --violet-light: #bcaeff;
-
       --red: #cf607c;
 
       --radius: 25px;
-
     }
 
 
-    /* =========================================================
-       RESET
-    ========================================================= */
-
     * {
-
       box-sizing: border-box;
-
       margin: 0;
-
       padding: 0;
-
     }
 
 
     html {
-
       scroll-behavior: smooth;
-
     }
 
 
     body {
-
       min-height: 100vh;
-
       overflow-x: hidden;
 
       color: var(--text);
@@ -110,44 +73,33 @@
       font-weight: 300;
 
       background:
-
         radial-gradient(
           circle at 6% 1%,
           rgba(100,105,174,.12),
           transparent 30%
         ),
-
         radial-gradient(
           circle at 94% 60%,
           rgba(114,72,147,.08),
           transparent 28%
         ),
-
         var(--bg);
-
     }
 
 
     a {
-
       color: inherit;
-
       text-decoration: none;
-
     }
 
 
     button {
-
       font: inherit;
-
     }
 
 
     img {
-
       display: block;
-
     }
 
 
@@ -156,21 +108,14 @@
     ========================================================= */
 
     .page {
+      width: min(1500px, calc(100% - 64px));
 
-      width:
-        min(
-          1500px,
-          calc(100% - 64px)
-        );
-
-      margin:
-        0 auto;
+      margin: 0 auto;
 
       padding:
         44px
         0
         120px;
-
     }
 
 
@@ -179,29 +124,23 @@
     ========================================================= */
 
     .header {
-
       display: flex;
 
       align-items: flex-end;
-
       justify-content: space-between;
 
       gap: 40px;
 
       margin-bottom: 36px;
-
     }
 
 
     .header-left {
-
       min-width: 0;
-
     }
 
 
     .title {
-
       margin: 0;
 
       color: #f2f1f6;
@@ -218,12 +157,10 @@
       line-height: .87;
 
       letter-spacing: -.068em;
-
     }
 
 
     .subtitle {
-
       margin-top: 16px;
 
       color: rgba(178,166,226,.67);
@@ -231,12 +168,10 @@
       font-size: 11px;
 
       letter-spacing: .20em;
-
     }
 
 
     .header-track {
-
       display: flex;
 
       align-items: center;
@@ -250,16 +185,13 @@
       font-size: 11px;
 
       white-space: nowrap;
-
     }
 
 
     .header-track-icon {
-
       color: var(--violet-light);
 
       font-size: 14px;
-
     }
 
 
@@ -268,7 +200,6 @@
     ========================================================= */
 
     .gallery {
-
       display: grid;
 
       grid-template-columns:
@@ -281,16 +212,14 @@
         minmax(345px, 42vh);
 
       gap: 15px;
-
     }
 
 
     /* =========================================================
-       CARD COMMON
+       CARD
     ========================================================= */
 
     .card {
-
       position: relative;
 
       display: block;
@@ -302,35 +231,22 @@
       background: var(--panel);
 
       isolation: isolate;
-
     }
 
 
     .card-image {
-
       width: 100%;
-
       height: 100%;
 
       object-fit: cover;
 
       transition:
-
-        transform
-        .72s
-        cubic-bezier(.18,.78,.22,1),
-
-        filter
-        .45s
-        ease;
-
+        transform .72s cubic-bezier(.18,.78,.22,1),
+        filter .45s ease;
     }
 
 
-    /* 살짝 기본 음영 */
-
     .card::before {
-
       content: "";
 
       position: absolute;
@@ -342,7 +258,6 @@
       pointer-events: none;
 
       background:
-
         linear-gradient(
           to top,
           rgba(5,5,9,.83) 0%,
@@ -352,18 +267,11 @@
 
       opacity: .34;
 
-      transition:
-        opacity
-        .35s
-        ease;
-
+      transition: opacity .35s ease;
     }
 
 
-    /* 아주 얇은 테두리 */
-
     .card::after {
-
       content: "";
 
       position: absolute;
@@ -378,99 +286,47 @@
         1px solid
         rgba(255,255,255,.055);
 
-      border-radius:
-        inherit;
-
+      border-radius: inherit;
     }
 
 
     .card:hover .card-image {
+      transform: scale(1.025);
 
-      transform:
-        scale(1.025);
-
-      filter:
-        brightness(.74);
-
+      filter: brightness(.74);
     }
 
 
     .card:hover::before {
-
       opacity: .93;
-
     }
 
 
     /* =========================================================
-       CARD LAYOUT
+       LAYOUT
     ========================================================= */
 
-    /*
-       PERSONNEL
-
-       위쪽 왼쪽을 크게 차지
-    */
-
     .personnel {
-
-      grid-column:
-        1 / 3;
-
-      grid-row:
-        1;
-
+      grid-column: 1 / 3;
+      grid-row: 1;
     }
 
-
-    /*
-       FRAGMENTS
-
-       왼쪽 아래
-    */
 
     .fragments {
-
-      grid-column:
-        1;
-
-      grid-row:
-        2;
-
+      grid-column: 1;
+      grid-row: 2;
     }
 
-
-    /*
-       TIMELINE
-
-       가운데 아래
-    */
 
     .timeline {
-
-      grid-column:
-        2;
-
-      grid-row:
-        2;
-
+      grid-column: 2;
+      grid-row: 2;
     }
 
 
-    /*
-       STILLS
-
-       오른쪽 전체 높이
-    */
-
     .stills {
-
-      grid-column:
-        3;
-
-      grid-row:
-        1 / 3;
-
+      grid-column: 3;
+      grid-row: 1 / 3;
     }
 
 
@@ -479,38 +335,22 @@
     ========================================================= */
 
     .personnel .card-image {
-
-      object-position:
-        center
-        42%;
-
+      object-position: center 42%;
     }
 
 
     .fragments .card-image {
-
-      object-position:
-        center
-        center;
-
+      object-position: center center;
     }
 
 
     .timeline .card-image {
-
-      object-position:
-        center
-        32%;
-
+      object-position: center 32%;
     }
 
 
     .stills .card-image {
-
-      object-position:
-        center
-        center;
-
+      object-position: center center;
     }
 
 
@@ -519,7 +359,6 @@
     ========================================================= */
 
     .card-content {
-
       position: absolute;
 
       z-index: 5;
@@ -531,46 +370,33 @@
       display: flex;
 
       justify-content: space-between;
-
       align-items: flex-end;
 
       gap: 25px;
 
       pointer-events: none;
 
-      transition:
-        transform
-        .34s
-        ease;
-
+      transition: transform .34s ease;
     }
 
 
-    .card:hover
-    .card-content {
-
-      transform:
-        translateY(-3px);
-
+    .card:hover .card-content {
+      transform: translateY(-3px);
     }
 
 
     .card-number {
-
       margin-bottom: 7px;
 
-      color:
-        rgba(255,255,255,.41);
+      color: rgba(255,255,255,.41);
 
       font-size: 9px;
 
       letter-spacing: .23em;
-
     }
 
 
     .card-title {
-
       color: #fff;
 
       font-size:
@@ -585,12 +411,10 @@
       line-height: 1;
 
       letter-spacing: -.045em;
-
     }
 
 
     .card-desc {
-
       overflow: hidden;
 
       max-height: 0;
@@ -599,39 +423,25 @@
 
       opacity: 0;
 
-      color:
-        rgba(255,255,255,.58);
+      color: rgba(255,255,255,.58);
 
       font-size: 10px;
 
       letter-spacing: .08em;
 
       transition:
-
-        opacity
-        .3s
-        ease,
-
-        max-height
-        .3s
-        ease,
-
-        margin
-        .3s
-        ease;
-
+        opacity .3s ease,
+        max-height .3s ease,
+        margin .3s ease;
     }
 
 
-    .card:hover
-    .card-desc {
-
+    .card:hover .card-desc {
       max-height: 26px;
 
       margin-top: 8px;
 
       opacity: 1;
-
     }
 
 
@@ -640,14 +450,10 @@
     ========================================================= */
 
     .card-arrow {
-
       width: 40px;
       height: 40px;
 
-      flex:
-        0
-        0
-        auto;
+      flex: 0 0 auto;
 
       display: grid;
 
@@ -659,105 +465,62 @@
 
       border-radius: 50%;
 
-      color:
-        rgba(255,255,255,.92);
+      color: rgba(255,255,255,.92);
 
       font-size: 16px;
 
       transition:
-
-        transform
-        .3s
-        ease,
-
-        background
-        .3s
-        ease,
-
-        color
-        .3s
-        ease;
-
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease;
     }
 
 
-    .card:hover
-    .card-arrow {
+    .card:hover .card-arrow {
+      transform: rotate(45deg);
 
-      transform:
-        rotate(45deg);
+      background: rgba(255,255,255,.94);
 
-      background:
-        rgba(255,255,255,.94);
-
-      color:
-        #15131b;
-
+      color: #15131b;
     }
 
 
     /* =========================================================
-       INDIVIDUAL ACCENT
+       ACCENTS
     ========================================================= */
 
-    .personnel
-    .card-number {
-
-      color:
-        rgba(139,157,255,.72);
-
+    .personnel .card-number {
+      color: rgba(139,157,255,.72);
     }
 
 
-    .timeline
-    .card-number {
-
-      color:
-        rgba(223,107,137,.82);
-
+    .timeline .card-number {
+      color: rgba(223,107,137,.82);
     }
 
 
-    .fragments
-    .card-number {
-
-      color:
-        rgba(182,161,255,.78);
-
+    .fragments .card-number {
+      color: rgba(182,161,255,.78);
     }
 
 
-    .stills
-    .card-number {
-
-      color:
-        rgba(164,151,224,.70);
-
+    .stills .card-number {
+      color: rgba(164,151,224,.70);
     }
 
 
-    /* =========================================================
-       STILLS
-    ========================================================= */
-
-    .stills
-    .card-content {
-
+    .stills .card-content {
       bottom: 26px;
-
     }
 
 
-    .stills
-    .card-title {
-
+    .stills .card-title {
       font-size:
         clamp(
           25px,
           2.7vw,
           38px
         );
-
     }
 
 
@@ -766,11 +529,9 @@
     ========================================================= */
 
     .footer {
-
       display: flex;
 
       align-items: center;
-
       justify-content: space-between;
 
       gap: 30px;
@@ -780,42 +541,30 @@
         5px
         0;
 
-      color:
-        rgba(255,255,255,.26);
+      color: rgba(255,255,255,.26);
 
       font-size: 9px;
 
       letter-spacing: .15em;
-
     }
 
 
     .footer-nav {
-
       display: flex;
 
       align-items: center;
 
       gap: 17px;
-
     }
 
 
     .footer-nav a {
-
-      transition:
-        color
-        .2s
-        ease;
-
+      transition: color .2s ease;
     }
 
 
     .footer-nav a:hover {
-
-      color:
-        rgba(255,255,255,.78);
-
+      color: rgba(255,255,255,.78);
     }
 
 
@@ -824,7 +573,6 @@
     ========================================================= */
 
     .music-player {
-
       position: fixed;
 
       z-index: 100;
@@ -832,8 +580,7 @@
       left: 50%;
       bottom: 17px;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
       width:
         min(
@@ -841,13 +588,11 @@
           calc(100% - 36px)
         );
 
-      min-height:
-        61px;
+      min-height: 61px;
 
       display: flex;
 
       align-items: center;
-
       justify-content: space-between;
 
       gap: 16px;
@@ -862,14 +607,11 @@
         1px solid
         rgba(255,255,255,.13);
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
-      color:
-        #f1f0f5;
+      color: #f1f0f5;
 
-      background:
-        rgba(20,18,29,.89);
+      background: rgba(20,18,29,.89);
 
       box-shadow:
         0
@@ -877,51 +619,37 @@
         43px
         rgba(0,0,0,.32);
 
-      backdrop-filter:
-        blur(20px);
+      backdrop-filter: blur(20px);
 
-      -webkit-backdrop-filter:
-        blur(20px);
-
+      -webkit-backdrop-filter: blur(20px);
     }
 
 
     .music-left,
     .music-controls {
-
       display: flex;
 
       align-items: center;
-
     }
 
 
     .music-left {
-
       min-width: 0;
 
       gap: 11px;
-
     }
 
 
     .music-icon {
+      flex: 0 0 auto;
 
-      flex:
-        0
-        0
-        auto;
-
-      color:
-        #a998ff;
+      color: #a998ff;
 
       font-size: 17px;
-
     }
 
 
     .music-title {
-
       min-width: 0;
 
       overflow: hidden;
@@ -930,28 +658,20 @@
 
       text-overflow: ellipsis;
 
-      color:
-        rgba(255,255,255,.73);
+      color: rgba(255,255,255,.73);
 
       font-size: 11px;
-
     }
 
 
     .music-controls {
-
-      flex:
-        0
-        0
-        auto;
+      flex: 0 0 auto;
 
       gap: 3px;
-
     }
 
 
     .music-btn {
-
       width: 39px;
       height: 39px;
 
@@ -965,47 +685,34 @@
         1px solid
         rgba(255,255,255,.14);
 
-      border-radius:
-        50%;
+      border-radius: 50%;
 
       color: white;
 
-      background:
-        rgba(255,255,255,.045);
+      background: rgba(255,255,255,.045);
 
       cursor: pointer;
 
-      transition:
-        background
-        .2s
-        ease;
-
+      transition: background .2s ease;
     }
 
 
     .music-btn:hover {
-
-      background:
-        rgba(255,255,255,.10);
-
+      background: rgba(255,255,255,.10);
     }
 
 
     .music-btn.small {
-
       width: 31px;
       height: 31px;
 
       border: 0;
 
-      background:
-        transparent;
+      background: transparent;
 
-      color:
-        rgba(255,255,255,.55);
+      color: rgba(255,255,255,.55);
 
       font-size: 17px;
-
     }
 
 
@@ -1013,19 +720,14 @@
        TABLET
     ========================================================= */
 
-    @media
-    (max-width: 950px) {
+    @media (max-width: 950px) {
 
       .page {
-
-        width:
-          calc(100% - 36px);
-
+        width: calc(100% - 36px);
       }
 
 
       .gallery {
-
         grid-template-columns:
           1fr
           1fr;
@@ -1034,61 +736,35 @@
           430px
           360px
           500px;
-
       }
 
 
       .personnel {
-
-        grid-column:
-          1 / 3;
-
-        grid-row:
-          1;
-
+        grid-column: 1 / 3;
+        grid-row: 1;
       }
 
 
       .fragments {
-
-        grid-column:
-          1;
-
-        grid-row:
-          2;
-
+        grid-column: 1;
+        grid-row: 2;
       }
 
 
       .timeline {
-
-        grid-column:
-          2;
-
-        grid-row:
-          2;
-
+        grid-column: 2;
+        grid-row: 2;
       }
 
 
       .stills {
-
-        grid-column:
-          1 / 3;
-
-        grid-row:
-          3;
-
+        grid-column: 1 / 3;
+        grid-row: 3;
       }
 
 
-      .stills
-      .card-image {
-
-        object-position:
-          center
-          45%;
-
+      .stills .card-image {
+        object-position: center 45%;
       }
 
     }
@@ -1098,184 +774,131 @@
        MOBILE
     ========================================================= */
 
-    @media
-    (max-width: 620px) {
+    @media (max-width: 620px) {
 
       .page {
+        width: calc(100% - 24px);
 
-        width:
-          calc(100% - 24px);
-
-        padding-top:
-          28px;
-
+        padding-top: 28px;
       }
 
 
       .header {
+        flex-direction: column;
 
-        flex-direction:
-          column;
-
-        align-items:
-          flex-start;
+        align-items: flex-start;
 
         gap: 18px;
 
-        margin-bottom:
-          24px;
-
+        margin-bottom: 24px;
       }
 
 
       .title {
-
-        font-size:
-          15vw;
-
+        font-size: 15vw;
       }
 
 
       .subtitle {
+        margin-top: 11px;
 
-        margin-top:
-          11px;
-
-        font-size:
-          9px;
-
+        font-size: 9px;
       }
 
 
       .header-track {
+        padding-bottom: 0;
 
-        padding-bottom:
-          0;
-
-        font-size:
-          10px;
-
+        font-size: 10px;
       }
 
 
       .gallery {
-
         display: flex;
 
         flex-direction: column;
 
         gap: 11px;
-
       }
 
 
       .card {
-
         min-height: 330px;
 
         height: 48vh;
 
         border-radius: 19px;
-
       }
 
 
       .personnel {
-
         height: 43vh;
-
       }
 
 
       .stills {
-
         height: 66vh;
-
       }
 
 
       .card-content {
-
         left: 18px;
         right: 18px;
         bottom: 18px;
-
       }
 
 
       .card-title {
-
         font-size: 24px;
-
       }
 
 
       .card-desc {
-
         max-height: 25px;
 
         margin-top: 7px;
 
         opacity: .65;
-
       }
 
 
       .card-arrow {
-
         width: 36px;
         height: 36px;
-
       }
 
 
       .footer {
+        flex-direction: column;
 
-        flex-direction:
-          column;
+        align-items: flex-start;
 
-        align-items:
-          flex-start;
-
-        margin-bottom:
-          62px;
-
+        margin-bottom: 62px;
       }
 
 
       .footer-nav {
-
         flex-wrap: wrap;
 
         gap:
           10px
           15px;
-
       }
 
 
       .music-player {
+        bottom: 10px;
 
-        bottom:
-          10px;
+        min-height: 56px;
 
-        min-height:
-          56px;
-
-        padding-left:
-          15px;
-
+        padding-left: 15px;
       }
 
 
       .music-title {
+        max-width: 170px;
 
-        max-width:
-          170px;
-
-        font-size:
-          10px;
-
+        font-size: 10px;
       }
 
     }
@@ -1283,7 +906,6 @@
   </style>
 
 </head>
-
 
 
 <body>
@@ -1295,9 +917,7 @@
 >
 
 
-  <!-- ======================================================
-       HEADER
-  ======================================================= -->
+  <!-- HEADER -->
 
   <header class="header">
 
@@ -1308,13 +928,11 @@
         Midnight Hour
       </h1>
 
-
       <div class="subtitle">
         자정의 시간
       </div>
 
     </div>
-
 
 
     <div class="header-track">
@@ -1334,19 +952,12 @@
 
 
 
-  <!-- ======================================================
-       MAIN IMAGE GRID
-  ======================================================= -->
+  <!-- GALLERY -->
 
   <section class="gallery">
 
 
-    <!-- ==================================================
-         PERSONNEL
-
-         main-personnel.jpg
-         파란 배경의 두 사람 가로 일러스트
-    =================================================== -->
+    <!-- PERSONNEL -->
 
     <a
       href="./personnel/"
@@ -1354,16 +965,13 @@
       aria-label="Personnel"
     >
 
-
       <img
         class="card-image"
         src="./main-personnel.jpg"
         alt="이자헌과 정희솔"
       />
 
-
       <div class="card-content">
-
 
         <div>
 
@@ -1371,11 +979,9 @@
             01
           </div>
 
-
           <div class="card-title">
             Personnel
           </div>
-
 
           <div class="card-desc">
             이자헌 · 정희솔
@@ -1383,26 +989,17 @@
 
         </div>
 
-
-
         <span class="card-arrow">
           ↗
         </span>
 
-
       </div>
-
 
     </a>
 
 
 
-    <!-- ==================================================
-         FRAGMENTS
-
-         main-fragments.jpg
-         보라빛 클로즈업 일러스트
-    =================================================== -->
+    <!-- FRAGMENTS -->
 
     <a
       href="./fragments/"
@@ -1410,16 +1007,13 @@
       aria-label="Fragments"
     >
 
-
       <img
         class="card-image"
         src="./main-fragments.jpg"
         alt="Fragments"
       />
 
-
       <div class="card-content">
-
 
         <div>
 
@@ -1427,11 +1021,9 @@
             03
           </div>
 
-
           <div class="card-title">
             Fragments
           </div>
-
 
           <div class="card-desc">
             written pieces
@@ -1439,26 +1031,17 @@
 
         </div>
 
-
-
         <span class="card-arrow">
           ↗
         </span>
 
-
       </div>
-
 
     </a>
 
 
 
-    <!-- ==================================================
-         TIMELINE
-
-         main-timeline.jpg
-         빨강 + 검정 일러스트
-    =================================================== -->
+    <!-- TIMELINE -->
 
     <a
       href="./timeline/"
@@ -1466,16 +1049,13 @@
       aria-label="Narrative Timeline"
     >
 
-
       <img
         class="card-image"
         src="./main-timeline.jpg"
         alt="Narrative Timeline"
       />
 
-
       <div class="card-content">
-
 
         <div>
 
@@ -1483,11 +1063,9 @@
             02
           </div>
 
-
           <div class="card-title">
             Timeline
           </div>
-
 
           <div class="card-desc">
             narrative sequence
@@ -1495,36 +1073,23 @@
 
         </div>
 
-
-
         <span class="card-arrow">
           ↗
         </span>
 
-
       </div>
-
 
     </a>
 
 
 
-    <!-- ==================================================
-         STILLS
-
-         main-stills.png
-
-         네가 말한
-         '아까 보낸 다섯 번째 이미지'
-         = 수이님 1주년 일러스트
-    =================================================== -->
+    <!-- STILLS -->
 
     <a
-      href="./commission/"
+      href="./stills/"
       class="card stills"
       aria-label="Stills"
     >
-
 
       <img
         class="card-image"
@@ -1532,9 +1097,7 @@
         alt="Stills"
       />
 
-
       <div class="card-content">
-
 
         <div>
 
@@ -1542,11 +1105,9 @@
             04
           </div>
 
-
           <div class="card-title">
             Stills
           </div>
-
 
           <div class="card-desc">
             visual archive
@@ -1554,15 +1115,11 @@
 
         </div>
 
-
-
         <span class="card-arrow">
           ↗
         </span>
 
-
       </div>
-
 
     </a>
 
@@ -1571,9 +1128,7 @@
 
 
 
-  <!-- ======================================================
-       FOOTER
-  ======================================================= -->
+  <!-- FOOTER -->
 
   <footer class="footer">
 
@@ -1597,7 +1152,7 @@
         FRAGMENTS
       </a>
 
-      <a href="./commission/">
+      <a href="./stills/">
         STILLS
       </a>
 
@@ -1611,25 +1166,18 @@
 
 
 
-<!-- ========================================================
-     MUSIC PLAYER
-
-     기존 common.js를 그대로 사용한다.
-========================================================= -->
+<!-- MUSIC PLAYER -->
 
 <div
   class="music-player"
   id="music-player"
 >
 
-
   <div class="music-left">
-
 
     <span class="music-icon">
       ♫
     </span>
-
 
     <span
       class="music-title"
@@ -1638,13 +1186,10 @@
       긴 밤(feat. 기리보이) - Seori
     </span>
 
-
   </div>
 
 
-
   <div class="music-controls">
-
 
     <button
       aria-label="previous track"
@@ -1653,7 +1198,6 @@
     >
       ‹
     </button>
-
 
     <button
       aria-label="play or pause"
@@ -1664,7 +1208,6 @@
       ▶
     </button>
 
-
     <button
       aria-label="next track"
       class="music-btn small"
@@ -1673,9 +1216,7 @@
       ›
     </button>
 
-
   </div>
-
 
 
   <audio
@@ -1683,12 +1224,8 @@
     preload="metadata"
   ></audio>
 
-
 </div>
 
-
-
-<!-- 기존 naru의 common.js 그대로 사용 -->
 
 <script src="./common.js"></script>
 
