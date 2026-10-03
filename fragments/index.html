@@ -12,7 +12,6 @@
 
   <title>Fragments | Midnight Hour</title>
 
-
   <style>
 
     @font-face {
@@ -25,7 +24,13 @@
 
 
     :root {
-      --subtitle-purple: #b7abf4;
+      --bg: #08080d;
+      --text: #f2f1f6;
+
+      --purple: #9783ee;
+      --purple-mid: #aa9bef;
+      --purple-light: #c0b5f6;
+      --purple-soft: #b7abf4;
     }
 
 
@@ -43,7 +48,7 @@
       margin: 0;
       min-height: 100vh;
 
-      color: #f2f1f6;
+      color: var(--text);
 
       font-family:
         "GmarketSans",
@@ -51,6 +56,8 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
+
+      font-weight: 300;
 
       background:
         radial-gradient(
@@ -63,7 +70,7 @@
           rgba(74, 95, 180, .07),
           transparent 28%
         ),
-        #08080d;
+        var(--bg);
     }
 
 
@@ -83,7 +90,11 @@
     ========================================================= */
 
     .mh-fr-page {
-      width: min(1080px, calc(100% - 54px));
+      width:
+        min(
+          1100px,
+          calc(100% - 54px)
+        );
 
       margin: 0 auto;
 
@@ -104,6 +115,8 @@
       align-items: center;
       justify-content: space-between;
 
+      gap: 30px;
+
       padding-bottom: 22px;
 
       border-bottom:
@@ -113,9 +126,10 @@
 
 
     .mh-fr-back {
-      color: rgba(255,255,255,.56);
+      color:
+        rgba(255,255,255,.60);
 
-      font-size: 11px;
+      font-size: 12px;
 
       letter-spacing: .14em;
 
@@ -128,14 +142,16 @@
     .mh-fr-back:hover {
       color: white;
 
-      transform: translateX(-3px);
+      transform:
+        translateX(-3px);
     }
 
 
     .mh-fr-index {
-      color: rgba(176,162,235,.7);
+      color:
+        rgba(184,172,241,.76);
 
-      font-size: 10px;
+      font-size: 11px;
 
       letter-spacing: .23em;
     }
@@ -154,11 +170,12 @@
 
 
     .mh-fr-kicker {
-      margin-bottom: 12px;
+      margin-bottom: 13px;
 
-      color: #b8a7ff;
+      color:
+        #b8a7ff;
 
-      font-size: 11px;
+      font-size: 12px;
 
       letter-spacing: .25em;
     }
@@ -169,9 +186,9 @@
 
       font-size:
         clamp(
-          56px,
-          7.8vw,
-          100px
+          60px,
+          8vw,
+          104px
         );
 
       line-height: .9;
@@ -183,18 +200,20 @@
 
 
     .mh-fr-title span {
-      color: rgba(255,255,255,.34);
+      color:
+        rgba(255,255,255,.34);
     }
 
 
     .mh-fr-sub {
-      margin-top: 20px;
+      margin-top: 22px;
 
-      color: rgba(255,255,255,.36);
+      color:
+        rgba(255,255,255,.42);
 
-      font-size: 10px;
+      font-size: 11px;
 
-      letter-spacing: .14em;
+      letter-spacing: .15em;
     }
 
 
@@ -207,14 +226,14 @@
 
       flex-direction: column;
 
-      gap: 14px;
+      gap: 15px;
     }
 
 
     .mh-fr-card {
       width: 100%;
 
-      min-height: 142px;
+      min-height: 155px;
 
       display: flex;
 
@@ -224,8 +243,8 @@
       align-items: flex-start;
 
       padding:
-        31px
-        39px;
+        34px
+        42px;
 
       border:
         1px solid
@@ -238,7 +257,11 @@
       text-align: left;
 
       background:
-        rgba(255,255,255,.012);
+        linear-gradient(
+          100deg,
+          rgba(113,85,190,.025),
+          rgba(255,255,255,.012)
+        );
 
       cursor: pointer;
 
@@ -250,16 +273,17 @@
 
 
     .mh-fr-card:hover {
-      transform: translateY(-2px);
+      transform:
+        translateY(-2px);
 
       border-color:
-        rgba(174,155,255,.30);
+        rgba(184,166,255,.32);
 
       background:
         linear-gradient(
           100deg,
-          rgba(116,90,190,.055),
-          rgba(255,255,255,.013)
+          rgba(116,90,190,.07),
+          rgba(255,255,255,.015)
         );
     }
 
@@ -267,40 +291,38 @@
     .mh-fr-card-title {
       margin: 0;
 
-      color: #efedf8;
+      color:
+        #f0eef8;
 
       font-size:
         clamp(
-          22px,
-          2.4vw,
-          30px
+          26px,
+          2.7vw,
+          34px
         );
 
       font-weight: 300;
 
-      line-height: 1.3;
+      line-height: 1.25;
 
-      letter-spacing: -.035em;
+      letter-spacing: -.04em;
     }
 
 
-    /*
-      네 카드 모두 동일한 보라색
-    */
-
     .mh-fr-card-subtitle {
-      margin-top: 16px;
+      margin-top: 17px;
 
-      color: var(--subtitle-purple);
+      color:
+        var(--purple-soft);
 
       font-size:
         clamp(
-          14px,
-          1.6vw,
-          18px
+          17px,
+          1.7vw,
+          20px
         );
 
-      line-height: 1.7;
+      line-height: 1.65;
 
       word-break: keep-all;
     }
@@ -327,8 +349,13 @@
       background:
         rgba(3,3,7,.91);
 
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
+
+      cursor: pointer;
     }
 
 
@@ -337,17 +364,25 @@
     }
 
 
-    .mh-fr-reader {
-      width: min(820px, 100%);
+    /* =========================================================
+       READER
+    ========================================================= */
 
-      max-height: 87vh;
+    .mh-fr-reader {
+      width:
+        min(
+          860px,
+          100%
+        );
+
+      max-height: 88vh;
 
       overflow-y: auto;
 
       padding:
-        46px
         48px
-        52px;
+        52px
+        56px;
 
       border:
         1px solid
@@ -355,27 +390,51 @@
 
       border-radius: 30px;
 
-      background: #101016;
+      background:
+        #101016;
 
       box-shadow:
         0
         28px
         80px
         rgba(0,0,0,.38);
+
+      scrollbar-width: thin;
+
+      scrollbar-color:
+        rgba(160,139,239,.35)
+        transparent;
+
+      cursor: default;
     }
 
 
+    .mh-fr-reader::-webkit-scrollbar {
+      width: 7px;
+    }
+
+
+    .mh-fr-reader::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+
+    .mh-fr-reader::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+
+      background:
+        rgba(160,139,239,.32);
+    }
+
+
+    /* =========================================================
+       READER HEADER
+    ========================================================= */
+
     .mh-fr-reader-head {
-      display: flex;
+      margin-bottom: 34px;
 
-      align-items: flex-start;
-      justify-content: space-between;
-
-      gap: 28px;
-
-      margin-bottom: 31px;
-
-      padding-bottom: 25px;
+      padding-bottom: 27px;
 
       border-bottom:
         1px solid
@@ -383,30 +442,29 @@
     }
 
 
-    .mh-fr-reader-heading {
-      min-width: 0;
-    }
-
-
     .mh-fr-reader-title {
       margin: 0;
 
-      color: #f1eff7;
+      color:
+        #f2f0f8;
 
-      font-size: 29px;
+      font-size: 34px;
 
       font-weight: 300;
 
-      letter-spacing: -.04em;
+      line-height: 1.2;
+
+      letter-spacing: -.045em;
     }
 
 
     .mh-fr-reader-subtitle {
-      margin-top: 9px;
+      margin-top: 11px;
 
-      color: var(--subtitle-purple);
+      color:
+        var(--purple-soft);
 
-      font-size: 13px;
+      font-size: 16px;
 
       line-height: 1.7;
 
@@ -414,42 +472,19 @@
     }
 
 
-    .mh-fr-close {
-      flex: 0 0 auto;
-
-      padding:
-        7px
-        0;
-
-      border: 0;
-
-      color: rgba(255,255,255,.48);
-
-      background: transparent;
-
-      cursor: pointer;
-
-      font-size: 9px;
-
-      letter-spacing: .17em;
-    }
-
-
-    .mh-fr-close:hover {
-      color: white;
-    }
-
-
     /* =========================================================
-       TEXT
+       READER BODY
     ========================================================= */
 
     .mh-fr-reader-text {
-      color: rgba(255,255,255,.80);
+      color:
+        rgba(255,255,255,.84);
 
-      font-size: 15px;
+      font-size: 17px;
 
       line-height: 2.15;
+
+      letter-spacing: -.01em;
 
       word-break: keep-all;
 
@@ -466,7 +501,7 @@
       margin:
         0
         0
-        1.35em;
+        1.55em;
     }
 
 
@@ -476,7 +511,8 @@
 
 
     .mh-fr-reader-text em {
-      color: #c6baf9;
+      color:
+        #c8bcfa;
 
       font-style: italic;
     }
@@ -494,7 +530,8 @@
       left: 50%;
       bottom: 17px;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       width:
         min(
@@ -532,8 +569,11 @@
         43px
         rgba(0,0,0,.32);
 
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
     }
 
 
@@ -546,29 +586,39 @@
 
     .music-left {
       min-width: 0;
+
       gap: 11px;
     }
 
 
     .music-icon {
-      color: #a998ff;
+      color:
+        #a998ff;
+
       font-size: 17px;
     }
 
 
     .music-title {
       overflow: hidden;
+
       white-space: nowrap;
+
       text-overflow: ellipsis;
 
-      color: rgba(255,255,255,.72);
+      color:
+        rgba(255,255,255,.72);
 
       font-size: 11px;
     }
 
 
     .music-controls {
-      flex: 0 0 auto;
+      flex:
+        0
+        0
+        auto;
+
       gap: 3px;
     }
 
@@ -578,6 +628,7 @@
       height: 39px;
 
       display: grid;
+
       place-items: center;
 
       padding: 0;
@@ -603,9 +654,11 @@
 
       border: 0;
 
-      background: transparent;
+      background:
+        transparent;
 
-      color: rgba(255,255,255,.55);
+      color:
+        rgba(255,255,255,.55);
     }
 
 
@@ -616,7 +669,8 @@
     @media (max-width: 650px) {
 
       .mh-fr-page {
-        width: calc(100% - 28px);
+        width:
+          calc(100% - 28px);
       }
 
 
@@ -628,51 +682,71 @@
       }
 
 
+      .mh-fr-title {
+        font-size:
+          17vw;
+      }
+
+
       .mh-fr-card {
-        min-height: 125px;
+        min-height: 135px;
 
         padding:
-          27px
-          24px;
+          29px
+          25px;
 
         border-radius: 23px;
       }
 
 
       .mh-fr-card-title {
-        font-size: 23px;
+        font-size: 25px;
       }
 
 
       .mh-fr-card-subtitle {
-        margin-top: 12px;
+        margin-top: 13px;
 
-        font-size: 14px;
+        font-size: 16px;
       }
 
 
       .mh-fr-modal {
-        padding: 13px;
+        padding: 12px;
       }
 
 
       .mh-fr-reader {
         padding:
-          31px
-          24px
-          38px;
+          32px
+          25px
+          40px;
 
         border-radius: 22px;
+
+        max-height: 91vh;
+      }
+
+
+      .mh-fr-reader-head {
+        margin-bottom: 26px;
+
+        padding-bottom: 21px;
       }
 
 
       .mh-fr-reader-title {
-        font-size: 24px;
+        font-size: 27px;
+      }
+
+
+      .mh-fr-reader-subtitle {
+        font-size: 14px;
       }
 
 
       .mh-fr-reader-text {
-        font-size: 13.5px;
+        font-size: 15px;
 
         line-height: 2;
       }
@@ -822,46 +896,38 @@
 
 
 
-<!-- READER -->
+<!-- =========================================================
+     READER MODAL
+     CLOSE 버튼 없음
+========================================================= -->
 
 <div
   class="mh-fr-modal"
   id="mh-fr-modal"
-  onclick="closeFragmentOutside(event)"
+  onclick="closeFragment()"
 >
 
-  <article class="mh-fr-reader">
+  <article
+    class="mh-fr-reader"
+    onclick="event.stopPropagation()"
+  >
 
 
     <div class="mh-fr-reader-head">
 
-
-      <div class="mh-fr-reader-heading">
-
-        <h2
-          class="mh-fr-reader-title"
-          id="mh-fr-reader-title"
-        >
-          Fragment
-        </h2>
-
-
-        <div
-          class="mh-fr-reader-subtitle"
-          id="mh-fr-reader-subtitle"
-        >
-        </div>
-
-      </div>
-
-
-      <button
-        class="mh-fr-close"
-        onclick="closeFragment()"
+      <h2
+        class="mh-fr-reader-title"
+        id="mh-fr-reader-title"
       >
-        CLOSE
-      </button>
+        Fragment
+      </h2>
 
+
+      <div
+        class="mh-fr-reader-subtitle"
+        id="mh-fr-reader-subtitle"
+      >
+      </div>
 
     </div>
 
@@ -880,7 +946,9 @@
 
 
 
-<!-- FRAGMENT 003 -->
+<!-- =========================================================
+     FRAGMENT 003
+========================================================= -->
 
 <template id="fragment-three-template">
 
@@ -913,8 +981,7 @@
 
   <p>
     기름을 두 바퀴 둘러 계란 두 개를 구웠다.
-    여자는 늘 기름을 두 바퀴 이상 두른 뒤 뒤집지 않고 오래 구워
-    바삭바삭해진 반숙을 선호했다.
+    여자는 늘 기름을 두 바퀴 이상 두른 뒤 뒤집지 않고 오래 구워 바삭바삭해진 반숙을 선호했다.
     여자가 그러했듯 노른자를 터뜨려 밥에 비볐다.
     바삭한 계란 흰자가 입 안에서 부서졌다.
   </p>
@@ -984,7 +1051,9 @@
 
 
 
-<!-- MUSIC -->
+<!-- =========================================================
+     MUSIC PLAYER
+========================================================= -->
 
 <div
   class="music-player"
@@ -1010,26 +1079,26 @@
   <div class="music-controls">
 
     <button
-      aria-label="previous track"
       class="music-btn small"
       onclick="prevTrack()"
+      aria-label="previous track"
     >
       ‹
     </button>
 
     <button
-      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
+      aria-label="play or pause"
     >
       ▶
     </button>
 
     <button
-      aria-label="next track"
       class="music-btn small"
       onclick="nextTrack()"
+      aria-label="next track"
     >
       ›
     </button>
@@ -1052,16 +1121,28 @@
 <script>
 
   const fragmentModal =
-    document.getElementById("mh-fr-modal");
+    document.getElementById(
+      "mh-fr-modal"
+    );
+
 
   const fragmentTitle =
-    document.getElementById("mh-fr-reader-title");
+    document.getElementById(
+      "mh-fr-reader-title"
+    );
+
 
   const fragmentSubtitle =
-    document.getElementById("mh-fr-reader-subtitle");
+    document.getElementById(
+      "mh-fr-reader-subtitle"
+    );
+
 
   const fragmentText =
-    document.getElementById("mh-fr-reader-text");
+    document.getElementById(
+      "mh-fr-reader-text"
+    );
+
 
 
   function prepareFragment(
@@ -1072,24 +1153,30 @@
     fragmentTitle.textContent =
       title;
 
+
     fragmentSubtitle.textContent =
       subtitle;
 
+
     fragmentText.innerHTML =
       "";
+
 
     fragmentText.classList.remove(
       "is-html"
     );
 
+
     fragmentModal.classList.add(
       "open"
     );
+
 
     document.body.style.overflow =
       "hidden";
 
   }
+
 
 
   async function openFragmentText(
@@ -1102,6 +1189,7 @@
       title,
       subtitle
     );
+
 
     fragmentText.textContent =
       "Loading...";
@@ -1131,6 +1219,7 @@
 
     }
 
+
     catch (error) {
 
       fragmentText.textContent =
@@ -1141,6 +1230,7 @@
     }
 
   }
+
 
 
   function openFragmentThree() {
@@ -1169,31 +1259,19 @@
   }
 
 
+
   function closeFragment() {
 
     fragmentModal.classList.remove(
       "open"
     );
 
+
     document.body.style.overflow =
       "";
 
   }
 
-
-  function closeFragmentOutside(
-    event
-  ) {
-
-    if (
-      event.target === fragmentModal
-    ) {
-
-      closeFragment();
-
-    }
-
-  }
 
 
   document.addEventListener(
@@ -1202,7 +1280,9 @@
 
       if (
         event.key === "Escape" &&
-        fragmentModal.classList.contains("open")
+        fragmentModal.classList.contains(
+          "open"
+        )
       ) {
 
         closeFragment();
