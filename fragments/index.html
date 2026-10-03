@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>Personnel File | Midnight Hour</title>
+  <title>Fragments | Midnight Hour</title>
 
 
   <style>
@@ -48,18 +48,16 @@
         "Segoe UI",
         sans-serif;
 
-      font-weight: 300;
-
       background:
         radial-gradient(
-          circle at 88% 8%,
-          rgba(86, 77, 158, .14),
-          transparent 33%
+          circle at 85% 0%,
+          rgba(94,73,163,.14),
+          transparent 32%
         ),
         radial-gradient(
-          circle at 5% 80%,
-          rgba(74, 95, 180, .07),
-          transparent 28%
+          circle at 8% 88%,
+          rgba(70,94,177,.07),
+          transparent 29%
         ),
         #08080d;
     }
@@ -80,8 +78,8 @@
        PAGE
     ========================================================= */
 
-    .mh-person-page {
-      width: min(1200px, calc(100% - 58px));
+    .mh-fr-page {
+      width: min(1100px, calc(100% - 54px));
 
       margin: 0 auto;
 
@@ -96,23 +94,21 @@
        TOP
     ========================================================= */
 
-    .mh-person-top {
+    .mh-fr-top {
       display: flex;
 
       align-items: center;
       justify-content: space-between;
 
-      gap: 30px;
-
       padding-bottom: 22px;
 
       border-bottom:
         1px solid
-        rgba(255,255,255,.11);
+        rgba(255,255,255,.10);
     }
 
 
-    .mh-person-back {
+    .mh-fr-back {
       color: rgba(255,255,255,.56);
 
       font-size: 11px;
@@ -125,15 +121,15 @@
     }
 
 
-    .mh-person-back:hover {
-      color: #fff;
+    .mh-fr-back:hover {
+      color: white;
 
       transform: translateX(-3px);
     }
 
 
-    .mh-person-index {
-      color: rgba(174,162,232,.68);
+    .mh-fr-index {
+      color: rgba(176,162,235,.7);
 
       font-size: 10px;
 
@@ -145,160 +141,76 @@
        HEADER
     ========================================================= */
 
-    .mh-person-header {
+    .mh-fr-header {
       padding:
         62px
         0
-        74px;
+        68px;
     }
 
 
-    .mh-person-kicker {
+    .mh-fr-kicker {
       margin-bottom: 12px;
 
-      color: #b3a3ff;
+      color: #b8a7ff;
 
       font-size: 11px;
 
-      letter-spacing: .24em;
+      letter-spacing: .25em;
     }
 
 
-    .mh-person-page-title {
+    .mh-fr-title {
       margin: 0;
 
       font-size:
         clamp(
-          56px,
-          7.2vw,
-          96px
+          58px,
+          8vw,
+          103px
         );
 
-      line-height: .92;
+      line-height: .9;
 
-      letter-spacing: -.057em;
+      letter-spacing: -.065em;
 
       font-weight: 300;
     }
 
 
-    .mh-person-subtitle {
-      margin-top: 19px;
+    .mh-fr-title span {
+      color: rgba(255,255,255,.34);
+    }
 
-      color: rgba(255,255,255,.40);
 
-      font-size: 12px;
+    .mh-fr-sub {
+      margin-top: 20px;
 
-      letter-spacing: .12em;
+      color: rgba(255,255,255,.36);
+
+      font-size: 10px;
+
+      letter-spacing: .14em;
     }
 
 
     /* =========================================================
-       PROFILE ROW
+       CARDS
     ========================================================= */
 
-    .mh-person-profile {
-      display: grid;
+    .mh-fr-list {
+      display: flex;
 
-      grid-template-columns:
-        minmax(310px, .82fr)
-        minmax(0, 1.18fr);
+      flex-direction: column;
 
-      /*
-        핵심:
-        image와 description 양쪽을
-        같은 row 높이로 늘린다.
-      */
-      align-items: stretch;
-
-      gap: 44px;
-
-      padding:
-        52px
-        0;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,.10);
+      gap: 15px;
     }
 
 
-    .mh-person-profile:last-child {
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.10);
-    }
-
-
-    .mh-person-profile.mh-person-reverse
-    .mh-person-image {
-      order: 2;
-    }
-
-
-    .mh-person-profile.mh-person-reverse
-    .mh-person-copy {
-      order: 1;
-    }
-
-
-    /* =========================================================
-       IMAGE
-    ========================================================= */
-
-    .mh-person-image {
-      position: relative;
-
+    .mh-fr-card {
       width: 100%;
 
-      min-height: 570px;
-
-      overflow: hidden;
-
-      border-radius: 28px;
-
-      background: #111118;
-
-      border:
-        1px solid
-        rgba(255,255,255,.07);
-    }
-
-
-    .mh-person-image img {
-      position: absolute;
-
-      inset: 0;
-
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-    }
-
-
-    /* 필요하면 캐릭터별 크롭 위치 여기서 조절 */
-
-    .mh-person-profile:nth-of-type(1)
-    .mh-person-image img {
-      object-position: center center;
-    }
-
-
-    .mh-person-profile:nth-of-type(2)
-    .mh-person-image img {
-      object-position: center center;
-    }
-
-
-    /* =========================================================
-       DESCRIPTION PANEL
-    ========================================================= */
-
-    .mh-person-copy {
-      min-height: 570px;
+      min-height: 150px;
 
       display: flex;
 
@@ -306,126 +218,286 @@
 
       justify-content: center;
 
+      align-items: flex-start;
+
       padding:
-        38px
+        32px
         40px;
 
       border:
         1px solid
-        rgba(255,255,255,.09);
+        rgba(255,255,255,.11);
 
-      border-radius: 28px;
+      border-radius: 30px;
+
+      color: inherit;
+
+      text-align: left;
+
+      background:
+        rgba(255,255,255,.012);
+
+      cursor: pointer;
+
+      transition:
+        border-color .25s ease,
+        background .25s ease,
+        transform .25s ease;
+    }
+
+
+    .mh-fr-card:hover {
+      transform: translateY(-2px);
+
+      border-color:
+        rgba(174,155,255,.30);
 
       background:
         linear-gradient(
-          135deg,
-          rgba(123, 98, 191, .045),
-          rgba(255,255,255,.014)
+          100deg,
+          rgba(116,90,190,.055),
+          rgba(255,255,255,.013)
         );
     }
 
 
-    .mh-person-number {
-      margin-bottom: 18px;
+    .mh-fr-card-title {
+      margin: 0;
 
-      color: rgba(166,153,233,.72);
-
-      font-size: 11px;
-
-      letter-spacing: .23em;
-    }
-
-
-    .mh-person-name {
-      margin:
-        0
-        0
-        13px;
+      color: #efedf8;
 
       font-size:
         clamp(
-          40px,
-          5vw,
-          65px
+          22px,
+          2.4vw,
+          30px
         );
 
       font-weight: 300;
 
-      line-height: 1;
+      line-height: 1.3;
 
-      letter-spacing: -.05em;
+      letter-spacing: -.035em;
     }
 
 
-    .mh-person-name a {
-      transition: opacity .2s ease;
-    }
+    .mh-fr-card-subtitle {
+      margin-top: 17px;
 
+      color: #b8c7ff;
 
-    .mh-person-name a:hover {
-      opacity: .68;
-    }
+      font-size:
+        clamp(
+          14px,
+          1.6vw,
+          18px
+        );
 
-
-    /*
-      기존보다 살짝 키움
-    */
-
-    .mh-person-role {
-      margin-bottom: 38px;
-
-      color: rgba(255,255,255,.58);
-
-      font-size: 15px;
-
-      line-height: 1.85;
+      line-height: 1.7;
 
       word-break: keep-all;
     }
 
 
-    .mh-person-info {
-      display: grid;
+    .mh-fr-card:nth-child(2)
+    .mh-fr-card-subtitle {
+      color: #b8b0ff;
+    }
 
-      grid-template-columns:
-        110px
-        1fr;
 
-      gap: 25px;
+    .mh-fr-card:nth-child(3)
+    .mh-fr-card-subtitle {
+      color: #d29dcb;
+    }
+
+
+    .mh-fr-card:nth-child(4)
+    .mh-fr-card-subtitle {
+      color: #d68da3;
+    }
+
+
+    /* =========================================================
+       READER MODAL
+    ========================================================= */
+
+    .mh-fr-modal {
+      position: fixed;
+
+      z-index: 500;
+
+      inset: 0;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 28px;
+
+      background:
+        rgba(3,3,7,.91);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+
+    .mh-fr-modal.open {
+      display: flex;
+    }
+
+
+    .mh-fr-reader {
+      width: min(820px, 100%);
+
+      max-height: 87vh;
+
+      overflow-y: auto;
 
       padding:
-        24px
-        0;
+        46px
+        48px
+        52px;
 
-      border-top:
+      border:
+        1px solid
+        rgba(255,255,255,.11);
+
+      border-radius: 30px;
+
+      background: #101016;
+
+      box-shadow:
+        0
+        28px
+        80px
+        rgba(0,0,0,.38);
+    }
+
+
+    .mh-fr-reader-head {
+      display: flex;
+
+      align-items: flex-start;
+      justify-content: space-between;
+
+      gap: 28px;
+
+      margin-bottom: 31px;
+
+      padding-bottom: 25px;
+
+      border-bottom:
         1px solid
         rgba(255,255,255,.09);
     }
 
 
-    .mh-person-label {
-      color: #a29adf;
+    .mh-fr-reader-heading {
+      min-width: 0;
+    }
 
-      font-size: 11px;
 
-      letter-spacing: .18em;
+    .mh-fr-reader-title {
+      margin: 0;
 
-      padding-top: 2px;
+      color: #f1eff7;
+
+      font-size: 29px;
+
+      font-weight: 300;
+
+      letter-spacing: -.04em;
+    }
+
+
+    .mh-fr-reader-subtitle {
+      margin-top: 9px;
+
+      color: rgba(183,172,244,.67);
+
+      font-size: 12px;
+
+      line-height: 1.7;
+
+      word-break: keep-all;
+    }
+
+
+    .mh-fr-close {
+      flex: 0 0 auto;
+
+      padding:
+        7px
+        0;
+
+      border: 0;
+
+      color: rgba(255,255,255,.48);
+
+      background: transparent;
+
+      cursor: pointer;
+
+      font-size: 9px;
+
+      letter-spacing: .17em;
+    }
+
+
+    .mh-fr-close:hover {
+      color: white;
+    }
+
+
+    /* =========================================================
+       TEXT CONTENT
+    ========================================================= */
+
+    .mh-fr-reader-text {
+      color: rgba(255,255,255,.78);
+
+      font-size: 15px;
+
+      line-height: 2.15;
+
+      word-break: keep-all;
+
+      white-space: pre-wrap;
     }
 
 
     /*
-      설명 글씨 확대
+      fragment3.html처럼 HTML을 불러올 때
     */
 
-    .mh-person-text {
-      color: rgba(255,255,255,.76);
+    .mh-fr-reader-text.is-html {
+      white-space: normal;
+    }
 
-      font-size: 16px;
 
-      line-height: 2;
+    .mh-fr-reader-text.is-html p {
+      margin:
+        0
+        0
+        1.35em;
+    }
 
-      word-break: keep-all;
+
+    .mh-fr-reader-text.is-html p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /*
+      기울임체
+    */
+
+    .mh-fr-reader-text em {
+      color: rgba(215,207,255,.90);
+
+      font-style: italic;
     }
 
 
@@ -469,8 +541,6 @@
         rgba(255,255,255,.13);
 
       border-radius: 999px;
-
-      color: white;
 
       background:
         rgba(20,18,29,.89);
@@ -562,71 +632,68 @@
        MOBILE
     ========================================================= */
 
-    @media (max-width: 780px) {
+    @media (max-width: 650px) {
 
-      .mh-person-page {
-        width: calc(100% - 30px);
+      .mh-fr-page {
+        width: calc(100% - 28px);
       }
 
 
-      .mh-person-header {
+      .mh-fr-header {
         padding:
           48px
           0
-          54px;
+          50px;
       }
 
 
-      .mh-person-profile,
-      .mh-person-profile.mh-person-reverse {
-        grid-template-columns: 1fr;
-
-        gap: 18px;
+      .mh-fr-card {
+        min-height: 130px;
 
         padding:
-          34px
-          0;
+          28px
+          25px;
+
+        border-radius: 23px;
       }
 
 
-      .mh-person-profile.mh-person-reverse
-      .mh-person-image,
-      .mh-person-profile.mh-person-reverse
-      .mh-person-copy {
-        order: initial;
+      .mh-fr-card-title {
+        font-size: 23px;
       }
 
 
-      .mh-person-image {
-        min-height: 0;
+      .mh-fr-card-subtitle {
+        margin-top: 12px;
 
-        height: 440px;
+        font-size: 14px;
       }
 
 
-      .mh-person-copy {
-        min-height: 0;
+      .mh-fr-modal {
+        padding: 13px;
+      }
 
+
+      .mh-fr-reader {
         padding:
           31px
-          26px;
+          24px
+          38px;
+
+        border-radius: 22px;
       }
 
 
-      .mh-person-info {
-        grid-template-columns: 1fr;
-
-        gap: 8px;
+      .mh-fr-reader-title {
+        font-size: 24px;
       }
 
 
-      .mh-person-text {
-        font-size: 14px;
-      }
+      .mh-fr-reader-text {
+        font-size: 13.5px;
 
-
-      .mh-person-role {
-        font-size: 14px;
+        line-height: 2;
       }
 
     }
@@ -639,39 +706,38 @@
 <body>
 
 
-<main class="mh-person-page">
+<main class="mh-fr-page">
 
 
-  <nav class="mh-person-top">
+  <nav class="mh-fr-top">
 
     <a
-      class="mh-person-back"
+      class="mh-fr-back"
       href="../index.html"
     >
       ← BACK TO MAIN
     </a>
 
-    <span class="mh-person-index">
-      01 · PERSONNEL
+    <span class="mh-fr-index">
+      03 · FRAGMENTS
     </span>
 
   </nav>
 
 
 
-  <header class="mh-person-header">
+  <header class="mh-fr-header">
 
-    <div class="mh-person-kicker">
-      PERSONNEL FILE
+    <div class="mh-fr-kicker">
+      WRITTEN PIECES
     </div>
 
-    <h1 class="mh-person-page-title">
-      Two people<br>
-      after midnight.
+    <h1 class="mh-fr-title">
+      Fragment<span>s.</span>
     </h1>
 
-    <div class="mh-person-subtitle">
-      MIDNIGHT HOUR / 자정의 시간
+    <div class="mh-fr-sub">
+      SCENES · NOTES · MOMENTS
     </div>
 
   </header>
@@ -679,166 +745,176 @@
 
 
   <!-- =====================================================
-       이자헌
+       FRAGMENT CARDS
   ====================================================== -->
 
-  <article class="mh-person-profile">
+  <section class="mh-fr-list">
 
 
-    <div class="mh-person-image">
+    <!-- 001 -->
 
-      <img
-        src="../profile3.jpg"
-        alt="이자헌"
-      />
+    <button
+      class="mh-fr-card"
+      onclick="openFragment({
+        file: 'fragment1.txt',
+        type: 'text',
+        title: 'Fragment 001',
+        subtitle: '—'
+      })"
+    >
 
-    </div>
-
-
-    <div class="mh-person-copy">
-
-      <div class="mh-person-number">
-        PERSONNEL · 01
-      </div>
-
-
-      <h2 class="mh-person-name">
-
-        <a
-          href="https://namu.wiki/w/%EC%9D%B4%EC%9E%90%ED%97%8C(%EA%B4%B4%EB%8B%B4%EC%97%90%20%EB%96%A8%EC%96%B4%EC%A0%B8%EB%8F%84%20%EC%B6%9C%EA%B7%BC%EC%9D%84%20%ED%95%B4%EC%95%BC%20%ED%95%98%EB%8A%94%EA%B5%AC%EB%82%98)"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          이자헌 ↗
-        </a>
-
+      <h2 class="mh-fr-card-title">
+        Fragment 001
       </h2>
 
-
-      <div class="mh-person-role">
-        백일몽 주식회사 D조 조장, 도마뱀 과장
+      <div class="mh-fr-card-subtitle">
+        —
       </div>
 
-
-      <div class="mh-person-info">
-
-        <div class="mh-person-label">
-          POSITION
-        </div>
-
-        <div class="mh-person-text">
-          백일몽 주식회사 D조 조장.
-          원래 세계로 돌아가면 기억이 잊히는 정희솔을
-          유일하게 기억하는 인물이며,
-          그 기억을 통해 연합에서 벗어난 자아를 갖게 된다.
-        </div>
-
-      </div>
-
-
-      <div class="mh-person-info">
-
-        <div class="mh-person-label">
-          RELATION
-        </div>
-
-        <div class="mh-person-text">
-          정희솔에게 동등한 관계를 요구하고,
-          자신이 무엇을 바라는지 자각하며
-          정희솔의 선 앞으로 들어간다.
-        </div>
-
-      </div>
-
-    </div>
-
-
-  </article>
+    </button>
 
 
 
-  <!-- =====================================================
-       정희솔
-  ====================================================== -->
+    <!-- 002 -->
 
-  <article class="mh-person-profile mh-person-reverse">
+    <button
+      class="mh-fr-card"
+      onclick="openFragment({
+        file: 'fragment2.txt',
+        type: 'text',
+        title: 'Fragment 002',
+        subtitle: '자정'
+      })"
+    >
 
-
-    <div class="mh-person-image">
-
-      <img
-        src="../profile4.jpg"
-        alt="정희솔"
-      />
-
-    </div>
-
-
-    <div class="mh-person-copy">
-
-      <div class="mh-person-number">
-        PERSONNEL · 02
-      </div>
-
-
-      <h2 class="mh-person-name">
-
-        <a
-          href="https://some-love-story.tistory.com/71"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          정희솔 ↗
-        </a>
-
+      <h2 class="mh-fr-card-title">
+        Fragment 002
       </h2>
 
-
-      <div class="mh-person-role">
-        백일몽 주식회사 D조 흰담비 대리.<br>
-        어둠으로서 등록된 코드는
-        Qterw-E-513 &lt;자정의 시간&gt;.
+      <div class="mh-fr-card-subtitle">
+        자정
       </div>
 
+    </button>
 
-      <div class="mh-person-info">
 
-        <div class="mh-person-label">
-          POSITION
-        </div>
 
-        <div class="mh-person-text">
-          &lt;상영관 0번&gt; 괴담을 통해
-          괴담출근 세계로 트립한 인물.
-          이자헌의 관리 하에 있는 비공식 어둠으로 등록된다.
-        </div>
+    <!-- 003 -->
 
+    <button
+      class="mh-fr-card"
+      onclick="openFragment({
+        file: 'fragment3.html',
+        type: 'html',
+        title: 'Fragment 003',
+        subtitle: '흰담비 씨는 저를 좋아합니까?'
+      })"
+    >
+
+      <h2 class="mh-fr-card-title">
+        Fragment 003
+      </h2>
+
+      <div class="mh-fr-card-subtitle">
+        흰담비 씨는 저를 좋아합니까?
       </div>
 
+    </button>
 
-      <div class="mh-person-info">
 
-        <div class="mh-person-label">
-          RELATION
-        </div>
 
-        <div class="mh-person-text">
-          이자헌을 최애로 여기지만,
-          어느 순간 좁혀진 거리와 축적된 애정을 감지하며
-          그 관계를 경계한다.
-        </div>
+    <!-- 004 -->
 
+    <button
+      class="mh-fr-card"
+      onclick="openFragment({
+        file: 'fragment4.txt',
+        type: 'text',
+        title: 'Fragment 004',
+        subtitle: '一命還君 : 당신이 구해준 한 목숨을 당신에게 돌려드리겠습니다.'
+      })"
+    >
+
+      <h2 class="mh-fr-card-title">
+        Fragment 004
+      </h2>
+
+      <div class="mh-fr-card-subtitle">
+        一命還君 : 당신이 구해준 한 목숨을 당신에게 돌려드리겠습니다.
       </div>
 
-    </div>
+    </button>
 
 
-  </article>
+  </section>
 
 
 </main>
 
 
+
+<!-- =========================================================
+     READER
+========================================================= -->
+
+<div
+  class="mh-fr-modal"
+  id="mh-fr-modal"
+  onclick="closeFragmentOutside(event)"
+>
+
+  <article class="mh-fr-reader">
+
+
+    <div class="mh-fr-reader-head">
+
+
+      <div class="mh-fr-reader-heading">
+
+        <h2
+          class="mh-fr-reader-title"
+          id="mh-fr-reader-title"
+        >
+          Fragment
+        </h2>
+
+        <div
+          class="mh-fr-reader-subtitle"
+          id="mh-fr-reader-subtitle"
+        >
+        </div>
+
+      </div>
+
+
+      <button
+        class="mh-fr-close"
+        onclick="closeFragment()"
+      >
+        CLOSE
+      </button>
+
+
+    </div>
+
+
+    <div
+      class="mh-fr-reader-text"
+      id="mh-fr-reader-text"
+    >
+      Loading...
+    </div>
+
+
+  </article>
+
+</div>
+
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
 
 <div
   class="music-player"
@@ -899,7 +975,165 @@
 </div>
 
 
+
 <script src="../common.js"></script>
+
+
+<script>
+
+  const fragmentModal =
+    document.getElementById(
+      "mh-fr-modal"
+    );
+
+
+  const fragmentTitle =
+    document.getElementById(
+      "mh-fr-reader-title"
+    );
+
+
+  const fragmentSubtitle =
+    document.getElementById(
+      "mh-fr-reader-subtitle"
+    );
+
+
+  const fragmentText =
+    document.getElementById(
+      "mh-fr-reader-text"
+    );
+
+
+
+  async function openFragment(data) {
+
+    fragmentTitle.textContent =
+      data.title;
+
+
+    fragmentSubtitle.textContent =
+      data.subtitle || "";
+
+
+    fragmentText.classList.remove(
+      "is-html"
+    );
+
+
+    fragmentText.textContent =
+      "Loading...";
+
+
+    fragmentModal.classList.add(
+      "open"
+    );
+
+
+    document.body.style.overflow =
+      "hidden";
+
+
+    try {
+
+      const response =
+        await fetch(data.file);
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Failed to load fragment."
+        );
+
+      }
+
+
+      const content =
+        await response.text();
+
+
+      if (
+        data.type === "html"
+      ) {
+
+        fragmentText.classList.add(
+          "is-html"
+        );
+
+
+        fragmentText.innerHTML =
+          content;
+
+      }
+
+      else {
+
+        fragmentText.textContent =
+          content;
+
+      }
+
+    }
+
+    catch (error) {
+
+      fragmentText.textContent =
+        "글을 불러오지 못했습니다.\n\n" +
+        data.file +
+        " 파일이 fragments 폴더 안에 있는지 확인해 주세요.";
+
+    }
+
+  }
+
+
+
+  function closeFragment() {
+
+    fragmentModal.classList.remove(
+      "open"
+    );
+
+
+    document.body.style.overflow =
+      "";
+
+  }
+
+
+
+  function closeFragmentOutside(event) {
+
+    if (
+      event.target === fragmentModal
+    ) {
+
+      closeFragment();
+
+    }
+
+  }
+
+
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Escape" &&
+        fragmentModal.classList.contains("open")
+      ) {
+
+        closeFragment();
+
+      }
+
+    }
+  );
+
+</script>
 
 
 </body>
