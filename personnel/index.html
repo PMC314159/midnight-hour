@@ -1,284 +1,478 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Personnel File | Midnight Hour</title>
 
-  <link rel="stylesheet" href="../style.css" />
 
   <style>
-    body.mh-subpage {
+
+    @font-face {
+      font-family: "GmarketSans";
+      src: url("../GmarketSansTTFLight.ttf") format("truetype");
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
       margin: 0;
+
+      min-height: 100vh;
+
+      color: #f2f1f6;
+
+      font-family:
+        "GmarketSans",
+        sans-serif;
+
       background:
         radial-gradient(
           circle at 85% 10%,
-          rgba(53, 60, 105, 0.12),
-          transparent 35%
+          rgba(82,77,150,.12),
+          transparent 34%
         ),
-        #08080c;
-      color: #f0f0f5;
-    }
-
-    .mh-page {
-      width: min(calc(100% - 64px), 1180px);
-      margin: 0 auto;
-      padding: 38px 0 140px;
-    }
-
-    .mh-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      padding-bottom: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .mh-back {
-      color: rgba(255,255,255,0.58);
-      text-decoration: none;
-
-      font-size: 11px;
-      letter-spacing: 0.14em;
-
-      transition: color .2s ease;
-    }
-
-    .mh-back:hover {
-      color: #fff;
-    }
-
-    .mh-section-no {
-      color: rgba(152, 157, 220, 0.72);
-
-      font-size: 10px;
-      letter-spacing: .22em;
-    }
-
-    .mh-heading {
-      padding: 62px 0 74px;
-    }
-
-    .mh-kicker {
-      margin-bottom: 12px;
-
-      color: #9399da;
-
-      font-size: 11px;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-    }
-
-    .mh-title {
-      margin: 0;
-
-      font-size: clamp(54px, 7vw, 92px);
-      font-weight: 300;
-      letter-spacing: -.055em;
-      line-height: .95;
-    }
-
-    .mh-subtitle {
-      margin-top: 18px;
-
-      color: rgba(255,255,255,.42);
-
-      font-size: 12px;
-      letter-spacing: .1em;
+        #08080d;
     }
 
 
-    /* PROFILE */
-
-    .mh-profile {
-      display: grid;
-      grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
-      gap: 60px;
-
-      align-items: center;
-
-      padding: 56px 0;
-
-      border-top: 1px solid rgba(255,255,255,.11);
-    }
-
-    .mh-profile:last-child {
-      border-bottom: 1px solid rgba(255,255,255,.11);
-    }
-
-    .mh-profile.reverse .mh-profile-image {
-      order: 2;
-    }
-
-    .mh-profile.reverse .mh-profile-copy {
-      order: 1;
-    }
-
-    .mh-profile-image {
-      overflow: hidden;
-
-      aspect-ratio: 4 / 5;
-
-      border-radius: 28px;
-
-      background: #111118;
-    }
-
-    .mh-profile-image img {
-      width: 100%;
-      height: 100%;
-
-      display: block;
-
-      object-fit: cover;
-
-      transition: transform .65s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .mh-profile:hover .mh-profile-image img {
-      transform: scale(1.025);
-    }
-
-    .mh-number {
-      margin-bottom: 18px;
-
-      color: rgba(145,151,218,.7);
-
-      font-size: 11px;
-      letter-spacing: .22em;
-    }
-
-    .mh-name {
-      margin: 0 0 10px;
-
-      font-size: clamp(38px, 5vw, 64px);
-      font-weight: 400;
-
-      letter-spacing: -.05em;
-    }
-
-    .mh-name a {
+    a {
       color: inherit;
       text-decoration: none;
     }
 
-    .mh-name a:hover {
-      opacity: .65;
+
+    .mh-person-page {
+      width: min(1160px, calc(100% - 58px));
+
+      margin: 0 auto;
+
+      padding:
+        38px
+        0
+        145px;
     }
 
-    .mh-external {
-      margin-left: 5px;
 
-      font-size: .35em;
-      vertical-align: top;
+    .mh-person-top {
+      display: flex;
 
-      opacity: .55;
+      align-items: center;
+      justify-content: space-between;
+
+      padding-bottom: 22px;
+
+      border-bottom: 1px solid rgba(255,255,255,.11);
     }
 
-    .mh-role {
-      max-width: 650px;
 
-      margin-bottom: 44px;
+    .mh-person-back {
+      color: rgba(255,255,255,.56);
 
-      color: rgba(255,255,255,.54);
+      font-size: 11px;
 
-      line-height: 1.7;
-
-      font-size: 13px;
+      letter-spacing: .14em;
     }
 
-    .mh-info {
-      display: grid;
-      grid-template-columns: 110px minmax(0,1fr);
 
-      gap: 20px;
-
-      padding: 22px 0;
-
-      border-top: 1px solid rgba(255,255,255,.09);
-    }
-
-    .mh-info-label {
-      color: #9095ce;
+    .mh-person-index {
+      color: rgba(174,162,232,.68);
 
       font-size: 10px;
+
+      letter-spacing: .23em;
+    }
+
+
+    .mh-person-header {
+      padding:
+        62px
+        0
+        74px;
+    }
+
+
+    .mh-person-kicker {
+      margin-bottom: 12px;
+
+      color: #b3a3ff;
+
+      font-size: 11px;
+
+      letter-spacing: .24em;
+    }
+
+
+    .mh-person-page-title {
+      margin: 0;
+
+      font-size: clamp(54px, 7vw, 92px);
+
+      line-height: .93;
+
+      letter-spacing: -.055em;
+
+      font-weight: 300;
+    }
+
+
+    .mh-person-subtitle {
+      margin-top: 18px;
+
+      color: rgba(255,255,255,.38);
+
+      font-size: 11px;
+
+      letter-spacing: .12em;
+    }
+
+
+    /* =====================================================
+       PROFILE
+    ====================================================== */
+
+    .mh-person-profile {
+      display: grid;
+
+      grid-template-columns:
+        minmax(300px, .82fr)
+        minmax(0, 1.18fr);
+
+      align-items: center;
+
+      gap: 60px;
+
+      padding:
+        54px
+        0;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.10);
+    }
+
+
+    .mh-person-profile:last-child {
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.10);
+    }
+
+
+    .mh-person-profile.mh-person-reverse
+    .mh-person-image {
+      order: 2;
+    }
+
+
+    .mh-person-profile.mh-person-reverse
+    .mh-person-copy {
+      order: 1;
+    }
+
+
+    /*
+       핵심:
+       이자헌 / 정희솔 이미지 칸 완전 동일
+    */
+
+    .mh-person-image {
+      width: 100%;
+
+      height: 520px;
+
+      overflow: hidden;
+
+      border-radius: 27px;
+
+      background: #111118;
+    }
+
+
+    .mh-person-image img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+
+    .mh-person-profile:first-of-type
+    .mh-person-image img {
+      object-position: center center;
+    }
+
+
+    .mh-person-profile:last-of-type
+    .mh-person-image img {
+      object-position: center center;
+    }
+
+
+    .mh-person-number {
+      margin-bottom: 17px;
+
+      color: rgba(166,153,233,.68);
+
+      font-size: 10px;
+
+      letter-spacing: .23em;
+    }
+
+
+    .mh-person-name {
+      margin:
+        0
+        0
+        11px;
+
+      font-size: clamp(38px, 5vw, 62px);
+
+      font-weight: 300;
+
+      letter-spacing: -.05em;
+    }
+
+
+    .mh-person-role {
+      margin-bottom: 38px;
+
+      color: rgba(255,255,255,.48);
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+
+    .mh-person-info {
+      display: grid;
+
+      grid-template-columns:
+        105px
+        1fr;
+
+      gap: 24px;
+
+      padding:
+        22px
+        0;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.085);
+    }
+
+
+    .mh-person-label {
+      color: #9e94db;
+
+      font-size: 10px;
+
       letter-spacing: .18em;
     }
 
-    .mh-info-text {
+
+    .mh-person-text {
       color: rgba(255,255,255,.72);
 
       font-size: 14px;
-      line-height: 1.9;
+
+      line-height: 1.95;
+
       word-break: keep-all;
     }
 
 
-    @media (max-width: 800px) {
+    /* MUSIC */
 
-      .mh-page {
-        width: calc(100% - 32px);
+    .music-player {
+      position: fixed;
+
+      z-index: 100;
+
+      left: 50%;
+      bottom: 17px;
+
+      transform: translateX(-50%);
+
+      width: min(660px, calc(100% - 36px));
+
+      min-height: 61px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 16px;
+
+      padding:
+        9px
+        13px
+        9px
+        19px;
+
+      border: 1px solid rgba(255,255,255,.13);
+
+      border-radius: 999px;
+
+      background: rgba(20,18,29,.89);
+
+      backdrop-filter: blur(20px);
+    }
+
+
+    .music-left,
+    .music-controls {
+      display: flex;
+      align-items: center;
+    }
+
+
+    .music-left {
+      gap: 11px;
+    }
+
+
+    .music-icon {
+      color: #a998ff;
+    }
+
+
+    .music-title {
+      color: rgba(255,255,255,.72);
+
+      font-size: 11px;
+    }
+
+
+    .music-controls {
+      gap: 3px;
+    }
+
+
+    .music-btn {
+      width: 39px;
+      height: 39px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid rgba(255,255,255,.14);
+
+      border-radius: 50%;
+
+      color: white;
+
+      background: rgba(255,255,255,.045);
+
+      cursor: pointer;
+    }
+
+
+    .music-btn.small {
+      width: 31px;
+      height: 31px;
+
+      border: 0;
+
+      background: transparent;
+    }
+
+
+    @media (max-width: 780px) {
+
+      .mh-person-page {
+        width: calc(100% - 30px);
       }
 
-      .mh-heading {
-        padding: 45px 0 50px;
-      }
 
-      .mh-profile,
-      .mh-profile.reverse {
+      .mh-person-profile,
+      .mh-person-profile.mh-person-reverse {
         grid-template-columns: 1fr;
-        gap: 34px;
 
-        padding: 38px 0;
+        gap: 32px;
       }
 
-      .mh-profile.reverse .mh-profile-image,
-      .mh-profile.reverse .mh-profile-copy {
+
+      .mh-person-profile.mh-person-reverse
+      .mh-person-image,
+      .mh-person-profile.mh-person-reverse
+      .mh-person-copy {
         order: initial;
       }
 
-      .mh-profile-image {
-        aspect-ratio: 5 / 4;
+
+      .mh-person-image {
+        height: 420px;
       }
 
-      .mh-info {
+
+      .mh-person-info {
         grid-template-columns: 1fr;
+
         gap: 8px;
       }
+
     }
+
   </style>
+
 </head>
 
 
-<body class="subpage mh-subpage">
+<body>
 
-<main class="mh-page">
 
-  <nav class="mh-top">
-    <a class="mh-back" href="../index.html">
+<main class="mh-person-page">
+
+
+  <nav class="mh-person-top">
+
+    <a
+      class="mh-person-back"
+      href="../index.html"
+    >
       ← BACK TO MAIN
     </a>
 
-    <span class="mh-section-no">
+    <span class="mh-person-index">
       01 · PERSONNEL
     </span>
+
   </nav>
 
 
-  <header class="mh-heading">
 
-    <div class="mh-kicker">
-      Personnel File
+  <header class="mh-person-header">
+
+    <div class="mh-person-kicker">
+      PERSONNEL FILE
     </div>
 
-    <h1 class="mh-title">
+    <h1 class="mh-person-page-title">
       Two people<br>
       after midnight.
     </h1>
 
-    <div class="mh-subtitle">
+    <div class="mh-person-subtitle">
       MIDNIGHT HOUR / 자정의 시간
     </div>
 
@@ -288,47 +482,49 @@
 
   <!-- 이자헌 -->
 
-  <article class="mh-profile">
+  <article class="mh-person-profile">
 
-    <div class="mh-profile-image">
+    <div class="mh-person-image">
+
       <img
         src="../profile3.jpg"
         alt="이자헌"
       />
+
     </div>
 
 
-    <div class="mh-profile-copy">
+    <div class="mh-person-copy">
 
-      <div class="mh-number">
+      <div class="mh-person-number">
         PERSONNEL · 01
       </div>
 
-      <h2 class="mh-name">
+      <h2 class="mh-person-name">
 
         <a
           href="https://namu.wiki/w/%EC%9D%B4%EC%9E%90%ED%97%8C(%EA%B4%B4%EB%8B%B4%EC%97%90%20%EB%96%A8%EC%96%B4%EC%A0%B8%EB%8F%84%20%EC%B6%9C%EA%B7%BC%EC%9D%84%20%ED%95%B4%EC%95%BC%20%ED%95%98%EB%8A%94%EA%B5%AC%EB%82%98)"
           target="_blank"
           rel="noopener noreferrer"
         >
-          이자헌
-          <span class="mh-external">↗</span>
+          이자헌 ↗
         </a>
 
       </h2>
 
-      <div class="mh-role">
+
+      <div class="mh-person-role">
         백일몽 주식회사 D조 조장, 도마뱀 과장
       </div>
 
 
-      <div class="mh-info">
+      <div class="mh-person-info">
 
-        <div class="mh-info-label">
+        <div class="mh-person-label">
           POSITION
         </div>
 
-        <div class="mh-info-text">
+        <div class="mh-person-text">
           백일몽 주식회사 D조 조장.
           원래 세계로 돌아가면 기억이 잊히는 정희솔을 유일하게 기억하는 인물이며,
           그 기억을 통해 연합에서 벗어난 자아를 갖게 된다.
@@ -337,13 +533,13 @@
       </div>
 
 
-      <div class="mh-info">
+      <div class="mh-person-info">
 
-        <div class="mh-info-label">
+        <div class="mh-person-label">
           RELATION
         </div>
 
-        <div class="mh-info-text">
+        <div class="mh-person-text">
           정희솔에게 동등한 관계를 요구하고,
           자신이 무엇을 바라는지 자각하며
           정희솔의 선 앞으로 들어간다.
@@ -359,65 +555,65 @@
 
   <!-- 정희솔 -->
 
-  <article class="mh-profile reverse">
+  <article class="mh-person-profile mh-person-reverse">
 
-    <div class="mh-profile-image">
+    <div class="mh-person-image">
+
       <img
         src="../profile4.jpg"
         alt="정희솔"
       />
+
     </div>
 
 
-    <div class="mh-profile-copy">
+    <div class="mh-person-copy">
 
-      <div class="mh-number">
+      <div class="mh-person-number">
         PERSONNEL · 02
       </div>
 
-      <h2 class="mh-name">
+      <h2 class="mh-person-name">
 
         <a
           href="https://some-love-story.tistory.com/71"
           target="_blank"
           rel="noopener noreferrer"
         >
-          정희솔
-          <span class="mh-external">↗</span>
+          정희솔 ↗
         </a>
 
       </h2>
 
 
-      <div class="mh-role">
+      <div class="mh-person-role">
         백일몽 주식회사 D조 흰담비 대리.<br>
         어둠으로서 등록된 코드는
         Qterw-E-513 &lt;자정의 시간&gt;.
       </div>
 
 
-      <div class="mh-info">
+      <div class="mh-person-info">
 
-        <div class="mh-info-label">
+        <div class="mh-person-label">
           POSITION
         </div>
 
-        <div class="mh-info-text">
-          &lt;상영관 0번&gt; 괴담을 통해
-          괴담출근 세계로 트립한 인물.
+        <div class="mh-person-text">
+          &lt;상영관 0번&gt; 괴담을 통해 괴담출근 세계로 트립한 인물.
           이자헌의 관리 하에 있는 비공식 어둠으로 등록된다.
         </div>
 
       </div>
 
 
-      <div class="mh-info">
+      <div class="mh-person-info">
 
-        <div class="mh-info-label">
+        <div class="mh-person-label">
           RELATION
         </div>
 
-        <div class="mh-info-text">
+        <div class="mh-person-text">
           이자헌을 최애로 여기지만,
           어느 순간 좁혀진 거리와 축적된 애정을 감지하며
           그 관계를 경계한다.
@@ -429,24 +625,35 @@
 
   </article>
 
+
 </main>
 
 
 
-<div class="music-player" id="music-player">
+<div
+  class="music-player"
+  id="music-player"
+>
 
   <div class="music-left">
-    <span class="music-icon">♫</span>
 
-    <span class="music-title" id="music-title">
+    <span class="music-icon">
+      ♫
+    </span>
+
+    <span
+      class="music-title"
+      id="music-title"
+    >
       긴 밤(feat. 기리보이) - Seori
     </span>
+
   </div>
+
 
   <div class="music-controls">
 
     <button
-      aria-label="previous track"
       class="music-btn small"
       onclick="prevTrack()"
     >
@@ -454,7 +661,6 @@
     </button>
 
     <button
-      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
@@ -463,7 +669,6 @@
     </button>
 
     <button
-      aria-label="next track"
       class="music-btn small"
       onclick="nextTrack()"
     >
@@ -472,12 +677,17 @@
 
   </div>
 
-  <audio id="bgm" preload="metadata"></audio>
+
+  <audio
+    id="bgm"
+    preload="metadata"
+  ></audio>
 
 </div>
 
 
 <script src="../common.js"></script>
+
 
 </body>
 </html>
