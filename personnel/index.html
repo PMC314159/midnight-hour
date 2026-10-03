@@ -17,6 +17,12 @@
       font-display: swap;
     }
 
+    :root {
+      --bg: #08080d;
+      --purple: #aa9bf0;
+      --profile-size: 360px;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -43,15 +49,15 @@
       background:
         radial-gradient(
           circle at 88% 8%,
-          rgba(86, 77, 158, .14),
+          rgba(86,77,158,.14),
           transparent 33%
         ),
         radial-gradient(
           circle at 5% 80%,
-          rgba(74, 95, 180, .07),
+          rgba(74,95,180,.07),
           transparent 28%
         ),
-        #08080d;
+        var(--bg);
     }
 
     a {
@@ -69,7 +75,7 @@
     ========================================================= */
 
     .mh-person-page {
-      width: min(1080px, calc(100% - 58px));
+      width: min(1160px, calc(100% - 58px));
       margin: 0 auto;
 
       padding:
@@ -114,7 +120,7 @@
     }
 
     .mh-person-index {
-      color: rgba(174,162,232,.68);
+      color: rgba(174,162,232,.72);
 
       font-size: 10px;
       letter-spacing: .23em;
@@ -129,7 +135,7 @@
       padding:
         54px
         0
-        46px;
+        48px;
     }
 
     .mh-person-kicker {
@@ -146,9 +152,9 @@
 
       font-size:
         clamp(
-          48px,
+          50px,
           6vw,
-          80px
+          82px
         );
 
       line-height: .92;
@@ -169,30 +175,22 @@
 
 
     /* =========================================================
-       PROFILE
+       PROFILE ROW
     ========================================================= */
 
     .mh-person-profile {
       display: grid;
 
-      /*
-        왼쪽은 320px 정사각형.
-        오른쪽은 나머지 전체.
-      */
-
       grid-template-columns:
-        320px
+        var(--profile-size)
         minmax(0, 1fr);
 
-      grid-template-rows:
-        320px;
+      gap: 30px;
 
-      align-items: stretch;
-
-      gap: 26px;
+      align-items: start;
 
       padding:
-        30px
+        32px
         0;
 
       border-top:
@@ -218,102 +216,91 @@
 
 
     /* =========================================================
-       IMAGE
+       PROFILE IMAGE
     ========================================================= */
 
     .mh-person-image {
       position: relative;
 
-      width: 320px;
-      height: 320px;
+      width: var(--profile-size);
+      height: var(--profile-size);
 
       aspect-ratio: 1 / 1;
 
       overflow: hidden;
 
-      border-radius: 22px;
+      border-radius: 24px;
 
       background: #111118;
 
       border:
         1px solid
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.08);
     }
 
     .mh-person-image img {
-      position: absolute;
-      inset: 0;
-
       display: block;
 
       width: 100%;
       height: 100%;
 
       object-fit: cover;
-    }
-
-    .mh-person-profile:nth-of-type(1)
-    .mh-person-image img {
-      object-position: center center;
-    }
-
-    .mh-person-profile:nth-of-type(2)
-    .mh-person-image img {
-      object-position: center center;
+      object-position: center;
     }
 
 
     /* =========================================================
-       INFO PANEL
+       COPY BOX
     ========================================================= */
 
     .mh-person-copy {
-      height: 320px;
-
-      min-width: 0;
+      width: 100%;
+      height: var(--profile-size);
 
       display: flex;
       flex-direction: column;
       justify-content: center;
 
+      overflow: hidden;
+
       padding:
-        19px
+        18px
         25px;
 
       border:
         1px solid
         rgba(255,255,255,.09);
 
-      border-radius: 22px;
+      border-radius: 24px;
 
       background:
         linear-gradient(
           135deg,
-          rgba(123, 98, 191, .045),
+          rgba(123,98,191,.046),
           rgba(255,255,255,.014)
         );
     }
 
     .mh-person-number {
-      margin-bottom: 7px;
+      margin-bottom: 6px;
 
-      color: rgba(182,168,255,.74);
+      color: var(--purple);
 
       font-size: 9px;
-      letter-spacing: .21em;
+      letter-spacing: .20em;
     }
 
     .mh-person-name {
       margin:
         0
         0
-        7px;
+        6px;
 
       font-size:
         clamp(
-          30px,
-          3.5vw,
-          40px
+          31px,
+          3.3vw,
+          42px
         );
 
       font-weight: 300;
@@ -332,13 +319,13 @@
     }
 
     .mh-person-role {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
 
-      color: rgba(255,255,255,.62);
+      color: rgba(255,255,255,.64);
 
-      font-size: 13.5px;
+      font-size: 13px;
 
-      line-height: 1.55;
+      line-height: 1.5;
 
       word-break: keep-all;
     }
@@ -350,10 +337,10 @@
         78px
         minmax(0, 1fr);
 
-      gap: 14px;
+      gap: 13px;
 
       padding:
-        10px
+        9px
         0;
 
       border-top:
@@ -362,25 +349,21 @@
     }
 
     .mh-person-label {
-      color: #aba0ed;
+      color: #aca1ee;
 
-      font-size: 10px;
+      font-size: 9.5px;
+
       letter-spacing: .14em;
 
-      padding-top: 2px;
+      padding-top: 1px;
     }
 
     .mh-person-text {
       color: rgba(255,255,255,.79);
 
-      font-size:
-        clamp(
-          13px,
-          1.15vw,
-          14.2px
-        );
+      font-size: 13.2px;
 
-      line-height: 1.58;
+      line-height: 1.52;
 
       word-break: keep-all;
     }
@@ -512,56 +495,45 @@
        TABLET
     ========================================================= */
 
-    @media (max-width: 920px) {
+    @media (max-width: 960px) {
 
-      .mh-person-profile {
-        grid-template-columns:
-          270px
-          minmax(0, 1fr);
-
-        grid-template-rows:
-          270px;
+      :root {
+        --profile-size: 300px;
       }
 
-      .mh-person-image {
-        width: 270px;
-        height: 270px;
+      .mh-person-profile {
+        gap: 22px;
       }
 
       .mh-person-copy {
-        height: 270px;
-
         padding:
-          16px
-          21px;
+          15px
+          19px;
       }
 
       .mh-person-name {
-        font-size: 29px;
+        font-size: 31px;
       }
 
       .mh-person-role {
-        margin-bottom: 8px;
-
-        font-size: 12px;
+        font-size: 11.5px;
       }
 
       .mh-person-info {
         grid-template-columns:
-          68px
+          65px
           1fr;
 
-        gap: 10px;
+        gap: 9px;
 
         padding:
-          8px
+          7px
           0;
       }
 
       .mh-person-text {
-        font-size: 12.2px;
-
-        line-height: 1.52;
+        font-size: 11.5px;
+        line-height: 1.45;
       }
 
     }
@@ -586,10 +558,7 @@
 
       .mh-person-profile,
       .mh-person-profile.mh-person-reverse {
-        display: grid;
-
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
 
         gap: 13px;
 
@@ -615,6 +584,8 @@
       .mh-person-copy {
         height: auto;
 
+        overflow: visible;
+
         padding:
           25px
           23px;
@@ -635,9 +606,9 @@
       }
 
       .mh-person-role {
-        font-size: 13.5px;
-
         margin-bottom: 15px;
+
+        font-size: 13.5px;
       }
 
       .mh-person-text {
@@ -817,7 +788,8 @@
         </div>
 
         <div class="mh-person-text">
-          &lt;상영관 0번&gt; 괴담을 통해 괴담출근 세계로 트립한 인물.
+          &lt;상영관 0번&gt; 괴담을 통해
+          괴담출근 세계로 트립한 인물.
           이자헌의 관리 하에 있는 비공식 어둠으로 등록된다.
         </div>
 
@@ -871,26 +843,26 @@
   <div class="music-controls">
 
     <button
-      aria-label="previous track"
       class="music-btn small"
       onclick="prevTrack()"
+      aria-label="previous track"
     >
       ‹
     </button>
 
     <button
-      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
+      aria-label="play or pause"
     >
       ▶
     </button>
 
     <button
-      aria-label="next track"
       class="music-btn small"
       onclick="nextTrack()"
+      aria-label="next track"
     >
       ›
     </button>
