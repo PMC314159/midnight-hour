@@ -27,30 +27,18 @@
 
     @font-face {
       font-family: "GmarketSans";
-
-      src:
-        url("../GmarketSansTTFLight.ttf")
-        format("truetype");
-
+      src: url("../GmarketSansTTFLight.ttf") format("truetype");
       font-weight: 300;
-
       font-style: normal;
-
       font-display: swap;
     }
 
 
     :root {
       --bg: #09090e;
-
       --text: #f1f0f5;
 
-      --muted: rgba(241,240,245,.46);
-
-      --line: rgba(255,255,255,.11);
-
       --violet: #9d87ff;
-
       --violet-light: #b8aaff;
     }
 
@@ -67,7 +55,6 @@
 
     body.stills-page {
       margin: 0;
-
       min-height: 100vh;
 
       color: var(--text);
@@ -117,11 +104,7 @@
     ========================================================= */
 
     .stills-wrap {
-      width:
-        min(
-          1320px,
-          calc(100% - 58px)
-        );
+      width: min(1220px, calc(100% - 58px));
 
       margin: 0 auto;
 
@@ -153,8 +136,7 @@
 
 
     .stills-back {
-      color:
-        rgba(255,255,255,.56);
+      color: rgba(255,255,255,.56);
 
       font-size: 11px;
 
@@ -169,14 +151,12 @@
     .stills-back:hover {
       color: #fff;
 
-      transform:
-        translateX(-3px);
+      transform: translateX(-3px);
     }
 
 
     .stills-index {
-      color:
-        rgba(173,161,229,.68);
+      color: rgba(173,161,229,.68);
 
       font-size: 10px;
 
@@ -192,7 +172,6 @@
       display: flex;
 
       justify-content: space-between;
-
       align-items: flex-end;
 
       gap: 40px;
@@ -207,8 +186,7 @@
     .stills-kicker {
       margin-bottom: 12px;
 
-      color:
-        var(--violet-light);
+      color: var(--violet-light);
 
       font-size: 11px;
 
@@ -219,8 +197,7 @@
     .stills-title {
       margin: 0;
 
-      color:
-        #f2f1f6;
+      color: #f2f1f6;
 
       font-size:
         clamp(
@@ -238,8 +215,7 @@
 
 
     .stills-title span {
-      color:
-        rgba(255,255,255,.34);
+      color: rgba(255,255,255,.34);
     }
 
 
@@ -248,8 +224,7 @@
 
       padding-bottom: 8px;
 
-      color:
-        rgba(255,255,255,.38);
+      color: rgba(255,255,255,.38);
 
       font-size: 11px;
 
@@ -263,16 +238,16 @@
 
     /* =========================================================
        GALLERY
-       전부 정사각형
+       한 줄 2장
     ========================================================= */
 
     .still-grid {
       display: grid;
 
       grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(2, minmax(0, 1fr));
 
-      gap: 17px;
+      gap: 18px;
     }
 
 
@@ -285,15 +260,13 @@
 
       width: 100%;
 
-      aspect-ratio:
-        1 / 1;
+      aspect-ratio: 1 / 1;
 
       overflow: hidden;
 
-      border-radius: 22px;
+      border-radius: 24px;
 
-      background:
-        #111117;
+      background: #111117;
 
       cursor: pointer;
 
@@ -320,10 +293,7 @@
     }
 
 
-    /*
-      썸네일은 정사각형 안을 꽉 채움.
-      원본 비율이 달라도 자동 크롭.
-    */
+    /* 썸네일은 전부 정사각형 크롭 */
 
     .still-card img {
       display: block;
@@ -342,17 +312,14 @@
 
 
     .still-card:hover img {
-      transform:
-        scale(1.035);
+      transform: scale(1.025);
 
-      filter:
-        brightness(.72);
+      filter: brightness(.72);
     }
 
 
     /* =========================================================
-       INFO
-       Midnight Hour 문구 제거
+       HOVER INFO
     ========================================================= */
 
     .still-info {
@@ -367,28 +334,26 @@
       display: flex;
 
       justify-content: space-between;
-
       align-items: flex-end;
 
       gap: 20px;
 
       padding:
-        55px
-        20px
-        18px;
+        65px
+        22px
+        20px;
 
       background:
         linear-gradient(
           to top,
-          rgba(5,5,9,.90),
-          rgba(5,5,9,.34) 55%,
+          rgba(5,5,9,.92),
+          rgba(5,5,9,.32) 55%,
           transparent
         );
 
       opacity: 0;
 
-      transform:
-        translateY(8px);
+      transform: translateY(8px);
 
       transition:
         opacity .3s ease,
@@ -400,16 +365,14 @@
     .still-info {
       opacity: 1;
 
-      transform:
-        translateY(0);
+      transform: translateY(0);
     }
 
 
     .still-number {
-      color:
-        #b3a2f2;
+      color: #b3a2f2;
 
-      font-size: 9px;
+      font-size: 10px;
 
       letter-spacing: .22em;
     }
@@ -418,8 +381,7 @@
     .still-credit {
       flex: 0 0 auto;
 
-      color:
-        rgba(255,255,255,.62);
+      color: rgba(255,255,255,.66);
 
       font-size: 10px;
 
@@ -436,11 +398,11 @@
 
       z-index: 6;
 
-      top: 16px;
-      right: 16px;
+      top: 18px;
+      right: 18px;
 
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
 
       display: grid;
 
@@ -452,22 +414,17 @@
 
       border-radius: 50%;
 
-      color:
-        rgba(255,255,255,.88);
+      color: rgba(255,255,255,.88);
 
-      background:
-        rgba(5,5,9,.18);
+      background: rgba(5,5,9,.18);
 
       opacity: 0;
 
-      transform:
-        translateY(-5px);
+      transform: translateY(-5px);
 
-      backdrop-filter:
-        blur(8px);
+      backdrop-filter: blur(8px);
 
-      -webkit-backdrop-filter:
-        blur(8px);
+      -webkit-backdrop-filter: blur(8px);
 
       transition:
         opacity .3s ease,
@@ -481,23 +438,19 @@
     .still-open {
       opacity: 1;
 
-      transform:
-        translateY(0);
+      transform: translateY(0);
     }
 
 
     .still-open:hover {
-      background:
-        rgba(255,255,255,.92);
+      background: rgba(255,255,255,.92);
 
-      color:
-        #111117;
+      color: #111117;
     }
 
 
     /* =========================================================
        MODAL
-       클릭하면 원본 비율 그대로 표시
     ========================================================= */
 
     .image-modal {
@@ -517,11 +470,9 @@
       background:
         rgba(3,3,7,.91);
 
-      backdrop-filter:
-        blur(18px);
+      backdrop-filter: blur(18px);
 
-      -webkit-backdrop-filter:
-        blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
 
@@ -542,6 +493,8 @@
       justify-content: center;
     }
 
+
+    /* 클릭 시 원본 비율 유지 */
 
     .image-modal-target {
       display: block;
@@ -577,11 +530,9 @@
 
       border: 0;
 
-      color:
-        rgba(255,255,255,.62);
+      color: rgba(255,255,255,.62);
 
-      background:
-        transparent;
+      background: transparent;
 
       font-size: 10px;
 
@@ -589,8 +540,7 @@
 
       cursor: pointer;
 
-      transition:
-        color .2s ease;
+      transition: color .2s ease;
     }
 
 
@@ -607,8 +557,7 @@
       left: 30px;
       bottom: 25px;
 
-      color:
-        rgba(255,255,255,.58);
+      color: rgba(255,255,255,.58);
 
       font-size: 10px;
 
@@ -617,7 +566,7 @@
 
 
     /* =========================================================
-       MUSIC PLAYER
+       MUSIC
     ========================================================= */
 
     .music-player {
@@ -628,8 +577,7 @@
       left: 50%;
       bottom: 17px;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
       width:
         min(
@@ -656,8 +604,7 @@
         1px solid
         rgba(255,255,255,.13);
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
       background:
         rgba(20,18,29,.89);
@@ -668,11 +615,9 @@
         43px
         rgba(0,0,0,.32);
 
-      backdrop-filter:
-        blur(20px);
+      backdrop-filter: blur(20px);
 
-      -webkit-backdrop-filter:
-        blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
 
@@ -692,8 +637,7 @@
 
 
     .music-icon {
-      color:
-        #a998ff;
+      color: #a998ff;
 
       font-size: 17px;
     }
@@ -706,18 +650,14 @@
 
       text-overflow: ellipsis;
 
-      color:
-        rgba(255,255,255,.72);
+      color: rgba(255,255,255,.72);
 
       font-size: 11px;
     }
 
 
     .music-controls {
-      flex:
-        0
-        0
-        auto;
+      flex: 0 0 auto;
 
       gap: 3px;
     }
@@ -754,27 +694,9 @@
 
       border: 0;
 
-      background:
-        transparent;
+      background: transparent;
 
-      color:
-        rgba(255,255,255,.55);
-    }
-
-
-    /* =========================================================
-       TABLET
-    ========================================================= */
-
-    @media (max-width: 900px) {
-
-      .still-grid {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-
-        gap: 14px;
-      }
-
+      color: rgba(255,255,255,.55);
     }
 
 
@@ -782,23 +704,19 @@
        MOBILE
     ========================================================= */
 
-    @media (max-width: 760px) {
+    @media (max-width: 700px) {
 
       .stills-wrap {
-        width:
-          calc(100% - 28px);
+        width: calc(100% - 28px);
 
-        padding-top:
-          25px;
+        padding-top: 25px;
       }
 
 
       .stills-heading {
-        flex-direction:
-          column;
+        flex-direction: column;
 
-        align-items:
-          flex-start;
+        align-items: flex-start;
 
         gap: 22px;
 
@@ -810,16 +728,14 @@
 
 
       .stills-title {
-        font-size:
-          18vw;
+        font-size: 18vw;
       }
 
 
       .stills-description {
         padding: 0;
 
-        text-align:
-          left;
+        text-align: left;
       }
 
 
@@ -832,38 +748,33 @@
 
 
       .still-card {
-        border-radius:
-          15px;
+        border-radius: 16px;
       }
 
 
       /*
-        모바일은 hover가 없으므로
-        번호와 크레딧 항상 표시
+        모바일은 hover가 없으므로 항상 표시
       */
 
       .still-info {
         padding:
-          42px
-          13px
-          12px;
+          40px
+          12px
+          11px;
 
         opacity: 1;
 
-        transform:
-          none;
+        transform: none;
       }
 
 
       .still-number {
-        font-size:
-          8px;
+        font-size: 7px;
       }
 
 
       .still-credit {
-        font-size:
-          8px;
+        font-size: 7px;
       }
 
 
@@ -876,23 +787,19 @@
 
         opacity: .8;
 
-        transform:
-          none;
+        transform: none;
       }
 
 
       .image-modal {
-        padding:
-          15px;
+        padding: 15px;
       }
 
 
       .image-modal-target {
-        max-width:
-          96vw;
+        max-width: 96vw;
 
-        max-height:
-          82vh;
+        max-height: 82vh;
       }
 
 
@@ -905,30 +812,6 @@
       .image-modal-meta {
         left: 16px;
         bottom: 16px;
-      }
-
-    }
-
-
-    @media (max-width: 420px) {
-
-      .still-info {
-        padding:
-          35px
-          10px
-          10px;
-      }
-
-
-      .still-number {
-        font-size:
-          7px;
-      }
-
-
-      .still-credit {
-        font-size:
-          7px;
       }
 
     }
@@ -1004,8 +887,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '1.jpg',
+      onclick="openStillFromCard(
+        this,
         'Still 001',
         '© 별별님'
       )"
@@ -1040,15 +923,15 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '2.jpg',
+      onclick="openStillFromCard(
+        this,
         'Still 002',
         '© 군청님'
       )"
     >
 
       <img
-        src="2.jpg"
+        src="2.png"
         alt="Still 002"
       />
 
@@ -1076,8 +959,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '3.jpg',
+      onclick="openStillFromCard(
+        this,
         'Still 003',
         '© 지인'
       )"
@@ -1112,8 +995,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '4.jpg',
+      onclick="openStillFromCard(
+        this,
         'Still 004',
         '© 지인'
       )"
@@ -1148,8 +1031,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '5.png',
+      onclick="openStillFromCard(
+        this,
         'Still 005',
         '© 청필님'
       )"
@@ -1184,8 +1067,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '6.png',
+      onclick="openStillFromCard(
+        this,
         'Still 006',
         '© MELM님'
       )"
@@ -1220,8 +1103,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '7.png',
+      onclick="openStillFromCard(
+        this,
         'Still 007',
         '© 군청님'
       )"
@@ -1256,8 +1139,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '8.png',
+      onclick="openStillFromCard(
+        this,
         'Still 008',
         '© JD님'
       )"
@@ -1292,8 +1175,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '9.png',
+      onclick="openStillFromCard(
+        this,
         'Still 009',
         '© 군청님'
       )"
@@ -1328,8 +1211,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '10.png',
+      onclick="openStillFromCard(
+        this,
         'Still 010',
         '© 령선님'
       )"
@@ -1364,8 +1247,8 @@
 
     <article
       class="still-card"
-      onclick="openStill(
-        '11.jpg',
+      onclick="openStillFromCard(
+        this,
         'Still 011',
         '© JD님'
       )"
@@ -1470,26 +1353,26 @@
   <div class="music-controls">
 
     <button
-      aria-label="previous track"
       class="music-btn small"
       onclick="prevTrack()"
+      aria-label="previous track"
     >
       ‹
     </button>
 
     <button
-      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
+      aria-label="play or pause"
     >
       ▶
     </button>
 
     <button
-      aria-label="next track"
       class="music-btn small"
       onclick="nextTrack()"
+      aria-label="next track"
     >
       ›
     </button>
@@ -1529,31 +1412,41 @@
     );
 
 
-  function openStill(
-    src,
+
+  function openStillFromCard(
+    card,
     title,
     credit
   ) {
 
+    const img =
+      card.querySelector("img");
+
+
     stillTarget.src =
-      src;
+      img.src;
+
 
     stillTarget.alt =
       title;
+
 
     stillMeta.textContent =
       title +
       " · " +
       credit;
 
+
     stillModal.classList.add(
       "open"
     );
+
 
     document.body.style.overflow =
       "hidden";
 
   }
+
 
 
   function closeStill() {
@@ -1562,19 +1455,24 @@
       "open"
     );
 
+
     stillTarget.src =
       "";
+
 
     stillTarget.alt =
       "";
 
+
     stillMeta.textContent =
       "";
+
 
     document.body.style.overflow =
       "";
 
   }
+
 
 
   function closeStillOutside(
@@ -1590,6 +1488,7 @@
     }
 
   }
+
 
 
   document.addEventListener(
