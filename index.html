@@ -32,9 +32,8 @@
     :root {
       --bg: #0b0a10;
       --panel: #111016;
+
       --text: #f1f0f5;
-      --muted: rgba(241,240,245,.48);
-      --line: rgba(255,255,255,.11);
 
       --blue: #768cff;
       --violet: #9c86ff;
@@ -70,8 +69,6 @@
         "Segoe UI",
         sans-serif;
 
-      font-weight: 300;
-
       background:
         radial-gradient(
           circle at 6% 1%,
@@ -103,11 +100,11 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        PAGE
-    ========================================================= */
+    ====================================================== */
 
-    .page {
+    .mh-home {
       width: min(1500px, calc(100% - 64px));
 
       margin: 0 auto;
@@ -119,11 +116,11 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        HEADER
-    ========================================================= */
+    ====================================================== */
 
-    .header {
+    .mh-home-header {
       display: flex;
 
       align-items: flex-end;
@@ -135,22 +132,12 @@
     }
 
 
-    .header-left {
-      min-width: 0;
-    }
-
-
-    .title {
+    .mh-home-title {
       margin: 0;
 
       color: #f2f1f6;
 
-      font-size:
-        clamp(
-          55px,
-          7vw,
-          112px
-        );
+      font-size: clamp(55px, 7vw, 112px);
 
       font-weight: 300;
 
@@ -160,7 +147,7 @@
     }
 
 
-    .subtitle {
+    .mh-home-subtitle {
       margin-top: 16px;
 
       color: rgba(178,166,226,.67);
@@ -171,7 +158,7 @@
     }
 
 
-    .header-track {
+    .mh-home-track {
       display: flex;
 
       align-items: center;
@@ -188,18 +175,18 @@
     }
 
 
-    .header-track-icon {
+    .mh-home-track-icon {
       color: var(--violet-light);
 
       font-size: 14px;
     }
 
 
-    /* =========================================================
+    /* =====================================================
        GRID
-    ========================================================= */
+    ====================================================== */
 
-    .gallery {
+    .mh-home-grid {
       display: grid;
 
       grid-template-columns:
@@ -215,11 +202,11 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        CARD
-    ========================================================= */
+    ====================================================== */
 
-    .card {
+    .mh-home-card {
       position: relative;
 
       display: block;
@@ -234,7 +221,7 @@
     }
 
 
-    .card-image {
+    .mh-home-card img {
       width: 100%;
       height: 100%;
 
@@ -246,7 +233,7 @@
     }
 
 
-    .card::before {
+    .mh-home-card::before {
       content: "";
 
       position: absolute;
@@ -260,18 +247,18 @@
       background:
         linear-gradient(
           to top,
-          rgba(5,5,9,.83) 0%,
-          rgba(5,5,9,.14) 38%,
-          transparent 63%
+          rgba(5,5,9,.84) 0%,
+          rgba(5,5,9,.12) 42%,
+          transparent 68%
         );
 
-      opacity: .34;
+      opacity: .38;
 
       transition: opacity .35s ease;
     }
 
 
-    .card::after {
+    .mh-home-card::after {
       content: "";
 
       position: absolute;
@@ -282,83 +269,85 @@
 
       pointer-events: none;
 
-      border:
-        1px solid
-        rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.055);
 
       border-radius: inherit;
     }
 
 
-    .card:hover .card-image {
+    .mh-home-card:hover img {
       transform: scale(1.025);
 
       filter: brightness(.74);
     }
 
 
-    .card:hover::before {
-      opacity: .93;
+    .mh-home-card:hover::before {
+      opacity: .95;
     }
 
 
-    /* =========================================================
-       LAYOUT
-    ========================================================= */
+    /* =====================================================
+       POSITION
 
-    .personnel {
+       위:
+       PERSONNEL | STILLS
+
+       아래:
+       TIMELINE | FRAGMENTS
+    ====================================================== */
+
+    .mh-card-personnel {
       grid-column: 1 / 3;
       grid-row: 1;
     }
 
 
-    .fragments {
+    .mh-card-timeline {
       grid-column: 1;
       grid-row: 2;
     }
 
 
-    .timeline {
+    .mh-card-fragments {
       grid-column: 2;
       grid-row: 2;
     }
 
 
-    .stills {
+    .mh-card-stills {
       grid-column: 3;
       grid-row: 1 / 3;
     }
 
 
-    /* =========================================================
-       IMAGE POSITION
-    ========================================================= */
+    /* 이미지 위치 */
 
-    .personnel .card-image {
+    .mh-card-personnel img {
       object-position: center 42%;
     }
 
 
-    .fragments .card-image {
+    .mh-card-timeline img {
+      object-position: center 30%;
+    }
+
+
+    .mh-card-fragments img {
       object-position: center center;
     }
 
 
-    .timeline .card-image {
-      object-position: center 32%;
-    }
-
-
-    .stills .card-image {
+    .mh-card-stills img {
       object-position: center center;
     }
 
 
-    /* =========================================================
-       CARD CONTENT
-    ========================================================= */
+    /* =====================================================
+       TEXT
+    ====================================================== */
 
-    .card-content {
+    .mh-card-content {
       position: absolute;
 
       z-index: 5;
@@ -369,26 +358,25 @@
 
       display: flex;
 
-      justify-content: space-between;
       align-items: flex-end;
+      justify-content: space-between;
 
-      gap: 25px;
+      gap: 24px;
 
       pointer-events: none;
 
-      transition: transform .34s ease;
+      transition: transform .32s ease;
     }
 
 
-    .card:hover .card-content {
+    .mh-home-card:hover
+    .mh-card-content {
       transform: translateY(-3px);
     }
 
 
-    .card-number {
+    .mh-card-number {
       margin-bottom: 7px;
-
-      color: rgba(255,255,255,.41);
 
       font-size: 9px;
 
@@ -396,17 +384,34 @@
     }
 
 
-    .card-title {
-      color: #fff;
+    .mh-card-personnel
+    .mh-card-number {
+      color: #91a4ff;
+    }
 
-      font-size:
-        clamp(
-          20px,
-          2.3vw,
-          33px
-        );
 
-      font-weight: 300;
+    .mh-card-timeline
+    .mh-card-number {
+      color: #e27894;
+    }
+
+
+    .mh-card-fragments
+    .mh-card-number {
+      color: #b3a0ff;
+    }
+
+
+    .mh-card-stills
+    .mh-card-number {
+      color: #afa2e7;
+    }
+
+
+    .mh-card-title {
+      color: white;
+
+      font-size: clamp(20px, 2.3vw, 33px);
 
       line-height: 1;
 
@@ -414,7 +419,7 @@
     }
 
 
-    .card-desc {
+    .mh-card-desc {
       overflow: hidden;
 
       max-height: 0;
@@ -436,8 +441,9 @@
     }
 
 
-    .card:hover .card-desc {
-      max-height: 26px;
+    .mh-home-card:hover
+    .mh-card-desc {
+      max-height: 28px;
 
       margin-top: 8px;
 
@@ -445,11 +451,7 @@
     }
 
 
-    /* =========================================================
-       ARROW
-    ========================================================= */
-
-    .card-arrow {
+    .mh-card-arrow {
       width: 40px;
       height: 40px;
 
@@ -459,15 +461,11 @@
 
       place-items: center;
 
-      border:
-        1px solid
-        rgba(255,255,255,.34);
+      border: 1px solid rgba(255,255,255,.34);
 
       border-radius: 50%;
 
-      color: rgba(255,255,255,.92);
-
-      font-size: 16px;
+      color: white;
 
       transition:
         transform .3s ease,
@@ -476,7 +474,8 @@
     }
 
 
-    .card:hover .card-arrow {
+    .mh-home-card:hover
+    .mh-card-arrow {
       transform: rotate(45deg);
 
       background: rgba(255,255,255,.94);
@@ -485,50 +484,11 @@
     }
 
 
-    /* =========================================================
-       ACCENTS
-    ========================================================= */
-
-    .personnel .card-number {
-      color: rgba(139,157,255,.72);
-    }
-
-
-    .timeline .card-number {
-      color: rgba(223,107,137,.82);
-    }
-
-
-    .fragments .card-number {
-      color: rgba(182,161,255,.78);
-    }
-
-
-    .stills .card-number {
-      color: rgba(164,151,224,.70);
-    }
-
-
-    .stills .card-content {
-      bottom: 26px;
-    }
-
-
-    .stills .card-title {
-      font-size:
-        clamp(
-          25px,
-          2.7vw,
-          38px
-        );
-    }
-
-
-    /* =========================================================
+    /* =====================================================
        FOOTER
-    ========================================================= */
+    ====================================================== */
 
-    .footer {
+    .mh-home-footer {
       display: flex;
 
       align-items: center;
@@ -549,28 +509,21 @@
     }
 
 
-    .footer-nav {
+    .mh-home-footer-nav {
       display: flex;
-
-      align-items: center;
 
       gap: 17px;
     }
 
 
-    .footer-nav a {
-      transition: color .2s ease;
+    .mh-home-footer-nav a:hover {
+      color: rgba(255,255,255,.8);
     }
 
 
-    .footer-nav a:hover {
-      color: rgba(255,255,255,.78);
-    }
-
-
-    /* =========================================================
-       MUSIC PLAYER
-    ========================================================= */
+    /* =====================================================
+       MUSIC
+    ====================================================== */
 
     .music-player {
       position: fixed;
@@ -582,11 +535,7 @@
 
       transform: translateX(-50%);
 
-      width:
-        min(
-          660px,
-          calc(100% - 36px)
-        );
+      width: min(660px, calc(100% - 36px));
 
       min-height: 61px;
 
@@ -603,21 +552,14 @@
         9px
         19px;
 
-      border:
-        1px solid
-        rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.13);
 
       border-radius: 999px;
-
-      color: #f1f0f5;
 
       background: rgba(20,18,29,.89);
 
       box-shadow:
-        0
-        15px
-        43px
-        rgba(0,0,0,.32);
+        0 15px 43px rgba(0,0,0,.32);
 
       backdrop-filter: blur(20px);
 
@@ -641,8 +583,6 @@
 
 
     .music-icon {
-      flex: 0 0 auto;
-
       color: #a998ff;
 
       font-size: 17px;
@@ -650,8 +590,6 @@
 
 
     .music-title {
-      min-width: 0;
-
       overflow: hidden;
 
       white-space: nowrap;
@@ -665,8 +603,6 @@
 
 
     .music-controls {
-      flex: 0 0 auto;
-
       gap: 3px;
     }
 
@@ -681,9 +617,7 @@
 
       padding: 0;
 
-      border:
-        1px solid
-        rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.14);
 
       border-radius: 50%;
 
@@ -692,13 +626,6 @@
       background: rgba(255,255,255,.045);
 
       cursor: pointer;
-
-      transition: background .2s ease;
-    }
-
-
-    .music-btn:hover {
-      background: rgba(255,255,255,.10);
     }
 
 
@@ -716,21 +643,19 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        TABLET
-    ========================================================= */
+    ====================================================== */
 
     @media (max-width: 950px) {
 
-      .page {
+      .mh-home {
         width: calc(100% - 36px);
       }
 
 
-      .gallery {
-        grid-template-columns:
-          1fr
-          1fr;
+      .mh-home-grid {
+        grid-template-columns: 1fr 1fr;
 
         grid-template-rows:
           430px
@@ -739,51 +664,46 @@
       }
 
 
-      .personnel {
+      .mh-card-personnel {
         grid-column: 1 / 3;
         grid-row: 1;
       }
 
 
-      .fragments {
+      .mh-card-timeline {
         grid-column: 1;
         grid-row: 2;
       }
 
 
-      .timeline {
+      .mh-card-fragments {
         grid-column: 2;
         grid-row: 2;
       }
 
 
-      .stills {
+      .mh-card-stills {
         grid-column: 1 / 3;
         grid-row: 3;
-      }
-
-
-      .stills .card-image {
-        object-position: center 45%;
       }
 
     }
 
 
-    /* =========================================================
+    /* =====================================================
        MOBILE
-    ========================================================= */
+    ====================================================== */
 
     @media (max-width: 620px) {
 
-      .page {
+      .mh-home {
         width: calc(100% - 24px);
 
         padding-top: 28px;
       }
 
 
-      .header {
+      .mh-home-header {
         flex-direction: column;
 
         align-items: flex-start;
@@ -794,26 +714,12 @@
       }
 
 
-      .title {
+      .mh-home-title {
         font-size: 15vw;
       }
 
 
-      .subtitle {
-        margin-top: 11px;
-
-        font-size: 9px;
-      }
-
-
-      .header-track {
-        padding-bottom: 0;
-
-        font-size: 10px;
-      }
-
-
-      .gallery {
+      .mh-home-grid {
         display: flex;
 
         flex-direction: column;
@@ -822,83 +728,40 @@
       }
 
 
-      .card {
-        min-height: 330px;
-
+      .mh-home-card {
         height: 48vh;
+
+        min-height: 330px;
 
         border-radius: 19px;
       }
 
 
-      .personnel {
+      .mh-card-personnel {
         height: 43vh;
       }
 
 
-      .stills {
+      .mh-card-stills {
         height: 66vh;
       }
 
 
-      .card-content {
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
-      }
-
-
-      .card-title {
-        font-size: 24px;
-      }
-
-
-      .card-desc {
-        max-height: 25px;
+      .mh-card-desc {
+        max-height: 30px;
 
         margin-top: 7px;
 
-        opacity: .65;
+        opacity: .7;
       }
 
 
-      .card-arrow {
-        width: 36px;
-        height: 36px;
-      }
-
-
-      .footer {
+      .mh-home-footer {
         flex-direction: column;
 
         align-items: flex-start;
 
-        margin-bottom: 62px;
-      }
-
-
-      .footer-nav {
-        flex-wrap: wrap;
-
-        gap:
-          10px
-          15px;
-      }
-
-
-      .music-player {
-        bottom: 10px;
-
-        min-height: 56px;
-
-        padding-left: 15px;
-      }
-
-
-      .music-title {
-        max-width: 170px;
-
-        font-size: 10px;
+        margin-bottom: 65px;
       }
 
     }
@@ -912,32 +775,29 @@
 
 
 <main
-  class="page"
+  class="mh-home"
   id="home"
 >
 
 
-  <!-- HEADER -->
+  <header class="mh-home-header">
 
-  <header class="header">
+    <div>
 
-
-    <div class="header-left">
-
-      <h1 class="title">
+      <h1 class="mh-home-title">
         Midnight Hour
       </h1>
 
-      <div class="subtitle">
+      <div class="mh-home-subtitle">
         자정의 시간
       </div>
 
     </div>
 
 
-    <div class="header-track">
+    <div class="mh-home-track">
 
-      <span class="header-track-icon">
+      <span class="mh-home-track-icon">
         ♪
       </span>
 
@@ -947,91 +807,44 @@
 
     </div>
 
-
   </header>
 
 
 
-  <!-- GALLERY -->
-
-  <section class="gallery">
+  <section class="mh-home-grid">
 
 
     <!-- PERSONNEL -->
 
     <a
       href="./personnel/"
-      class="card personnel"
-      aria-label="Personnel"
+      class="mh-home-card mh-card-personnel"
     >
 
       <img
-        class="card-image"
         src="./main-personnel.jpg"
-        alt="이자헌과 정희솔"
+        alt="Personnel"
       />
 
-      <div class="card-content">
+      <div class="mh-card-content">
 
         <div>
 
-          <div class="card-number">
+          <div class="mh-card-number">
             01
           </div>
 
-          <div class="card-title">
+          <div class="mh-card-title">
             Personnel
           </div>
 
-          <div class="card-desc">
+          <div class="mh-card-desc">
             이자헌 · 정희솔
           </div>
 
         </div>
 
-        <span class="card-arrow">
-          ↗
-        </span>
-
-      </div>
-
-    </a>
-
-
-
-    <!-- FRAGMENTS -->
-
-    <a
-      href="./fragments/"
-      class="card fragments"
-      aria-label="Fragments"
-    >
-
-      <img
-        class="card-image"
-        src="./main-fragments.jpg"
-        alt="Fragments"
-      />
-
-      <div class="card-content">
-
-        <div>
-
-          <div class="card-number">
-            03
-          </div>
-
-          <div class="card-title">
-            Fragments
-          </div>
-
-          <div class="card-desc">
-            written pieces
-          </div>
-
-        </div>
-
-        <span class="card-arrow">
+        <span class="mh-card-arrow">
           ↗
         </span>
 
@@ -1045,35 +858,73 @@
 
     <a
       href="./timeline/"
-      class="card timeline"
-      aria-label="Narrative Timeline"
+      class="mh-home-card mh-card-timeline"
     >
 
       <img
-        class="card-image"
         src="./main-timeline.jpg"
         alt="Narrative Timeline"
       />
 
-      <div class="card-content">
+      <div class="mh-card-content">
 
         <div>
 
-          <div class="card-number">
+          <div class="mh-card-number">
             02
           </div>
 
-          <div class="card-title">
+          <div class="mh-card-title">
             Timeline
           </div>
 
-          <div class="card-desc">
+          <div class="mh-card-desc">
             narrative sequence
           </div>
 
         </div>
 
-        <span class="card-arrow">
+        <span class="mh-card-arrow">
+          ↗
+        </span>
+
+      </div>
+
+    </a>
+
+
+
+    <!-- FRAGMENTS -->
+
+    <a
+      href="./fragments/"
+      class="mh-home-card mh-card-fragments"
+    >
+
+      <img
+        src="./main-fragments.jpg"
+        alt="Fragments"
+      />
+
+      <div class="mh-card-content">
+
+        <div>
+
+          <div class="mh-card-number">
+            03
+          </div>
+
+          <div class="mh-card-title">
+            Fragments
+          </div>
+
+          <div class="mh-card-desc">
+            written pieces
+          </div>
+
+        </div>
+
+        <span class="mh-card-arrow">
           ↗
         </span>
 
@@ -1087,35 +938,33 @@
 
     <a
       href="./stills/"
-      class="card stills"
-      aria-label="Stills"
+      class="mh-home-card mh-card-stills"
     >
 
       <img
-        class="card-image"
         src="./main-stills.png"
         alt="Stills"
       />
 
-      <div class="card-content">
+      <div class="mh-card-content">
 
         <div>
 
-          <div class="card-number">
+          <div class="mh-card-number">
             04
           </div>
 
-          <div class="card-title">
+          <div class="mh-card-title">
             Stills
           </div>
 
-          <div class="card-desc">
+          <div class="mh-card-desc">
             visual archive
           </div>
 
         </div>
 
-        <span class="card-arrow">
+        <span class="mh-card-arrow">
           ↗
         </span>
 
@@ -1128,17 +977,14 @@
 
 
 
-  <!-- FOOTER -->
-
-  <footer class="footer">
-
+  <footer class="mh-home-footer">
 
     <div>
       MIDNIGHT HOUR · PERSONAL PAIR ARCHIVE
     </div>
 
 
-    <nav class="footer-nav">
+    <nav class="mh-home-footer-nav">
 
       <a href="./personnel/">
         PERSONNEL
@@ -1158,15 +1004,12 @@
 
     </nav>
 
-
   </footer>
 
 
 </main>
 
 
-
-<!-- MUSIC PLAYER -->
 
 <div
   class="music-player"
@@ -1192,7 +1035,6 @@
   <div class="music-controls">
 
     <button
-      aria-label="previous track"
       class="music-btn small"
       onclick="prevTrack()"
     >
@@ -1200,7 +1042,6 @@
     </button>
 
     <button
-      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
@@ -1209,7 +1050,6 @@
     </button>
 
     <button
-      aria-label="next track"
       class="music-btn small"
       onclick="nextTrack()"
     >
@@ -1217,7 +1057,6 @@
     </button>
 
   </div>
-
 
   <audio
     id="bgm"
