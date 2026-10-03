@@ -15,30 +15,144 @@
     content="#0b0a10"
   />
 
+
+  <!-- =====================================================
+       BASIC
+  ====================================================== -->
+
   <title>Midnight Hour</title>
+
+  <meta
+    name="description"
+    content="자정의 시간"
+  />
+
+
+  <!-- =====================================================
+       FAVICON
+  ====================================================== -->
+
+  <link
+    rel="icon"
+    href="./favicon.ico"
+    sizes="any"
+  />
+
+  <link
+    rel="shortcut icon"
+    href="./favicon.ico"
+    type="image/x-icon"
+  />
+
+
+  <!-- =====================================================
+       CANONICAL
+  ====================================================== -->
+
+  <link
+    rel="canonical"
+    href="https://midnight-h0ur.vercel.app/"
+  />
+
+
+  <!-- =====================================================
+       OPEN GRAPH
+       Discord / KakaoTalk / SNS / messenger preview
+  ====================================================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  />
+
+  <meta
+    property="og:site_name"
+    content="Midnight Hour"
+  />
+
+  <meta
+    property="og:title"
+    content="Midnight Hour"
+  />
+
+  <meta
+    property="og:description"
+    content="자정의 시간"
+  />
+
+  <meta
+    property="og:url"
+    content="https://midnight-h0ur.vercel.app/"
+  />
+
+  <meta
+    property="og:image"
+    content="https://midnight-h0ur.vercel.app/preview.jpg"
+  />
+
+  <meta
+    property="og:image:alt"
+    content="Midnight Hour — 자정의 시간"
+  />
+
+
+  <!-- =====================================================
+       X / TWITTER CARD
+  ====================================================== -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <meta
+    name="twitter:title"
+    content="Midnight Hour"
+  />
+
+  <meta
+    name="twitter:description"
+    content="자정의 시간"
+  />
+
+  <meta
+    name="twitter:image"
+    content="https://midnight-h0ur.vercel.app/preview.jpg"
+  />
+
+  <meta
+    name="twitter:image:alt"
+    content="Midnight Hour — 자정의 시간"
+  />
 
 
   <style>
 
     @font-face {
       font-family: "GmarketSans";
-      src: url("./GmarketSansTTFLight.ttf") format("truetype");
+
+      src:
+        url("./GmarketSansTTFLight.ttf")
+        format("truetype");
+
       font-weight: 300;
+
       font-style: normal;
+
       font-display: swap;
     }
 
 
     :root {
       --bg: #0b0a10;
+
       --panel: #111016;
 
       --text: #f1f0f5;
 
-      --blue: #768cff;
       --violet: #9c86ff;
+
       --violet-light: #bcaeff;
-      --red: #cf607c;
 
       --radius: 25px;
     }
@@ -46,7 +160,9 @@
 
     * {
       box-sizing: border-box;
+
       margin: 0;
+
       padding: 0;
     }
 
@@ -58,6 +174,7 @@
 
     body {
       min-height: 100vh;
+
       overflow-x: hidden;
 
       color: var(--text);
@@ -69,23 +186,29 @@
         "Segoe UI",
         sans-serif;
 
+      font-weight: 300;
+
       background:
+
         radial-gradient(
           circle at 6% 1%,
           rgba(100,105,174,.12),
           transparent 30%
         ),
+
         radial-gradient(
           circle at 94% 60%,
           rgba(114,72,147,.08),
           transparent 28%
         ),
+
         var(--bg);
     }
 
 
     a {
       color: inherit;
+
       text-decoration: none;
     }
 
@@ -105,9 +228,14 @@
     ====================================================== */
 
     .mh-home {
-      width: min(1500px, calc(100% - 64px));
+      width:
+        min(
+          1500px,
+          calc(100% - 64px)
+        );
 
-      margin: 0 auto;
+      margin:
+        0 auto;
 
       padding:
         44px
@@ -124,6 +252,7 @@
       display: flex;
 
       align-items: flex-end;
+
       justify-content: space-between;
 
       gap: 40px;
@@ -137,7 +266,12 @@
 
       color: #f2f1f6;
 
-      font-size: clamp(55px, 7vw, 112px);
+      font-size:
+        clamp(
+          55px,
+          7vw,
+          112px
+        );
 
       font-weight: 300;
 
@@ -150,7 +284,8 @@
     .mh-home-subtitle {
       margin-top: 16px;
 
-      color: rgba(178,166,226,.67);
+      color:
+        rgba(178,166,226,.67);
 
       font-size: 11px;
 
@@ -167,7 +302,8 @@
 
       padding-bottom: 8px;
 
-      color: rgba(255,255,255,.56);
+      color:
+        rgba(255,255,255,.56);
 
       font-size: 11px;
 
@@ -176,7 +312,8 @@
 
 
     .mh-home-track-icon {
-      color: var(--violet-light);
+      color:
+        var(--violet-light);
 
       font-size: 14px;
     }
@@ -213,9 +350,11 @@
 
       overflow: hidden;
 
-      border-radius: var(--radius);
+      border-radius:
+        var(--radius);
 
-      background: var(--panel);
+      background:
+        var(--panel);
 
       isolation: isolate;
     }
@@ -245,6 +384,7 @@
       pointer-events: none;
 
       background:
+
         linear-gradient(
           to top,
           rgba(5,5,9,.84) 0%,
@@ -254,7 +394,8 @@
 
       opacity: .38;
 
-      transition: opacity .35s ease;
+      transition:
+        opacity .35s ease;
     }
 
 
@@ -269,16 +410,20 @@
 
       pointer-events: none;
 
-      border: 1px solid rgba(255,255,255,.055);
+      border:
+        1px solid
+        rgba(255,255,255,.055);
 
       border-radius: inherit;
     }
 
 
     .mh-home-card:hover img {
-      transform: scale(1.025);
+      transform:
+        scale(1.025);
 
-      filter: brightness(.74);
+      filter:
+        brightness(.74);
     }
 
 
@@ -288,29 +433,33 @@
 
 
     /* =====================================================
-       POSITION
+       GRID POSITION
     ====================================================== */
 
     .mh-card-personnel {
       grid-column: 1 / 3;
+
       grid-row: 1;
     }
 
 
     .mh-card-timeline {
       grid-column: 1;
+
       grid-row: 2;
     }
 
 
     .mh-card-fragments {
       grid-column: 2;
+
       grid-row: 2;
     }
 
 
     .mh-card-stills {
       grid-column: 3;
+
       grid-row: 1 / 3;
     }
 
@@ -320,27 +469,31 @@
     ====================================================== */
 
     .mh-card-personnel img {
-      object-position: center 42%;
+      object-position:
+        center 42%;
     }
 
 
     .mh-card-timeline img {
-      object-position: center 30%;
+      object-position:
+        center 30%;
     }
 
 
     .mh-card-fragments img {
-      object-position: center center;
+      object-position:
+        center center;
     }
 
 
     .mh-card-stills img {
-      object-position: center center;
+      object-position:
+        center center;
     }
 
 
     /* =====================================================
-       TEXT
+       CARD TEXT
     ====================================================== */
 
     .mh-card-content {
@@ -355,26 +508,30 @@
       display: flex;
 
       align-items: flex-end;
+
       justify-content: space-between;
 
       gap: 24px;
 
       pointer-events: none;
 
-      transition: transform .32s ease;
+      transition:
+        transform .32s ease;
     }
 
 
     .mh-home-card:hover
     .mh-card-content {
-      transform: translateY(-3px);
+      transform:
+        translateY(-3px);
     }
 
 
     .mh-card-number {
       margin-bottom: 7px;
 
-      color: #aa9bf0;
+      color:
+        #aa9bf0;
 
       font-size: 9px;
 
@@ -385,7 +542,12 @@
     .mh-card-title {
       color: white;
 
-      font-size: clamp(20px, 2.3vw, 33px);
+      font-size:
+        clamp(
+          20px,
+          2.3vw,
+          33px
+        );
 
       line-height: 1;
 
@@ -402,7 +564,8 @@
 
       opacity: 0;
 
-      color: rgba(255,255,255,.58);
+      color:
+        rgba(255,255,255,.58);
 
       font-size: 10px;
 
@@ -429,13 +592,18 @@
       width: 40px;
       height: 40px;
 
-      flex: 0 0 auto;
+      flex:
+        0
+        0
+        auto;
 
       display: grid;
 
       place-items: center;
 
-      border: 1px solid rgba(255,255,255,.34);
+      border:
+        1px solid
+        rgba(255,255,255,.34);
 
       border-radius: 50%;
 
@@ -450,16 +618,19 @@
 
     .mh-home-card:hover
     .mh-card-arrow {
-      transform: rotate(45deg);
+      transform:
+        rotate(45deg);
 
-      background: rgba(255,255,255,.94);
+      background:
+        rgba(255,255,255,.94);
 
-      color: #15131b;
+      color:
+        #15131b;
     }
 
 
     /* =====================================================
-       MUSIC
+       MUSIC PLAYER
     ====================================================== */
 
     .music-player {
@@ -470,15 +641,21 @@
       left: 50%;
       bottom: 17px;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
-      width: min(660px, calc(100% - 36px));
+      width:
+        min(
+          660px,
+          calc(100% - 36px)
+        );
 
       min-height: 61px;
 
       display: flex;
 
       align-items: center;
+
       justify-content: space-between;
 
       gap: 16px;
@@ -489,23 +666,33 @@
         9px
         19px;
 
-      border: 1px solid rgba(255,255,255,.13);
+      border:
+        1px solid
+        rgba(255,255,255,.13);
 
       border-radius: 999px;
 
-      background: rgba(20,18,29,.89);
+      background:
+        rgba(20,18,29,.89);
 
       box-shadow:
-        0 15px 43px rgba(0,0,0,.32);
+        0
+        15px
+        43px
+        rgba(0,0,0,.32);
 
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
     }
 
 
     .music-left,
     .music-controls {
       display: flex;
+
       align-items: center;
     }
 
@@ -518,7 +705,8 @@
 
 
     .music-icon {
-      color: #a998ff;
+      color:
+        #a998ff;
 
       font-size: 17px;
     }
@@ -531,13 +719,19 @@
 
       text-overflow: ellipsis;
 
-      color: rgba(255,255,255,.73);
+      color:
+        rgba(255,255,255,.73);
 
       font-size: 11px;
     }
 
 
     .music-controls {
+      flex:
+        0
+        0
+        auto;
+
       gap: 3px;
     }
 
@@ -552,13 +746,16 @@
 
       padding: 0;
 
-      border: 1px solid rgba(255,255,255,.14);
+      border:
+        1px solid
+        rgba(255,255,255,.14);
 
       border-radius: 50%;
 
       color: white;
 
-      background: rgba(255,255,255,.045);
+      background:
+        rgba(255,255,255,.045);
 
       cursor: pointer;
     }
@@ -572,7 +769,8 @@
 
       background: transparent;
 
-      color: rgba(255,255,255,.55);
+      color:
+        rgba(255,255,255,.55);
 
       font-size: 17px;
     }
@@ -585,12 +783,15 @@
     @media (max-width: 950px) {
 
       .mh-home {
-        width: calc(100% - 36px);
+        width:
+          calc(100% - 36px);
       }
 
 
       .mh-home-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1fr
+          1fr;
 
         grid-template-rows:
           430px
@@ -601,24 +802,28 @@
 
       .mh-card-personnel {
         grid-column: 1 / 3;
+
         grid-row: 1;
       }
 
 
       .mh-card-timeline {
         grid-column: 1;
+
         grid-row: 2;
       }
 
 
       .mh-card-fragments {
         grid-column: 2;
+
         grid-row: 2;
       }
 
 
       .mh-card-stills {
         grid-column: 1 / 3;
+
         grid-row: 3;
       }
 
@@ -632,25 +837,31 @@
     @media (max-width: 620px) {
 
       .mh-home {
-        width: calc(100% - 24px);
+        width:
+          calc(100% - 24px);
 
-        padding-top: 28px;
+        padding-top:
+          28px;
       }
 
 
       .mh-home-header {
-        flex-direction: column;
+        flex-direction:
+          column;
 
-        align-items: flex-start;
+        align-items:
+          flex-start;
 
         gap: 18px;
 
-        margin-bottom: 24px;
+        margin-bottom:
+          24px;
       }
 
 
       .mh-home-title {
-        font-size: 15vw;
+        font-size:
+          15vw;
       }
 
 
@@ -706,7 +917,12 @@
 >
 
 
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
   <header class="mh-home-header">
+
 
     <div>
 
@@ -733,14 +949,21 @@
 
     </div>
 
+
   </header>
 
 
 
+  <!-- =====================================================
+       CATEGORY GRID
+  ====================================================== -->
+
   <section class="mh-home-grid">
 
 
-    <!-- PERSONNEL -->
+    <!-- ===================================================
+         PERSONNEL
+    ==================================================== -->
 
     <a
       href="./personnel/"
@@ -751,6 +974,7 @@
         src="./main-personnel.jpg"
         alt="Personnel"
       />
+
 
       <div class="mh-card-content">
 
@@ -770,6 +994,7 @@
 
         </div>
 
+
         <span class="mh-card-arrow">
           ↗
         </span>
@@ -780,7 +1005,9 @@
 
 
 
-    <!-- TIMELINE -->
+    <!-- ===================================================
+         TIMELINE
+    ==================================================== -->
 
     <a
       href="./timeline/"
@@ -791,6 +1018,7 @@
         src="./main-timeline.jpg"
         alt="Timeline"
       />
+
 
       <div class="mh-card-content">
 
@@ -810,6 +1038,7 @@
 
         </div>
 
+
         <span class="mh-card-arrow">
           ↗
         </span>
@@ -820,7 +1049,9 @@
 
 
 
-    <!-- FRAGMENTS -->
+    <!-- ===================================================
+         FRAGMENTS
+    ==================================================== -->
 
     <a
       href="./fragments/"
@@ -831,6 +1062,7 @@
         src="./main-fragments.jpg"
         alt="Fragments"
       />
+
 
       <div class="mh-card-content">
 
@@ -850,6 +1082,7 @@
 
         </div>
 
+
         <span class="mh-card-arrow">
           ↗
         </span>
@@ -860,7 +1093,9 @@
 
 
 
-    <!-- STILLS -->
+    <!-- ===================================================
+         STILLS
+    ==================================================== -->
 
     <a
       href="./stills/"
@@ -871,6 +1106,7 @@
         src="./main-stills.png"
         alt="Stills"
       />
+
 
       <div class="mh-card-content">
 
@@ -890,6 +1126,7 @@
 
         </div>
 
+
         <span class="mh-card-arrow">
           ↗
         </span>
@@ -905,6 +1142,10 @@
 </main>
 
 
+
+<!-- =========================================================
+     MUSIC PLAYER
+========================================================= -->
 
 <div
   class="music-player"
@@ -937,6 +1178,7 @@
       ‹
     </button>
 
+
     <button
       class="music-btn"
       id="music-btn"
@@ -945,6 +1187,7 @@
     >
       ▶
     </button>
+
 
     <button
       class="music-btn small"
@@ -965,8 +1208,10 @@
 </div>
 
 
+
 <script src="./common.js"></script>
 
 
 </body>
+
 </html>
