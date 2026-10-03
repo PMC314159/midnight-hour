@@ -36,7 +36,6 @@
 
     body {
       margin: 0;
-
       min-height: 100vh;
 
       color: #f2f1f6;
@@ -50,14 +49,14 @@
 
       background:
         radial-gradient(
-          circle at 85% 0%,
-          rgba(94,73,163,.14),
-          transparent 32%
+          circle at 88% 8%,
+          rgba(86, 77, 158, .14),
+          transparent 33%
         ),
         radial-gradient(
-          circle at 8% 88%,
-          rgba(70,94,177,.07),
-          transparent 29%
+          circle at 5% 80%,
+          rgba(74, 95, 180, .07),
+          transparent 28%
         ),
         #08080d;
     }
@@ -79,7 +78,7 @@
     ========================================================= */
 
     .mh-fr-page {
-      width: min(1100px, calc(100% - 54px));
+      width: min(1080px, calc(100% - 54px));
 
       margin: 0 auto;
 
@@ -123,7 +122,6 @@
 
     .mh-fr-back:hover {
       color: white;
-
       transform: translateX(-3px);
     }
 
@@ -143,9 +141,9 @@
 
     .mh-fr-header {
       padding:
-        62px
+        58px
         0
-        68px;
+        62px;
     }
 
 
@@ -165,9 +163,9 @@
 
       font-size:
         clamp(
-          58px,
-          8vw,
-          103px
+          56px,
+          7.8vw,
+          100px
         );
 
       line-height: .9;
@@ -203,32 +201,31 @@
 
       flex-direction: column;
 
-      gap: 15px;
+      gap: 14px;
     }
 
 
     .mh-fr-card {
       width: 100%;
 
-      min-height: 150px;
+      min-height: 142px;
 
       display: flex;
 
       flex-direction: column;
 
       justify-content: center;
-
       align-items: flex-start;
 
       padding:
-        32px
-        40px;
+        31px
+        39px;
 
       border:
         1px solid
         rgba(255,255,255,.11);
 
-      border-radius: 30px;
+      border-radius: 29px;
 
       color: inherit;
 
@@ -282,7 +279,7 @@
 
 
     .mh-fr-card-subtitle {
-      margin-top: 17px;
+      margin-top: 16px;
 
       color: #b8c7ff;
 
@@ -318,7 +315,7 @@
 
 
     /* =========================================================
-       READER MODAL
+       MODAL
     ========================================================= */
 
     .mh-fr-modal {
@@ -415,9 +412,9 @@
     .mh-fr-reader-subtitle {
       margin-top: 9px;
 
-      color: rgba(183,172,244,.67);
+      color: rgba(183,172,244,.72);
 
-      font-size: 12px;
+      font-size: 13px;
 
       line-height: 1.7;
 
@@ -452,11 +449,11 @@
 
 
     /* =========================================================
-       TEXT CONTENT
+       TEXT
     ========================================================= */
 
     .mh-fr-reader-text {
-      color: rgba(255,255,255,.78);
+      color: rgba(255,255,255,.80);
 
       font-size: 15px;
 
@@ -467,10 +464,6 @@
       white-space: pre-wrap;
     }
 
-
-    /*
-      fragment3.html처럼 HTML을 불러올 때
-    */
 
     .mh-fr-reader-text.is-html {
       white-space: normal;
@@ -490,12 +483,8 @@
     }
 
 
-    /*
-      기울임체
-    */
-
     .mh-fr-reader-text em {
-      color: rgba(215,207,255,.90);
+      color: rgba(218,210,255,.92);
 
       font-style: italic;
     }
@@ -641,18 +630,18 @@
 
       .mh-fr-header {
         padding:
-          48px
+          46px
           0
-          50px;
+          48px;
       }
 
 
       .mh-fr-card {
-        min-height: 130px;
+        min-height: 125px;
 
         padding:
-          28px
-          25px;
+          27px
+          24px;
 
         border-radius: 23px;
       }
@@ -744,10 +733,6 @@
 
 
 
-  <!-- =====================================================
-       FRAGMENT CARDS
-  ====================================================== -->
-
   <section class="mh-fr-list">
 
 
@@ -755,12 +740,11 @@
 
     <button
       class="mh-fr-card"
-      onclick="openFragment({
-        file: 'fragment1.txt',
-        type: 'text',
-        title: 'Fragment 001',
-        subtitle: '—'
-      })"
+      onclick="openFragmentText(
+        'fragment1.txt',
+        'Fragment 001',
+        '자정'
+      )"
     >
 
       <h2 class="mh-fr-card-title">
@@ -768,7 +752,7 @@
       </h2>
 
       <div class="mh-fr-card-subtitle">
-        —
+        자정
       </div>
 
     </button>
@@ -779,12 +763,11 @@
 
     <button
       class="mh-fr-card"
-      onclick="openFragment({
-        file: 'fragment2.txt',
-        type: 'text',
-        title: 'Fragment 002',
-        subtitle: '자정'
-      })"
+      onclick="openFragmentText(
+        'fragment2.txt',
+        'Fragment 002',
+        '자정'
+      )"
     >
 
       <h2 class="mh-fr-card-title">
@@ -803,12 +786,7 @@
 
     <button
       class="mh-fr-card"
-      onclick="openFragment({
-        file: 'fragment3.html',
-        type: 'html',
-        title: 'Fragment 003',
-        subtitle: '흰담비 씨는 저를 좋아합니까?'
-      })"
+      onclick="openFragmentThree()"
     >
 
       <h2 class="mh-fr-card-title">
@@ -816,7 +794,7 @@
       </h2>
 
       <div class="mh-fr-card-subtitle">
-        흰담비 씨는 저를 좋아합니까?
+        소원
       </div>
 
     </button>
@@ -827,12 +805,11 @@
 
     <button
       class="mh-fr-card"
-      onclick="openFragment({
-        file: 'fragment4.txt',
-        type: 'text',
-        title: 'Fragment 004',
-        subtitle: '一命還君 : 당신이 구해준 한 목숨을 당신에게 돌려드리겠습니다.'
-      })"
+      onclick="openFragmentText(
+        'fragment4.txt',
+        'Fragment 004',
+        '一命還君 : 당신이 구해준 한 목숨을 당신에게 돌려드리겠습니다.'
+      )"
     >
 
       <h2 class="mh-fr-card-title">
@@ -854,7 +831,7 @@
 
 
 <!-- =========================================================
-     READER
+     READER MODAL
 ========================================================= -->
 
 <div
@@ -877,6 +854,7 @@
         >
           Fragment
         </h2>
+
 
         <div
           class="mh-fr-reader-subtitle"
@@ -909,6 +887,112 @@
   </article>
 
 </div>
+
+
+
+<!-- =========================================================
+     FRAGMENT 003 TEMPLATE
+========================================================= -->
+
+<template id="fragment-three-template">
+
+  <p>
+    흰담비 씨는 저를 좋아합니까?<br>
+    좋아하죠, 당연히.<br>
+    그렇다면 제가 당신의 연인이 될 수 없던 이유는 무엇입니까?
+  </p>
+
+  <p>
+    그 질문에 여자가 어떤 표정을 지었더라.
+  </p>
+
+  <p>
+    기상 시각 사택의 기온은 낮다.
+    일반적인 인간 개체의 기준으로도 낮은 편이다.
+    여자는 아침에 일어날 때면 늘 이불 밖으로 나오려 하지 않았으므로.
+    <em>추워요.</em>
+    여자가 잠결에 그런 말을 흘릴 때면 그는 늘 똑같이 답했다.
+    아닙니다. 현재 기온은 이십일 도씨로, 흰담비 씨가 취침 전 맞춘 에어컨의 기온입니다.
+    그 말에 여자 또한 똑같이 답했다.
+    <em>원래 일어날 때면 춥게 느껴지고 이불 덮으면 따뜻한 게 최고인 거예요….</em>
+    그로썬 이해되지 않고 논리적이지 않은 소리였다.
+  </p>
+
+  <p>
+    다시 생각해보니 일반적이라는 말 또한 논리적이지 않았다.
+    그의 사택에서 아침을 맞이한 인간 개체는 한 명 뿐이었으므로.
+  </p>
+
+  <p>
+    기름을 두 바퀴 둘러 계란 두 개를 구웠다.
+    여자는 늘 기름을 두 바퀴 이상 두른 뒤 뒤집지 않고 오래 구워
+    바삭바삭해진 반숙을 선호했다.
+    여자가 그러했듯 노른자를 터뜨려 밥에 비볐다.
+    바삭한 계란 흰자가 입 안에서 부서졌다.
+  </p>
+
+  <p>
+    운전대에 힘을 최대한 주지 않았다.
+    힘을 조절하기 어려웠다.
+    출퇴근 길의 운전은 늘 여자의 몫이었다.
+    그가 운전대를 두 번 부러뜨린 뒤 다시 나타난 여자는
+    면허를 땄다며 당당하게 운전면허증을 그에게 들이밀었다.
+    그 뒤로 그는 한참 운전대를 잡은 적이 없었다.
+  </p>
+
+  <p>
+    점심 후 카페에서 구매한 음료는 쿠키쉐이크였다.
+    여자가 늘 주문하던 메뉴였다.
+    쿠키 조각이 입 안에서 씹히는 게 마음에 든다고 했다.
+    음료를 마실 때면 여자의 입이 조금씩 우물거렸다.
+    여자는 입이 작은 편이라 음료를 전부 마시는 데에 남들보다 시간이 오래 걸렸다.
+    여자가 그러했듯 음료를 입에 머금은 뒤 쿠키 조각을 씹었다.
+    알갱이가 잘게 부서졌다.
+  </p>
+
+  <p>
+    퇴근 후 디비디 플레이어로 재생할 영화를 고르지 못했다.
+    선택은 늘 여자의 몫이었기 때문이다.
+    그 스스로도 모르는 기호를 맞추려 애쓰며,
+    그러면서도 여자 본인의 취향을 벗어나지 않도록.
+    가장 마지막으로 여자와 함께 보았던 영화를 틀었다.
+    오늘로 정확히 쉰한 번째의 재생이었다.
+  </p>
+
+  <p>
+    주인없는 방의 기온과 에어컨의 설정된 온도를 확인했다.
+    여자가 늘 맞춰놓고 취침하던 기온이었다.
+    불을 끄려다 말고 방의 책상 한구석에 놓인
+    짙푸른 손목시계 옆 실팔찌를 집어들었다.
+  </p>
+
+  <p>
+    <em>끊어지면 소원이 이루어지는 거예요.</em>
+    증명된 사실입니까?
+    <em>사실 끊어진 적이 없어서 모르겠어요.</em>
+    그렇다면 흰담비 씨가 확신하는 이유는 무엇입니까?
+    <em>끊어지면 알게 되지 않을까요? 이루어지는지 아닌지.</em>
+  </p>
+
+  <p>
+    그렇게 말했음에도 막상 잘 차고 다니지 않아,
+    여자의 팔찌는 조금도 닳지 않은 상태였다.
+    그가 늘 방의 청결을 유지했으므로,
+    먼지 또한 묻지 않았다.
+    팔찌 한쪽을 쥐고 반대편에 검지를 걸었다.
+    이대로 당기면 끊어질 터다.
+    그에겐 조금의 힘도 필요하지 않은 일이었다.
+  </p>
+
+  <p>
+    끊어지면 소원이 이루어지는지 알 수 있다고 했나.
+  </p>
+
+  <p>
+    그렇다면 어떤 소원을 빌어야 당신이 눈을 뜰까.
+  </p>
+
+</template>
 
 
 
@@ -982,62 +1066,67 @@
 <script>
 
   const fragmentModal =
-    document.getElementById(
-      "mh-fr-modal"
-    );
-
+    document.getElementById("mh-fr-modal");
 
   const fragmentTitle =
-    document.getElementById(
-      "mh-fr-reader-title"
-    );
-
+    document.getElementById("mh-fr-reader-title");
 
   const fragmentSubtitle =
-    document.getElementById(
-      "mh-fr-reader-subtitle"
-    );
-
+    document.getElementById("mh-fr-reader-subtitle");
 
   const fragmentText =
-    document.getElementById(
-      "mh-fr-reader-text"
-    );
+    document.getElementById("mh-fr-reader-text");
 
 
 
-  async function openFragment(data) {
+  function prepareFragment(
+    title,
+    subtitle
+  ) {
 
     fragmentTitle.textContent =
-      data.title;
-
+      title;
 
     fragmentSubtitle.textContent =
-      data.subtitle || "";
+      subtitle;
 
+    fragmentText.innerHTML =
+      "";
 
     fragmentText.classList.remove(
       "is-html"
     );
 
+    fragmentModal.classList.add(
+      "open"
+    );
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+
+  async function openFragmentText(
+    file,
+    title,
+    subtitle
+  ) {
+
+    prepareFragment(
+      title,
+      subtitle
+    );
 
     fragmentText.textContent =
       "Loading...";
 
 
-    fragmentModal.classList.add(
-      "open"
-    );
-
-
-    document.body.style.overflow =
-      "hidden";
-
-
     try {
 
       const response =
-        await fetch(data.file);
+        await fetch(file);
 
 
       if (!response.ok) {
@@ -1053,26 +1142,8 @@
         await response.text();
 
 
-      if (
-        data.type === "html"
-      ) {
-
-        fragmentText.classList.add(
-          "is-html"
-        );
-
-
-        fragmentText.innerHTML =
-          content;
-
-      }
-
-      else {
-
-        fragmentText.textContent =
-          content;
-
-      }
+      fragmentText.textContent =
+        content;
 
     }
 
@@ -1080,10 +1151,37 @@
 
       fragmentText.textContent =
         "글을 불러오지 못했습니다.\n\n" +
-        data.file +
+        file +
         " 파일이 fragments 폴더 안에 있는지 확인해 주세요.";
 
     }
+
+  }
+
+
+
+  function openFragmentThree() {
+
+    prepareFragment(
+      "Fragment 003",
+      "소원"
+    );
+
+
+    const template =
+      document.getElementById(
+        "fragment-three-template"
+      );
+
+
+    fragmentText.classList.add(
+      "is-html"
+    );
+
+
+    fragmentText.appendChild(
+      template.content.cloneNode(true)
+    );
 
   }
 
@@ -1095,7 +1193,6 @@
       "open"
     );
 
-
     document.body.style.overflow =
       "";
 
@@ -1103,7 +1200,9 @@
 
 
 
-  function closeFragmentOutside(event) {
+  function closeFragmentOutside(
+    event
+  ) {
 
     if (
       event.target === fragmentModal
