@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Fragments | Midnight Hour</title>
+
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+    body.mh-subpage {
+      margin: 0;
+
+      background:
+        radial-gradient(
+          circle at 80% 0%,
+          rgba(74, 67, 120, .14),
+          transparent 35%
+        ),
+        #08080c;
+
+      color: #f0f0f5;
+    }
+
+    .mh-page {
+      width: min(calc(100% - 64px), 1160px);
+      margin: 0 auto;
+
+      padding: 38px 0 140px;
+    }
+
+    .mh-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding-bottom: 24px;
+
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .mh-back {
+      color: rgba(255,255,255,.58);
+      text-decoration: none;
+
+      font-size: 11px;
+      letter-spacing: .14em;
+    }
+
+    .mh-back:hover {
+      color: #fff;
+    }
+
+    .mh-section-no {
+      color: rgba(153,158,221,.72);
+
+      font-size: 10px;
+      letter-spacing: .22em;
+    }
+
+    .mh-heading {
+      padding: 62px 0 78px;
+    }
+
+    .mh-kicker {
+      margin-bottom: 12px;
+
+      color: #9297d5;
+
+      font-size: 11px;
+      letter-spacing: .24em;
+    }
+
+    .mh-title {
+      margin: 0;
+
+      font-size: clamp(54px, 7vw, 92px);
+      font-weight: 300;
+
+      line-height: .95;
+      letter-spacing: -.055em;
+    }
+
+    .mh-subtitle {
+      margin-top: 18px;
+
+      color: rgba(255,255,255,.4);
+
+      font-size: 12px;
+      letter-spacing: .1em;
+    }
+
+
+    /* FRAGMENT LIST */
+
+    .mh-fragment-list {
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .mh-fragment {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+
+      gap: 32px;
+
+      align-items: center;
+
+      padding: 34px 0;
+
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+
+      background: transparent;
+
+      color: inherit;
+
+      text-align: left;
+
+      cursor: pointer;
+
+      font: inherit;
+
+      transition: padding .25s ease;
+    }
+
+    .mh-fragment:hover {
+      padding-left: 12px;
+    }
+
+    .mh-fragment-no {
+      color: rgba(146,151,215,.58);
+
+      font-size: 11px;
+      letter-spacing: .18em;
+    }
+
+    .mh-fragment-title {
+      font-size: clamp(24px, 3vw, 36px);
+
+      letter-spacing: -.035em;
+      font-weight: 300;
+    }
+
+    .mh-fragment-type {
+      margin-top: 8px;
+
+      color: rgba(255,255,255,.34);
+
+      font-size: 10px;
+      letter-spacing: .15em;
+    }
+
+    .mh-fragment-arrow {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+
+      color: rgba(255,255,255,.62);
+
+      font-size: 18px;
+    }
+
+
+    /* MODAL */
+
+    .fragment-modal {
+      position: fixed;
+      inset: 0;
+
+      z-index: 500;
+
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+
+      padding: 32px;
+
+      background: rgba(3,3,6,.86);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .fragment-modal.open {
+      display: flex;
+    }
+
+    .fragment-reader {
+      width: min(760px, 100%);
+      max-height: 84vh;
+
+      overflow-y: auto;
+
+      padding: 48px;
+
+      background: #101016;
+
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 30px;
+    }
+
+    .fragment-reader-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 30px;
+
+      padding-bottom: 24px;
+      margin-bottom: 30px;
+
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    #fragment-reader-title {
+      margin: 0;
+
+      font-size: 25px;
+      font-weight: 400;
+    }
+
+    .fragment-close {
+      border: 0;
+
+      background: transparent;
+
+      color: rgba(255,255,255,.48);
+
+      cursor: pointer;
+
+      letter-spacing: .14em;
+
+      font-size: 10px;
+    }
+
+    .fragment-close:hover {
+      color: #fff;
+    }
+
+    #fragment-reader-text {
+      white-space: pre-wrap;
+
+      color: rgba(255,255,255,.74);
+
+      font-size: 14px;
+      line-height: 2.1;
+
+      word-break: keep-all;
+    }
+
+
+    @media (max-width: 700px) {
+
+      .mh-page {
+        width: calc(100% - 32px);
+      }
+
+      .mh-heading {
+        padding: 45px 0 52px;
+      }
+
+      .mh-fragment {
+        grid-template-columns: 45px 1fr auto;
+
+        gap: 15px;
+      }
+
+      .fragment-modal {
+        padding: 14px;
+      }
+
+      .fragment-reader {
+        padding: 28px 23px;
+
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+
+
+<body class="subpage mh-subpage">
+
+<main class="mh-page">
+
+
+  <nav class="mh-top">
+
+    <a class="mh-back" href="../index.html">
+      ← BACK TO MAIN
+    </a>
+
+    <span class="mh-section-no">
+      03 · FRAGMENTS
+    </span>
+
+  </nav>
+
+
+
+  <header class="mh-heading">
+
+    <div class="mh-kicker">
+      Written Pieces
+    </div>
+
+    <h1 class="mh-title">
+      Fragments<br>
+      after midnight.
+    </h1>
+
+    <div class="mh-subtitle">
+      SCENES / NOTES / WRITTEN PIECES
+    </div>
+
+  </header>
+
+
+
+  <section class="mh-fragment-list">
+
+
+    <button
+      class="mh-fragment"
+      onclick="openFragment('fragment3.txt', 'Fragment 03')"
+    >
+
+      <span class="mh-fragment-no">
+        03
+      </span>
+
+      <span>
+
+        <span class="mh-fragment-title">
+          Fragment 03
+        </span>
+
+        <span class="mh-fragment-type">
+          WRITTEN PIECE
+        </span>
+
+      </span>
+
+      <span class="mh-fragment-arrow">
+        ↗
+      </span>
+
+    </button>
+
+
+
+    <button
+      class="mh-fragment"
+      onclick="openFragment('fragment4.txt', 'Fragment 04')"
+    >
+
+      <span class="mh-fragment-no">
+        04
+      </span>
+
+      <span>
+
+        <span class="mh-fragment-title">
+          Fragment 04
+        </span>
+
+        <span class="mh-fragment-type">
+          WRITTEN PIECE
+        </span>
+
+      </span>
+
+      <span class="mh-fragment-arrow">
+        ↗
+      </span>
+
+    </button>
+
+
+  </section>
+
+</main>
+
+
+
+<!-- FRAGMENT READER -->
+
+<div
+  class="fragment-modal"
+  id="fragment-modal"
+  onclick="closeFragmentOutside(event)"
+>
+
+  <article class="fragment-reader">
+
+    <div class="fragment-reader-head">
+
+      <h2 id="fragment-reader-title">
+        Fragment
+      </h2>
+
+      <button
+        class="fragment-close"
+        onclick="closeFragment()"
+      >
+        CLOSE
+      </button>
+
+    </div>
+
+    <div id="fragment-reader-text">
+      Loading...
+    </div>
+
+  </article>
+
+</div>
+
+
+
+<div class="music-player" id="music-player">
+
+  <div class="music-left">
+
+    <span class="music-icon">
+      ♫
+    </span>
+
+    <span class="music-title" id="music-title">
+      긴 밤(feat. 기리보이) - Seori
+    </span>
+
+  </div>
+
+  <div class="music-controls">
+
+    <button
+      aria-label="previous track"
+      class="music-btn small"
+      onclick="prevTrack()"
+    >
+      ‹
+    </button>
+
+    <button
+      aria-label="play or pause"
+      class="music-btn"
+      id="music-btn"
+      onclick="toggleMusic()"
+    >
+      ▶
+    </button>
+
+    <button
+      aria-label="next track"
+      class="music-btn small"
+      onclick="nextTrack()"
+    >
+      ›
+    </button>
+
+  </div>
+
+  <audio id="bgm" preload="metadata"></audio>
+
+</div>
+
+
+
+<script src="../common.js"></script>
+
+<script>
+  const fragmentModal = document.getElementById("fragment-modal");
+  const fragmentTitle = document.getElementById("fragment-reader-title");
+  const fragmentText = document.getElementById("fragment-reader-text");
+
+
+  async function openFragment(file, title) {
+
+    fragmentTitle.textContent = title;
+    fragmentText.textContent = "Loading...";
+
+    fragmentModal.classList.add("open");
+
+    document.body.style.overflow = "hidden";
+
+    try {
+
+      const response = await fetch(file);
+
+      if (!response.ok) {
+        throw new Error("Failed to load fragment.");
+      }
+
+      const text = await response.text();
+
+      fragmentText.textContent = text;
+
+    } catch (error) {
+
+      fragmentText.textContent =
+        "글을 불러오지 못했습니다.\nVercel 또는 GitHub Pages에 배포한 뒤 다시 확인해 주세요.";
+
+    }
+  }
+
+
+  function closeFragment() {
+
+    fragmentModal.classList.remove("open");
+
+    document.body.style.overflow = "";
+
+  }
+
+
+  function closeFragmentOutside(event) {
+
+    if (event.target === fragmentModal) {
+      closeFragment();
+    }
+
+  }
+
+
+  document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+      closeFragment();
+    }
+
+  });
+</script>
+
+</body>
+</html>
