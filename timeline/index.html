@@ -19,6 +19,7 @@
       font-family: "GmarketSans";
       src: url("../GmarketSansTTFLight.ttf") format("truetype");
       font-weight: 300;
+      font-style: normal;
       font-display: swap;
     }
 
@@ -28,14 +29,19 @@
 
       --text: #f3f2f7;
 
-      --blue: #718cff;
-      --violet: #9c82ff;
-      --red: #d5617d;
+      --blue: #748fff;
+      --violet: #9d84ff;
+      --red: #d8637f;
     }
 
 
     * {
       box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
     }
 
 
@@ -48,20 +54,25 @@
 
       font-family:
         "GmarketSans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
         sans-serif;
+
+      font-weight: 300;
 
       background:
         radial-gradient(
-          circle at 10% 10%,
-          rgba(99,116,218,.12),
+          circle at 10% 7%,
+          rgba(99,116,218,.13),
           transparent 30%
         ),
         radial-gradient(
-          circle at 90% 55%,
-          rgba(150,76,141,.08),
+          circle at 90% 54%,
+          rgba(150,76,141,.09),
           transparent 28%
         ),
-        var(--bg);
+        #08080d;
     }
 
 
@@ -71,8 +82,17 @@
     }
 
 
+    button {
+      font: inherit;
+    }
+
+
+    /* =========================================================
+       PAGE
+    ========================================================= */
+
     .mh-tl-page {
-      width: min(1100px, calc(100% - 54px));
+      width: min(1140px, calc(100% - 54px));
 
       margin: 0 auto;
 
@@ -83,6 +103,10 @@
     }
 
 
+    /* =========================================================
+       TOP
+    ========================================================= */
+
     .mh-tl-top {
       display: flex;
 
@@ -91,42 +115,59 @@
 
       padding-bottom: 22px;
 
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.10);
     }
 
 
     .mh-tl-back {
-      color: rgba(255,255,255,.55);
+      color: rgba(255,255,255,.57);
 
-      font-size: 11px;
+      font-size: 12px;
 
       letter-spacing: .14em;
+
+      transition:
+        color .2s ease,
+        transform .2s ease;
+    }
+
+
+    .mh-tl-back:hover {
+      color: white;
+
+      transform: translateX(-3px);
     }
 
 
     .mh-tl-index {
-      color: rgba(174,161,232,.7);
+      color: rgba(174,161,232,.72);
 
-      font-size: 10px;
+      font-size: 11px;
 
       letter-spacing: .23em;
     }
 
 
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
     .mh-tl-header {
       padding:
         62px
         0
-        76px;
+        78px;
     }
 
 
     .mh-tl-kicker {
-      margin-bottom: 12px;
+      margin-bottom: 13px;
 
       color: #b8a7ff;
 
-      font-size: 11px;
+      font-size: 12px;
 
       letter-spacing: .25em;
     }
@@ -135,7 +176,12 @@
     .mh-tl-title {
       margin: 0;
 
-      font-size: clamp(58px, 8vw, 104px);
+      font-size:
+        clamp(
+          60px,
+          8vw,
+          106px
+        );
 
       font-weight: 300;
 
@@ -151,26 +197,30 @@
 
 
     .mh-tl-sub {
-      margin-top: 22px;
+      margin-top: 23px;
 
-      color: rgba(255,255,255,.36);
+      color: rgba(255,255,255,.38);
 
-      font-size: 10px;
+      font-size: 11px;
 
-      letter-spacing: .14em;
+      letter-spacing: .15em;
     }
 
 
-    /* =====================================================
-       TIMELINE TRACK
-    ====================================================== */
+    /* =========================================================
+       TRACK
+
+       중요:
+       선 / ACT 원 / Event 원 모두
+       정확히 이 좌표 하나만 사용
+    ========================================================= */
 
     .mh-timeline {
       position: relative;
 
-      --track-x: 18px;
+      --track-x: 24px;
 
-      padding-bottom: 20px;
+      padding-bottom: 24px;
     }
 
 
@@ -181,7 +231,7 @@
 
       z-index: 0;
 
-      top: 9px;
+      top: 12px;
       bottom: 0;
 
       left: var(--track-x);
@@ -195,35 +245,36 @@
       background:
         linear-gradient(
           to bottom,
-          #718cff 0%,
-          #9382ff 27%,
-          #cf607c 50%,
-          #a375dd 72%,
-          #718cff 100%
+          #748fff 0%,
+          #9583ff 26%,
+          #d7637f 49%,
+          #a676df 72%,
+          #748fff 100%
         );
 
-      opacity: .72;
+      opacity: .8;
 
       box-shadow:
-        0 0 13px rgba(125,107,255,.24);
+        0 0 16px
+        rgba(128,111,255,.24);
     }
 
 
-    /* =====================================================
+    /* =========================================================
        ACT
-    ====================================================== */
+    ========================================================= */
 
     .mh-tl-act {
       position: relative;
 
-      z-index: 1;
+      z-index: 2;
 
       margin:
-        58px
+        64px
         0
-        25px;
+        28px;
 
-      padding-left: 72px;
+      padding-left: 86px;
     }
 
 
@@ -238,8 +289,8 @@
       left: var(--track-x);
       top: 0;
 
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
 
       transform: translateX(-50%);
 
@@ -249,71 +300,88 @@
 
       border-radius: 50%;
 
-      background: var(--bg);
+      background: #08080d;
 
-      border: 1px solid rgba(188,174,255,.65);
+      border:
+        1px solid
+        rgba(190,177,255,.7);
 
+      /*
+        검은 띠가 선을 깨끗하게 가림
+      */
       box-shadow:
-        0 0 0 6px var(--bg);
+        0 0 0 6px #08080d,
+        0 0 16px rgba(148,125,255,.17);
     }
 
 
     .mh-tl-act-dot::after {
       content: "";
 
-      width: 11px;
-      height: 11px;
+      width: 13px;
+      height: 13px;
 
       border-radius: 50%;
 
-      background: #11111a;
+      background: #101018;
 
-      border: 1px solid rgba(178,164,255,.55);
+      border:
+        1px solid
+        rgba(183,169,255,.62);
     }
 
 
     .mh-tl-act-title {
       margin: 0;
 
-      padding-top: 5px;
+      padding-top: 6px;
 
-      color: #9487ff;
+      color: #978aff;
 
-      font-size: 11px;
+      font-size: 13px;
 
-      letter-spacing: .25em;
+      letter-spacing: .24em;
+
+      line-height: 1.5;
     }
 
 
-    /* =====================================================
+    /* =========================================================
        EVENT
-    ====================================================== */
+    ========================================================= */
 
     .mh-tl-item {
       position: relative;
 
       z-index: 1;
 
-      padding-left: 72px;
+      padding-left: 86px;
 
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
+
+    /*
+      역시 left = var(--track-x)
+      따라서 선 중심과 원 중심 완전 동일
+    */
 
     .mh-tl-dot {
       position: absolute;
 
-      left: var(--track-x);
-      top: 29px;
+      z-index: 5;
 
-      width: 17px;
-      height: 17px;
+      left: var(--track-x);
+      top: 34px;
+
+      width: 19px;
+      height: 19px;
 
       transform: translateX(-50%);
 
       border-radius: 50%;
 
-      border: 4px solid var(--bg);
+      border: 4px solid #08080d;
     }
 
 
@@ -322,8 +390,8 @@
       background: var(--blue);
 
       box-shadow:
-        0 0 0 1px rgba(158,177,255,.6),
-        0 0 12px rgba(102,128,255,.35);
+        0 0 0 1px rgba(166,184,255,.65),
+        0 0 14px rgba(102,128,255,.38);
     }
 
 
@@ -332,8 +400,8 @@
       background: var(--violet);
 
       box-shadow:
-        0 0 0 1px rgba(202,188,255,.6),
-        0 0 12px rgba(150,122,255,.35);
+        0 0 0 1px rgba(205,191,255,.65),
+        0 0 14px rgba(150,122,255,.38);
     }
 
 
@@ -342,29 +410,31 @@
       background: var(--red);
 
       box-shadow:
-        0 0 0 1px rgba(255,169,191,.6),
-        0 0 12px rgba(215,80,111,.34);
+        0 0 0 1px rgba(255,177,198,.65),
+        0 0 14px rgba(215,80,111,.36);
     }
 
 
-    /* =====================================================
-       EVENT CARD
-    ====================================================== */
+    /* =========================================================
+       CARD
+
+       패딩 크게 늘림
+    ========================================================= */
 
     .mh-tl-card {
       padding:
-        30px
-        34px
-        32px;
+        36px
+        40px
+        38px;
 
       border:
         1px solid
-        rgba(255,255,255,.095);
+        rgba(255,255,255,.10);
 
-      border-radius: 26px;
+      border-radius: 28px;
 
       background:
-        rgba(255,255,255,.021);
+        rgba(255,255,255,.022);
     }
 
 
@@ -373,8 +443,8 @@
       background:
         linear-gradient(
           135deg,
-          rgba(89,111,203,.045),
-          rgba(255,255,255,.015)
+          rgba(82,105,201,.052),
+          rgba(255,255,255,.014)
         );
     }
 
@@ -384,8 +454,8 @@
       background:
         linear-gradient(
           135deg,
-          rgba(116,85,189,.052),
-          rgba(255,255,255,.015)
+          rgba(113,85,190,.058),
+          rgba(255,255,255,.014)
         );
     }
 
@@ -395,8 +465,8 @@
       background:
         linear-gradient(
           135deg,
-          rgba(167,57,83,.05),
-          rgba(255,255,255,.015)
+          rgba(168,56,83,.056),
+          rgba(255,255,255,.014)
         );
     }
 
@@ -406,18 +476,18 @@
 
       align-items: baseline;
 
-      gap: 17px;
+      gap: 19px;
 
-      margin-bottom: 11px;
+      margin-bottom: 13px;
     }
 
 
     .mh-tl-no {
       flex: 0 0 auto;
 
-      color: rgba(255,255,255,.26);
+      color: rgba(255,255,255,.30);
 
-      font-size: 9px;
+      font-size: 10px;
 
       letter-spacing: .19em;
     }
@@ -426,49 +496,60 @@
     .mh-tl-event-title {
       margin: 0;
 
-      font-size: clamp(24px, 3vw, 37px);
+      font-size:
+        clamp(
+          27px,
+          3.3vw,
+          40px
+        );
 
       font-weight: 300;
 
       line-height: 1.15;
 
-      letter-spacing: -.045em;
+      letter-spacing: -.047em;
     }
 
 
     .mh-tl-item.blue
     .mh-tl-event-title {
-      color: #a9b8ff;
+      color: #adbbff;
     }
 
 
     .mh-tl-item.violet
     .mh-tl-event-title {
-      color: #bfafff;
+      color: #c1b0ff;
     }
 
 
     .mh-tl-item.red
     .mh-tl-event-title {
-      color: #e6829b;
+      color: #ea879f;
     }
 
 
     .mh-tl-event-sub {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
 
-      color: rgba(255,255,255,.43);
+      color: rgba(255,255,255,.48);
 
-      font-size: 12px;
+      font-size: 13px;
+
+      line-height: 1.7;
     }
 
 
+    /*
+      본문도 살짝 확대
+    */
+
     .mh-tl-event-text {
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.76);
 
-      font-size: 14px;
+      font-size: 15px;
 
-      line-height: 2;
+      line-height: 2.05;
 
       word-break: keep-all;
 
@@ -476,9 +557,9 @@
     }
 
 
-    /* =====================================================
+    /* =========================================================
        MUSIC
-    ====================================================== */
+    ========================================================= */
 
     .music-player {
       position: fixed;
@@ -490,7 +571,11 @@
 
       transform: translateX(-50%);
 
-      width: min(660px, calc(100% - 36px));
+      width:
+        min(
+          660px,
+          calc(100% - 36px)
+        );
 
       min-height: 61px;
 
@@ -499,19 +584,29 @@
       align-items: center;
       justify-content: space-between;
 
+      gap: 16px;
+
       padding:
         9px
         13px
         9px
         19px;
 
-      border: 1px solid rgba(255,255,255,.13);
+      border:
+        1px solid
+        rgba(255,255,255,.13);
 
       border-radius: 999px;
 
-      background: rgba(20,18,29,.89);
+      background:
+        rgba(20,18,29,.89);
+
+      box-shadow:
+        0 15px 43px
+        rgba(0,0,0,.32);
 
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
 
@@ -523,16 +618,22 @@
 
 
     .music-left {
+      min-width: 0;
       gap: 11px;
     }
 
 
     .music-icon {
       color: #a998ff;
+      font-size: 17px;
     }
 
 
     .music-title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
       color: rgba(255,255,255,.72);
 
       font-size: 11px;
@@ -540,6 +641,7 @@
 
 
     .music-controls {
+      flex: 0 0 auto;
       gap: 3px;
     }
 
@@ -549,16 +651,20 @@
       height: 39px;
 
       display: grid;
-
       place-items: center;
 
-      border: 1px solid rgba(255,255,255,.14);
+      padding: 0;
+
+      border:
+        1px solid
+        rgba(255,255,255,.14);
 
       border-radius: 50%;
 
-      background: rgba(255,255,255,.045);
-
       color: white;
+
+      background:
+        rgba(255,255,255,.045);
 
       cursor: pointer;
     }
@@ -571,8 +677,14 @@
       border: 0;
 
       background: transparent;
+
+      color: rgba(255,255,255,.55);
     }
 
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
 
     @media (max-width: 700px) {
 
@@ -581,40 +693,62 @@
       }
 
 
+      .mh-tl-header {
+        padding:
+          48px
+          0
+          57px;
+      }
+
+
       .mh-timeline {
-        --track-x: 12px;
+        --track-x: 13px;
       }
 
 
       .mh-tl-act {
-        padding-left: 48px;
+        padding-left: 52px;
+
+        margin-top: 48px;
       }
 
 
       .mh-tl-item {
-        padding-left: 48px;
+        padding-left: 52px;
       }
 
 
       .mh-tl-card {
         padding:
-          24px
-          21px
-          26px;
+          27px
+          23px
+          29px;
 
-        border-radius: 21px;
+        border-radius: 22px;
       }
 
 
       .mh-tl-event-title {
-        font-size: 22px;
+        font-size: 23px;
+      }
+
+
+      .mh-tl-event-sub {
+        font-size: 12px;
       }
 
 
       .mh-tl-event-text {
-        font-size: 13px;
+        font-size: 13.5px;
 
-        line-height: 1.9;
+        line-height: 1.95;
+      }
+
+
+      .mh-tl-act-title {
+        font-size: 10px;
+
+        letter-spacing: .18em;
       }
 
     }
@@ -669,7 +803,9 @@
   <section class="mh-timeline">
 
 
-    <!-- ACT I -->
+    <!-- =====================================================
+         ACT I
+    ====================================================== -->
 
     <div class="mh-tl-act">
 
@@ -755,7 +891,9 @@
 
 
 
-    <!-- ACT II -->
+    <!-- =====================================================
+         ACT II
+    ====================================================== -->
 
     <div class="mh-tl-act">
 
@@ -843,7 +981,9 @@
 
 
 
-    <!-- ACT III -->
+    <!-- =====================================================
+         ACT III
+    ====================================================== -->
 
     <div class="mh-tl-act">
 
@@ -931,7 +1071,9 @@
 
 
 
-    <!-- AFTER -->
+    <!-- =====================================================
+         AFTER THE END
+    ====================================================== -->
 
     <div class="mh-tl-act">
 
@@ -1141,25 +1283,39 @@
 
 
 
-<div class="music-player" id="music-player">
+<div
+  class="music-player"
+  id="music-player"
+>
 
   <div class="music-left">
 
-    <span class="music-icon">♫</span>
+    <span class="music-icon">
+      ♫
+    </span>
 
-    <span class="music-title" id="music-title">
+    <span
+      class="music-title"
+      id="music-title"
+    >
       긴 밤(feat. 기리보이) - Seori
     </span>
 
   </div>
 
+
   <div class="music-controls">
 
-    <button class="music-btn small" onclick="prevTrack()">
+    <button
+      aria-label="previous track"
+      class="music-btn small"
+      onclick="prevTrack()"
+    >
       ‹
     </button>
 
     <button
+      aria-label="play or pause"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
@@ -1167,13 +1323,20 @@
       ▶
     </button>
 
-    <button class="music-btn small" onclick="nextTrack()">
+    <button
+      aria-label="next track"
+      class="music-btn small"
+      onclick="nextTrack()"
+    >
       ›
     </button>
 
   </div>
 
-  <audio id="bgm" preload="metadata"></audio>
+  <audio
+    id="bgm"
+    preload="metadata"
+  ></audio>
 
 </div>
 
