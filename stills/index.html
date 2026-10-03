@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#09090e"
+  />
+
+  <title>Stills | Midnight Hour</title>
+
+  <link
+    rel="stylesheet"
+    href="../style.css"
+  />
+
+
+  <style>
+
+    @font-face {
+      font-family: "GmarketSans";
+
+      src:
+        url("../GmarketSansTTFLight.ttf")
+        format("truetype");
+
+      font-weight: 300;
+
+      font-style: normal;
+
+      font-display: swap;
+    }
+
+
+    :root {
+      --bg: #09090e;
+
+      --text: #f1f0f5;
+
+      --muted: rgba(241,240,245,.46);
+
+      --line: rgba(255,255,255,.11);
+
+      --blue: #788eff;
+
+      --violet: #9d87ff;
+
+      --violet-light: #b8aaff;
+
+      --red: #cf607c;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body.stills-page {
+      margin: 0;
+
+      min-height: 100vh;
+
+      color: var(--text);
+
+      font-family:
+        "GmarketSans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      font-weight: 300;
+
+      background:
+        radial-gradient(
+          circle at 9% 4%,
+          rgba(101,110,186,.13),
+          transparent 29%
+        ),
+        radial-gradient(
+          circle at 90% 30%,
+          rgba(122,73,153,.10),
+          transparent 29%
+        ),
+        radial-gradient(
+          circle at 14% 90%,
+          rgba(167,63,89,.06),
+          transparent 25%
+        ),
+        var(--bg);
+    }
+
+
+    a {
+      color: inherit;
+
+      text-decoration: none;
+    }
+
+
+    button {
+      font: inherit;
+    }
+
+
+    /* =========================================================
+       PAGE
+    ========================================================= */
+
+    .stills-wrap {
+      width:
+        min(
+          1320px,
+          calc(100% - 58px)
+        );
+
+      margin: 0 auto;
+
+      padding:
+        38px
+        0
+        145px;
+    }
+
+
+    /* =========================================================
+       TOP
+    ========================================================= */
+
+    .stills-top {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 30px;
+
+      padding-bottom: 22px;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.11);
+    }
+
+
+    .stills-back {
+      color: rgba(255,255,255,.56);
+
+      font-size: 11px;
+
+      letter-spacing: .14em;
+
+      transition:
+        color .2s ease,
+        transform .2s ease;
+    }
+
+
+    .stills-back:hover {
+      color: #fff;
+
+      transform: translateX(-3px);
+    }
+
+
+    .stills-index {
+      color: rgba(173,161,229,.68);
+
+      font-size: 10px;
+
+      letter-spacing: .23em;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .stills-heading {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 40px;
+
+      padding:
+        62px
+        0
+        65px;
+    }
+
+
+    .stills-kicker {
+      margin-bottom: 12px;
+
+      color: var(--violet-light);
+
+      font-size: 11px;
+
+      letter-spacing: .25em;
+    }
+
+
+    .stills-title {
+      margin: 0;
+
+      color: #f2f1f6;
+
+      font-size:
+        clamp(
+          64px,
+          9vw,
+          118px
+        );
+
+      line-height: .87;
+
+      font-weight: 300;
+
+      letter-spacing: -.07em;
+    }
+
+
+    .stills-title span {
+      color: rgba(255,255,255,.34);
+    }
+
+
+    .stills-description {
+      max-width: 300px;
+
+      padding-bottom: 8px;
+
+      color: rgba(255,255,255,.38);
+
+      font-size: 11px;
+
+      line-height: 1.9;
+
+      letter-spacing: .08em;
+
+      text-align: right;
+    }
+
+
+    /* =========================================================
+       GALLERY
+    ========================================================= */
+
+    .still-grid {
+      columns:
+        3
+        300px;
+
+      column-gap: 17px;
+    }
+
+
+    /* =========================================================
+       CARD
+    ========================================================= */
+
+    .still-card {
+      position: relative;
+
+      display: inline-block;
+
+      width: 100%;
+
+      margin:
+        0
+        0
+        17px;
+
+      overflow: hidden;
+
+      break-inside: avoid;
+
+      border-radius: 22px;
+
+      background: #111117;
+
+      cursor: pointer;
+
+      isolation: isolate;
+    }
+
+
+    .still-card::after {
+      content: "";
+
+      position: absolute;
+
+      z-index: 3;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      border:
+        1px solid
+        rgba(255,255,255,.05);
+
+      border-radius: inherit;
+    }
+
+
+    .still-card img {
+      display: block;
+
+      width: 100%;
+
+      height: auto;
+
+      transition:
+        transform .65s cubic-bezier(.18,.75,.22,1),
+        filter .4s ease;
+    }
+
+
+    .still-card:hover img {
+      transform: scale(1.02);
+
+      filter: brightness(.72);
+    }
+
+
+    /* =========================================================
+       INFO
+    ========================================================= */
+
+    .still-info {
+      position: absolute;
+
+      z-index: 5;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 20px;
+
+      padding:
+        55px
+        20px
+        18px;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(5,5,9,.90),
+          rgba(5,5,9,.36) 55%,
+          transparent
+        );
+
+      opacity: 0;
+
+      transform: translateY(8px);
+
+      transition:
+        opacity .3s ease,
+        transform .3s ease;
+    }
+
+
+    .still-card:hover .still-info {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+
+    .still-left {
+      min-width: 0;
+    }
+
+
+    .still-number {
+      margin-bottom: 7px;
+
+      color: rgba(174,162,236,.78);
+
+      font-size: 8px;
+
+      letter-spacing: .22em;
+    }
+
+
+    .still-title {
+      color: white;
+
+      font-size: 15px;
+
+      letter-spacing: -.015em;
+    }
+
+
+    .still-credit {
+      flex: 0 0 auto;
+
+      color: rgba(255,255,255,.48);
+
+      font-size: 9px;
+
+      text-align: right;
+    }
+
+
+    .still-open {
+      position: absolute;
+
+      z-index: 6;
+
+      top: 16px;
+      right: 16px;
+
+      width: 36px;
+      height: 36px;
+
+      display: grid;
+
+      place-items: center;
+
+      border:
+        1px solid
+        rgba(255,255,255,.28);
+
+      border-radius: 50%;
+
+      color: rgba(255,255,255,.88);
+
+      background: rgba(5,5,9,.18);
+
+      opacity: 0;
+
+      transform: translateY(-5px);
+
+      backdrop-filter: blur(8px);
+
+      -webkit-backdrop-filter: blur(8px);
+
+      transition:
+        opacity .3s ease,
+        transform .3s ease,
+        background .25s ease,
+        color .25s ease;
+    }
+
+
+    .still-card:hover .still-open {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+
+    .still-open:hover {
+      background: rgba(255,255,255,.92);
+
+      color: #111117;
+    }
+
+
+    /* =========================================================
+       ACCENTS
+    ========================================================= */
+
+    .still-card:nth-child(3n + 1)
+    .still-number {
+      color: #91a4ff;
+    }
+
+
+    .still-card:nth-child(3n + 2)
+    .still-number {
+      color: #b39eff;
+    }
+
+
+    .still-card:nth-child(3n)
+    .still-number {
+      color: #dd7891;
+    }
+
+
+    /* =========================================================
+       MODAL
+    ========================================================= */
+
+    .image-modal {
+      position: fixed;
+
+      z-index: 999;
+
+      inset: 0;
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 34px;
+
+      background: rgba(3,3,7,.91);
+
+      backdrop-filter: blur(18px);
+
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+
+    .image-modal.open {
+      display: flex;
+    }
+
+
+    .image-modal-inner {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+
+    .image-modal-target {
+      display: block;
+
+      width: auto;
+      height: auto;
+
+      max-width: 92vw;
+
+      max-height: 87vh;
+
+      object-fit: contain;
+
+      border-radius: 10px;
+
+      box-shadow:
+        0
+        25px
+        80px
+        rgba(0,0,0,.45);
+    }
+
+
+    .image-modal-close {
+      position: fixed;
+
+      z-index: 1000;
+
+      top: 25px;
+      right: 30px;
+
+      padding: 10px;
+
+      border: 0;
+
+      color: rgba(255,255,255,.62);
+
+      background: transparent;
+
+      font-size: 10px;
+
+      letter-spacing: .17em;
+
+      cursor: pointer;
+
+      transition: color .2s ease;
+    }
+
+
+    .image-modal-close:hover {
+      color: #fff;
+    }
+
+
+    .image-modal-meta {
+      position: fixed;
+
+      z-index: 1000;
+
+      left: 30px;
+      bottom: 25px;
+
+      color: rgba(255,255,255,.58);
+
+      font-size: 10px;
+
+      letter-spacing: .09em;
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 760px) {
+
+      .stills-wrap {
+        width: calc(100% - 28px);
+
+        padding-top: 25px;
+      }
+
+
+      .stills-heading {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 22px;
+
+        padding:
+          48px
+          0
+          46px;
+      }
+
+
+      .stills-title {
+        font-size: 18vw;
+      }
+
+
+      .stills-description {
+        padding: 0;
+
+        text-align: left;
+      }
+
+
+      .still-grid {
+        columns:
+          2
+          145px;
+
+        column-gap: 10px;
+      }
+
+
+      .still-card {
+        margin-bottom: 10px;
+
+        border-radius: 15px;
+      }
+
+
+      .still-info {
+        padding:
+          42px
+          13px
+          12px;
+
+        opacity: 1;
+
+        transform: none;
+      }
+
+
+      .still-open {
+        top: 10px;
+        right: 10px;
+
+        width: 31px;
+        height: 31px;
+
+        opacity: .8;
+
+        transform: none;
+      }
+
+
+      .still-title {
+        font-size: 12px;
+      }
+
+
+      .still-credit {
+        font-size: 8px;
+      }
+
+
+      .image-modal {
+        padding: 15px;
+      }
+
+
+      .image-modal-target {
+        max-width: 96vw;
+
+        max-height: 82vh;
+      }
+
+
+      .image-modal-close {
+        top: 12px;
+        right: 13px;
+      }
+
+
+      .image-modal-meta {
+        left: 16px;
+        bottom: 16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body class="subpage stills-page">
+
+
+<main class="stills-wrap">
+
+
+  <!-- TOP -->
+
+  <nav class="stills-top">
+
+    <a
+      class="stills-back"
+      href="../index.html"
+    >
+      ← BACK TO MAIN
+    </a>
+
+    <span class="stills-index">
+      04 · STILLS
+    </span>
+
+  </nav>
+
+
+
+  <!-- HEADER -->
+
+  <header class="stills-heading">
+
+    <div>
+
+      <div class="stills-kicker">
+        VISUAL ARCHIVE
+      </div>
+
+      <h1 class="stills-title">
+        Still<span>s.</span>
+      </h1>
+
+    </div>
+
+
+    <div class="stills-description">
+      scenes, moments and illustrations<br>
+      preserved from Midnight Hour
+    </div>
+
+  </header>
+
+
+
+  <!-- GALLERY -->
+
+  <section class="still-grid">
+
+
+    <!-- 001 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        'naru1.jpg',
+        'Still 001',
+        '© 별별님'
+      )"
+    >
+
+      <img
+        src="naru1.jpg"
+        alt="Still 001"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 001
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © 별별님
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 002 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        '2.jpg',
+        'Still 002',
+        '© 군청님'
+      )"
+    >
+
+      <img
+        src="2.jpg"
+        alt="Still 002"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 002
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © 군청님
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 003 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        '3.jpg',
+        'Still 003',
+        '© 지인'
+      )"
+    >
+
+      <img
+        src="3.jpg"
+        alt="Still 003"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 003
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © 지인
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 004 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        '4.jpg',
+        'Still 004',
+        '© 지인'
+      )"
+    >
+
+      <img
+        src="4.jpg"
+        alt="Still 004"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 004
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © 지인
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 005 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        '4.png',
+        'Still 005',
+        '© 청필님'
+      )"
+    >
+
+      <img
+        src="4.png"
+        alt="Still 005"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 005
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © 청필님
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 006 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        '5.png',
+        'Still 006',
+        '© MELM님'
+      )"
+    >
+
+      <img
+        src="5.png"
+        alt="Still 006"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 006
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © MELM님
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 007 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        '7.png',
+        'Still 007',
+        '© 군청님'
+      )"
+    >
+
+      <img
+        src="7.png"
+        alt="Still 007"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 007
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © 군청님
+        </div>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- 008 -->
+
+    <article
+      class="still-card"
+      onclick="openStill(
+        '8.png',
+        'Still 008',
+        '© JD님'
+      )"
+    >
+
+      <img
+        src="8.png"
+        alt="Still 008"
+      />
+
+      <div class="still-open">
+        ↗
+      </div>
+
+      <div class="still-info">
+
+        <div class="still-left">
+
+          <div class="still-number">
+            STILL · 008
+          </div>
+
+          <div class="still-title">
+            Midnight Hour
+          </div>
+
+        </div>
+
+        <div class="still-credit">
+          © JD님
+        </div>
+
+      </div>
+
+    </article>
+
+
+  </section>
+
+
+</main>
+
+
+
+<!-- IMAGE MODAL -->
+
+<div
+  class="image-modal"
+  id="image-modal"
+  onclick="closeStillOutside(event)"
+>
+
+  <button
+    class="image-modal-close"
+    onclick="closeStill()"
+  >
+    CLOSE
+  </button>
+
+
+  <div class="image-modal-inner">
+
+    <img
+      class="image-modal-target"
+      id="image-modal-target"
+      src=""
+      alt=""
+    />
+
+  </div>
+
+
+  <div
+    class="image-modal-meta"
+    id="image-modal-meta"
+  >
+  </div>
+
+</div>
+
+
+
+<!-- MUSIC PLAYER -->
+
+<div
+  class="music-player"
+  id="music-player"
+>
+
+  <div class="music-left">
+
+    <span class="music-icon">
+      ♫
+    </span>
+
+    <span
+      class="music-title"
+      id="music-title"
+    >
+      긴 밤(feat. 기리보이) - Seori
+    </span>
+
+  </div>
+
+
+  <div class="music-controls">
+
+    <button
+      aria-label="previous track"
+      class="music-btn small"
+      onclick="prevTrack()"
+    >
+      ‹
+    </button>
+
+    <button
+      aria-label="play or pause"
+      class="music-btn"
+      id="music-btn"
+      onclick="toggleMusic()"
+    >
+      ▶
+    </button>
+
+    <button
+      aria-label="next track"
+      class="music-btn small"
+      onclick="nextTrack()"
+    >
+      ›
+    </button>
+
+  </div>
+
+
+  <audio
+    id="bgm"
+    preload="metadata"
+  ></audio>
+
+</div>
+
+
+
+<script src="../common.js"></script>
+
+
+<script>
+
+  const stillModal =
+    document.getElementById(
+      "image-modal"
+    );
+
+
+  const stillTarget =
+    document.getElementById(
+      "image-modal-target"
+    );
+
+
+  const stillMeta =
+    document.getElementById(
+      "image-modal-meta"
+    );
+
+
+  function openStill(
+    src,
+    title,
+    credit
+  ) {
+
+    stillTarget.src = src;
+
+    stillTarget.alt = title;
+
+    stillMeta.textContent =
+      title + " · " + credit;
+
+    stillModal.classList.add(
+      "open"
+    );
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+  function closeStill() {
+
+    stillModal.classList.remove(
+      "open"
+    );
+
+    stillTarget.src = "";
+
+    stillTarget.alt = "";
+
+    stillMeta.textContent = "";
+
+    document.body.style.overflow = "";
+
+  }
+
+
+  function closeStillOutside(
+    event
+  ) {
+
+    if (
+      event.target === stillModal
+    ) {
+
+      closeStill();
+
+    }
+
+  }
+
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Escape" &&
+        stillModal.classList.contains("open")
+      ) {
+
+        closeStill();
+
+      }
+
+    }
+  );
+
+</script>
+
+
+</body>
+</html>
