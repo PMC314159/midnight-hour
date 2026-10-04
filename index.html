@@ -15,11 +15,6 @@
     content="#0b0a10"
   />
 
-
-  <!-- =====================================================
-       BASIC
-  ====================================================== -->
-
   <title>Midnight Hour</title>
 
   <meta
@@ -35,13 +30,13 @@
   <link
     rel="icon"
     type="image/x-icon"
-    href="/favicon.ico"
+    href="/favicon.ico?v=6"
   />
 
   <link
     rel="shortcut icon"
     type="image/x-icon"
-    href="/favicon.ico"
+    href="/favicon.ico?v=6"
   />
 
 
@@ -57,7 +52,6 @@
 
   <!-- =====================================================
        OPEN GRAPH
-       Discord / KakaoTalk / 기타 SNS
   ====================================================== -->
 
   <meta
@@ -107,7 +101,7 @@
 
 
   <!-- =====================================================
-       X / TWITTER CARD
+       TWITTER / X
   ====================================================== -->
 
   <meta
@@ -128,11 +122,6 @@
   <meta
     name="twitter:image"
     content="https://midnight-h0ur.vercel.app/preview.jpg"
-  />
-
-  <meta
-    name="twitter:image:alt"
-    content="Midnight Hour — 자정의 시간"
   />
 
 
@@ -199,19 +188,16 @@
       font-weight: 300;
 
       background:
-
         radial-gradient(
           circle at 6% 1%,
           rgba(100,105,174,.12),
           transparent 30%
         ),
-
         radial-gradient(
           circle at 94% 60%,
           rgba(114,72,147,.08),
           transparent 28%
         ),
-
         var(--bg);
     }
 
@@ -331,6 +317,9 @@
 
     /* =====================================================
        GRID
+
+       PERSONNEL  | PERSONNEL | STILLS
+       TIMELINE   | FRAGMENTS | STILLS
     ====================================================== */
 
     .mh-home-grid {
@@ -346,6 +335,34 @@
         minmax(345px, 42vh);
 
       gap: 15px;
+    }
+
+
+    .mh-card-personnel {
+      grid-column: 1 / 3;
+
+      grid-row: 1;
+    }
+
+
+    .mh-card-timeline {
+      grid-column: 1;
+
+      grid-row: 2;
+    }
+
+
+    .mh-card-fragments {
+      grid-column: 2;
+
+      grid-row: 2;
+    }
+
+
+    .mh-card-stills {
+      grid-column: 3;
+
+      grid-row: 1 / 3;
     }
 
 
@@ -372,6 +389,7 @@
 
     .mh-home-card img {
       width: 100%;
+
       height: 100%;
 
       object-fit: cover;
@@ -394,7 +412,6 @@
       pointer-events: none;
 
       background:
-
         linear-gradient(
           to top,
           rgba(5,5,9,.84) 0%,
@@ -443,49 +460,6 @@
 
 
     /* =====================================================
-       GRID POSITION
-
-       PERSONNEL  | PERSONNEL | STILLS
-       FRAGMENTS  | TIMELINE  | STILLS
-    ====================================================== */
-
-    .mh-card-personnel {
-      grid-column:
-        1 / 3;
-
-      grid-row:
-        1;
-    }
-
-
-    .mh-card-fragments {
-      grid-column:
-        1;
-
-      grid-row:
-        2;
-    }
-
-
-    .mh-card-timeline {
-      grid-column:
-        2;
-
-      grid-row:
-        2;
-    }
-
-
-    .mh-card-stills {
-      grid-column:
-        3;
-
-      grid-row:
-        1 / 3;
-    }
-
-
-    /* =====================================================
        IMAGE POSITION
     ====================================================== */
 
@@ -495,15 +469,15 @@
     }
 
 
-    .mh-card-fragments img {
-      object-position:
-        center center;
-    }
-
-
     .mh-card-timeline img {
       object-position:
         center 30%;
+    }
+
+
+    .mh-card-fragments img {
+      object-position:
+        center center;
     }
 
 
@@ -514,7 +488,7 @@
 
 
     /* =====================================================
-       CARD TEXT
+       CARD CONTENT
     ====================================================== */
 
     .mh-card-content {
@@ -548,7 +522,19 @@
     }
 
 
+    /*
+      PC에서는 번호가 위,
+      모바일에서는 번호 + 제목이 한 줄.
+    */
+
+    .mh-card-heading {
+      display: block;
+    }
+
+
     .mh-card-number {
+      display: block !important;
+
       margin-bottom: 7px;
 
       color:
@@ -556,7 +542,13 @@
 
       font-size: 9px;
 
+      line-height: 1;
+
       letter-spacing: .23em;
+
+      opacity: 1 !important;
+
+      visibility: visible !important;
     }
 
 
@@ -660,6 +652,7 @@
       z-index: 100;
 
       left: 50%;
+
       bottom: 17px;
 
       transform:
@@ -691,7 +684,8 @@
         1px solid
         rgba(255,255,255,.13);
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
       background:
         rgba(20,18,29,.89);
@@ -759,6 +753,7 @@
 
     .music-btn {
       width: 39px;
+
       height: 39px;
 
       display: grid;
@@ -771,7 +766,8 @@
         1px solid
         rgba(255,255,255,.14);
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
       color: white;
 
@@ -779,11 +775,15 @@
         rgba(255,255,255,.045);
 
       cursor: pointer;
+
+      -webkit-tap-highlight-color:
+        transparent;
     }
 
 
     .music-btn.small {
       width: 31px;
+
       height: 31px;
 
       border: 0;
@@ -822,38 +822,30 @@
 
 
       .mh-card-personnel {
-        grid-column:
-          1 / 3;
+        grid-column: 1 / 3;
 
-        grid-row:
-          1;
-      }
-
-
-      .mh-card-fragments {
-        grid-column:
-          1;
-
-        grid-row:
-          2;
+        grid-row: 1;
       }
 
 
       .mh-card-timeline {
-        grid-column:
-          2;
+        grid-column: 1;
 
-        grid-row:
-          2;
+        grid-row: 2;
+      }
+
+
+      .mh-card-fragments {
+        grid-column: 2;
+
+        grid-row: 2;
       }
 
 
       .mh-card-stills {
-        grid-column:
-          1 / 3;
+        grid-column: 1 / 3;
 
-        grid-row:
-          3;
+        grid-row: 3;
       }
 
     }
@@ -881,7 +873,8 @@
         align-items:
           flex-start;
 
-        gap: 18px;
+        gap:
+          18px;
 
         margin-bottom:
           24px;
@@ -894,49 +887,132 @@
       }
 
 
+      /*
+        DOM 순서를 그대로 사용:
+        01 Personnel
+        02 Timeline
+        03 Fragments
+        04 Stills
+      */
+
       .mh-home-grid {
         display: flex;
 
-        flex-direction:
-          column;
+        flex-direction: column;
 
         gap: 11px;
       }
 
 
       .mh-home-card {
-        height:
-          48vh;
+        width: 100%;
 
-        min-height:
-          330px;
+        height: 48vh;
 
-        border-radius:
-          19px;
+        min-height: 330px;
+
+        border-radius: 19px;
       }
 
 
       .mh-card-personnel {
-        height:
-          43vh;
+        height: 43vh;
       }
 
 
       .mh-card-stills {
-        height:
-          66vh;
+        height: 66vh;
+      }
+
+
+      .mh-card-content {
+        left: 19px;
+
+        right: 19px;
+
+        bottom: 18px;
+      }
+
+
+      /*
+        모바일에서는 번호가 제목 바로 앞에 붙음.
+        Personnel의 01도 반드시 표시됨.
+      */
+
+      .mh-card-heading {
+        display: flex;
+
+        align-items: baseline;
+
+        gap: 10px;
+      }
+
+
+      .mh-card-number {
+        display: inline-block !important;
+
+        flex:
+          0
+          0
+          auto;
+
+        margin: 0;
+
+        font-size: 9px;
+
+        opacity: 1 !important;
+
+        visibility: visible !important;
+      }
+
+
+      .mh-card-title {
+        font-size: 25px;
       }
 
 
       .mh-card-desc {
-        max-height:
-          30px;
+        max-height: 30px;
 
-        margin-top:
-          7px;
+        margin-top: 8px;
 
-        opacity:
-          .7;
+        opacity: .7;
+      }
+
+
+      .mh-card-arrow {
+        width: 37px;
+
+        height: 37px;
+      }
+
+
+      .music-player {
+        bottom: 12px;
+
+        min-height: 57px;
+
+        padding:
+          8px
+          10px
+          8px
+          15px;
+      }
+
+
+      .music-title {
+        max-width: 185px;
+
+        font-size: 10px;
+      }
+
+    }
+
+
+    @media (max-width: 400px) {
+
+      .music-title {
+        max-width: 135px;
       }
 
     }
@@ -967,6 +1043,7 @@
       <h1 class="mh-home-title">
         Midnight Hour
       </h1>
+
 
       <div class="mh-home-subtitle">
         자정의 시간
@@ -999,8 +1076,9 @@
   <section class="mh-home-grid">
 
 
+
     <!-- ===================================================
-         PERSONNEL
+         01 PERSONNEL
     ==================================================== -->
 
     <a
@@ -1018,13 +1096,18 @@
 
         <div>
 
-          <div class="mh-card-number">
-            01
+          <div class="mh-card-heading">
+
+            <span class="mh-card-number">
+              01
+            </span>
+
+            <div class="mh-card-title">
+              Personnel
+            </div>
+
           </div>
 
-          <div class="mh-card-title">
-            Personnel
-          </div>
 
           <div class="mh-card-desc">
             이자헌 · 정희솔
@@ -1044,51 +1127,7 @@
 
 
     <!-- ===================================================
-         FRAGMENTS
-    ==================================================== -->
-
-    <a
-      href="./fragments/"
-      class="mh-home-card mh-card-fragments"
-    >
-
-      <img
-        src="./main-fragments.jpg"
-        alt="Fragments"
-      />
-
-
-      <div class="mh-card-content">
-
-        <div>
-
-          <div class="mh-card-number">
-            03
-          </div>
-
-          <div class="mh-card-title">
-            Fragments
-          </div>
-
-          <div class="mh-card-desc">
-            written pieces
-          </div>
-
-        </div>
-
-
-        <span class="mh-card-arrow">
-          ↗
-        </span>
-
-      </div>
-
-    </a>
-
-
-
-    <!-- ===================================================
-         TIMELINE
+         02 TIMELINE
     ==================================================== -->
 
     <a
@@ -1106,13 +1145,18 @@
 
         <div>
 
-          <div class="mh-card-number">
-            02
+          <div class="mh-card-heading">
+
+            <span class="mh-card-number">
+              02
+            </span>
+
+            <div class="mh-card-title">
+              Timeline
+            </div>
+
           </div>
 
-          <div class="mh-card-title">
-            Timeline
-          </div>
 
           <div class="mh-card-desc">
             narrative sequence
@@ -1132,7 +1176,56 @@
 
 
     <!-- ===================================================
-         STILLS
+         03 FRAGMENTS
+    ==================================================== -->
+
+    <a
+      href="./fragments/"
+      class="mh-home-card mh-card-fragments"
+    >
+
+      <img
+        src="./main-fragments.jpg"
+        alt="Fragments"
+      />
+
+
+      <div class="mh-card-content">
+
+        <div>
+
+          <div class="mh-card-heading">
+
+            <span class="mh-card-number">
+              03
+            </span>
+
+            <div class="mh-card-title">
+              Fragments
+            </div>
+
+          </div>
+
+
+          <div class="mh-card-desc">
+            written pieces
+          </div>
+
+        </div>
+
+
+        <span class="mh-card-arrow">
+          ↗
+        </span>
+
+      </div>
+
+    </a>
+
+
+
+    <!-- ===================================================
+         04 STILLS
     ==================================================== -->
 
     <a
@@ -1150,13 +1243,18 @@
 
         <div>
 
-          <div class="mh-card-number">
-            04
+          <div class="mh-card-heading">
+
+            <span class="mh-card-number">
+              04
+            </span>
+
+            <div class="mh-card-title">
+              Stills
+            </div>
+
           </div>
 
-          <div class="mh-card-title">
-            Stills
-          </div>
 
           <div class="mh-card-desc">
             visual archive
@@ -1209,6 +1307,7 @@
   <div class="music-controls">
 
     <button
+      type="button"
       class="music-btn small"
       onclick="prevTrack()"
       aria-label="previous track"
@@ -1218,6 +1317,7 @@
 
 
     <button
+      type="button"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
@@ -1228,6 +1328,7 @@
 
 
     <button
+      type="button"
       class="music-btn small"
       onclick="nextTrack()"
       aria-label="next track"
@@ -1241,13 +1342,14 @@
   <audio
     id="bgm"
     preload="metadata"
+    playsinline
   ></audio>
 
 </div>
 
 
 
-<script src="./common.js"></script>
+<script src="./common.js?v=6"></script>
 
 
 </body>
