@@ -1,12 +1,20 @@
 /* =========================================================
    MIDNIGHT HOUR
-   SHARED MUSIC PLAYER
+   persistent music + page overlay
 ========================================================= */
 
 
-/*
-  한 주소가 실패하면 다음 주소를 시도한다.
-*/
+/* =========================================================
+   BASIC
+========================================================= */
+
+const IS_IFRAME =
+  window.self !== window.top;
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
 
 const TRACKS = [
 
@@ -32,7 +40,7 @@ const TRACKS = [
 
 
 const STORAGE_KEY =
-  "midnight-hour-player-v6";
+  "midnight-hour-player-v7";
 
 
 const bgm =
@@ -47,6 +55,10 @@ const musicTitle =
   document.getElementById("music-title");
 
 
+const musicPlayer =
+  document.getElementById("music-player");
+
+
 let currentTrack = 0;
 
 let currentSource = 0;
@@ -55,7 +67,105 @@ let pendingTime = 0;
 
 let saveTimer = null;
 
-let restoringPlayback = false;
+
+
+/* =========================================================
+   IFRAME PAGE
+========================================================= */
+
+/*
+  하위 페이지가 iframe 안에서 열렸을 때는
+  그 페이지에 있는 음악 플레이어를 사용하지 않는다.
+
+  실제 음악은 계속 홈 페이지에서 재생된다.
+*/
+
+if (IS_IFRAME) {
+
+  if (musicPlayer) {
+    musicPlayer.style.display = "none";
+  }
+
+
+  if (bgm) {
+
+    try {
+
+      bgm.pause();
+
+      bgm.removeAttribute("src");
+
+      bgm.load();
+
+    }
+
+    catch (error) {
+      /* ignore */
+    }
+
+  }
+
+
+  /*
+    하위 페이지의 BACK TO MAIN을 누르면
+    iframe 안에서 홈으로 이동하지 않고
+    부모 홈 화면에게 "페이지 닫아줘"라고 보낸다.
+  */
+
+  document.addEventListener(
+    "click",
+    function(event) {
+
+      const anchor =
+        event.target.closest("a");
+
+
+      if (!anchor) {
+        return;
+      }
+
+
+      const text =
+        (
+          anchor.textContent || ""
+        )
+        .trim()
+        .toUpperCase();
+
+
+      const href =
+        anchor.getAttribute("href") || "";
+
+
+      const isBack =
+        text.includes("BACK TO MAIN") ||
+        text === "HOME" ||
+        text === "← HOME" ||
+        href === "../index.html" ||
+        href === "../" ||
+        href === "/";
+
+
+      if (!isBack) {
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      window.parent.postMessage(
+        {
+          type:
+            "midnight-hour-close-page"
+        },
+        window.location.origin
+      );
+
+    }
+  );
+
+}
 
 
 
@@ -67,15 +177,13 @@ function readPlayerState() {
 
   try {
 
-    const saved =
+    return (
       JSON.parse(
         localStorage.getItem(
           STORAGE_KEY
         )
-      );
-
-
-    return saved || {};
+      ) || {}
+    );
 
   }
 
@@ -91,42 +199,41 @@ function readPlayerState() {
 
 function savePlayerState() {
 
-  if (!bgm) {
+  if (
+    !bgm ||
+    IS_IFRAME
+  ) {
     return;
   }
-
-
-  const state = {
-
-    track:
-      currentTrack,
-
-    time:
-      Number.isFinite(
-        bgm.currentTime
-      )
-        ? bgm.currentTime
-        : 0,
-
-    playing:
-      !bgm.paused
-
-  };
 
 
   try {
 
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify(state)
+
+      JSON.stringify({
+
+        track:
+          currentTrack,
+
+        time:
+          Number.isFinite(
+            bgm.currentTime
+          )
+            ? bgm.currentTime
+            : 0,
+
+        playing:
+          !bgm.paused
+
+      })
     );
 
   }
 
   catch (error) {
-
-    /* storage unavailable */
-
+    /* ignore */
   }
 
 }
@@ -138,7 +245,7 @@ function savePlayerState() {
 ========================================================= */
 
 function setPlayIcon(
-  isPlaying
+  playing
 ) {
 
   if (!musicBtn) {
@@ -147,7 +254,7 @@ function setPlayIcon(
 
 
   musicBtn.textContent =
-    isPlaying
+    playing
       ? "Ⅱ"
       : "▶";
 
@@ -156,7 +263,7 @@ function setPlayIcon(
 
 
 /* =========================================================
-   SOURCE
+   TRACK SOURCE
 ========================================================= */
 
 function setAudioSource(
@@ -166,7 +273,8 @@ function setAudioSource(
 
   if (
     !bgm ||
-    !TRACKS.length
+    !TRACKS.length ||
+    IS_IFRAME
   ) {
     return;
   }
@@ -187,6 +295,7 @@ function setAudioSource(
   currentSource =
     Math.max(
       0,
+
       Math.min(
         sourceIndex,
         track.sources.length - 1
@@ -217,9 +326,14 @@ function setAudioSource(
 ========================================================= */
 
 function loadTrack(
-  trackIndex,
+  index,
   resumeTime = 0
 ) {
+
+  if (IS_IFRAME) {
+    return;
+  }
+
 
   pendingTime =
     Math.max(
@@ -232,7 +346,7 @@ function loadTrack(
 
 
   setAudioSource(
-    trackIndex,
+    index,
     0
   );
 
@@ -246,16 +360,13 @@ function loadTrack(
 
 async function playCurrentTrack() {
 
-  if (!bgm) {
+  if (
+    !bgm ||
+    IS_IFRAME
+  ) {
     return;
   }
 
-
-  /*
-    iPhone/Safari 포함:
-    반드시 사용자가 ▶ 버튼을 누른 이벤트 안에서
-    bgm.play()가 실행되도록 한다.
-  */
 
   try {
 
@@ -263,7 +374,6 @@ async function playCurrentTrack() {
 
 
     setPlayIcon(true);
-
 
     savePlayerState();
 
@@ -291,14 +401,13 @@ async function playCurrentTrack() {
 
 async function toggleMusic() {
 
-  if (!bgm) {
+  if (
+    !bgm ||
+    IS_IFRAME
+  ) {
     return;
   }
 
-
-  /*
-    아직 src가 없는 경우를 대비
-  */
 
   if (!bgm.src) {
 
@@ -320,9 +429,7 @@ async function toggleMusic() {
 
     bgm.pause();
 
-
     setPlayIcon(false);
-
 
     savePlayerState();
 
@@ -333,7 +440,7 @@ async function toggleMusic() {
 
 
 /* =========================================================
-   TRACK CHANGE
+   PREVIOUS / NEXT
 ========================================================= */
 
 async function changeTrack(
@@ -342,7 +449,8 @@ async function changeTrack(
 
   if (
     !bgm ||
-    !TRACKS.length
+    !TRACKS.length ||
+    IS_IFRAME
   ) {
     return;
   }
@@ -372,7 +480,6 @@ async function changeTrack(
     try {
 
       await bgm.play();
-
 
       setPlayIcon(true);
 
@@ -419,16 +526,15 @@ function nextTrack() {
    AUDIO EVENTS
 ========================================================= */
 
-if (bgm) {
+if (
+  bgm &&
+  !IS_IFRAME
+) {
 
-
-  /*
-    저장된 재생 위치 복구
-  */
 
   bgm.addEventListener(
     "loadedmetadata",
-    () => {
+    function() {
 
       if (
         pendingTime > 0 &&
@@ -440,9 +546,10 @@ if (bgm) {
         const safeTime =
           Math.min(
             pendingTime,
+
             Math.max(
               0,
-              bgm.duration - .25
+              bgm.duration - 0.25
             )
           );
 
@@ -455,9 +562,7 @@ if (bgm) {
         }
 
         catch (error) {
-
           /* ignore */
-
         }
 
 
@@ -471,13 +576,13 @@ if (bgm) {
 
 
   /*
-    첫 주소가 실패할 경우
-    raw.githubusercontent 주소로 재시도
+    음악 주소 하나가 실패하면
+    같은 곡의 다음 주소 사용
   */
 
   bgm.addEventListener(
     "error",
-    () => {
+    function() {
 
       const track =
         TRACKS[currentTrack];
@@ -497,23 +602,10 @@ if (bgm) {
         track.sources.length
       ) {
 
-        const savedPosition =
-          Number.isFinite(
-            bgm.currentTime
-          )
-            ? bgm.currentTime
-            : pendingTime;
-
-
-        pendingTime =
-          savedPosition || 0;
-
-
         setAudioSource(
           currentTrack,
           nextSource
         );
-
 
         return;
 
@@ -535,10 +627,9 @@ if (bgm) {
 
   bgm.addEventListener(
     "play",
-    () => {
+    function() {
 
       setPlayIcon(true);
-
 
       savePlayerState();
 
@@ -549,10 +640,9 @@ if (bgm) {
 
   bgm.addEventListener(
     "pause",
-    () => {
+    function() {
 
       setPlayIcon(false);
-
 
       savePlayerState();
 
@@ -563,7 +653,7 @@ if (bgm) {
 
   bgm.addEventListener(
     "ended",
-    async () => {
+    async function() {
 
       const nextIndex =
         (
@@ -582,7 +672,6 @@ if (bgm) {
 
         await bgm.play();
 
-
         setPlayIcon(true);
 
       }
@@ -600,7 +689,7 @@ if (bgm) {
 
   bgm.addEventListener(
     "timeupdate",
-    () => {
+    function() {
 
       clearTimeout(
         saveTimer
@@ -625,15 +714,8 @@ if (bgm) {
 
 
 
-  window.addEventListener(
-    "beforeunload",
-    savePlayerState
-  );
-
-
-
   /* =========================================================
-     INITIALIZE
+     INITIAL MUSIC STATE
   ========================================================= */
 
   const saved =
@@ -662,66 +744,12 @@ if (bgm) {
 
   setPlayIcon(false);
 
-
-  /*
-    이전 페이지에서 음악이 재생 중이었으면
-    브라우저가 허용하는 경우에 한해 자동 복구를 시도한다.
-
-    모바일 브라우저가 autoplay를 막으면
-    ▶ 버튼 한 번만 누르면 된다.
-  */
-
-  if (
-    saved.playing === true
-  ) {
-
-    restoringPlayback = true;
-
-
-    bgm.addEventListener(
-      "canplay",
-      async function restoreOnce() {
-
-        bgm.removeEventListener(
-          "canplay",
-          restoreOnce
-        );
-
-
-        try {
-
-          await bgm.play();
-
-
-          setPlayIcon(true);
-
-        }
-
-        catch (error) {
-
-          /*
-            모바일 Safari/Chrome에서는
-            페이지 이동 후 자동 재생이 차단될 수 있음.
-          */
-
-          setPlayIcon(false);
-
-        }
-
-
-        restoringPlayback = false;
-
-      }
-    );
-
-  }
-
 }
 
 
 
 /* =========================================================
-   GLOBAL BUTTON FUNCTIONS
+   GLOBAL MUSIC FUNCTIONS
 ========================================================= */
 
 window.toggleMusic =
@@ -734,3 +762,487 @@ window.prevTrack =
 
 window.nextTrack =
   nextTrack;
+
+
+
+/* =========================================================
+   PERSISTENT PAGE ROUTER
+========================================================= */
+
+if (!IS_IFRAME) {
+
+
+  const CATEGORY_ROUTES =
+    new Set([
+      "personnel",
+      "timeline",
+      "fragments",
+      "stills"
+    ]);
+
+
+  let pageLayer = null;
+
+  let pageFrame = null;
+
+  let activeRoute = null;
+
+  let oldBodyOverflow = "";
+
+
+
+  /* =======================================================
+     CREATE LAYER
+  ======================================================== */
+
+  function createPageLayer() {
+
+    if (
+      pageLayer &&
+      pageFrame
+    ) {
+      return;
+    }
+
+
+    pageLayer =
+      document.createElement(
+        "div"
+      );
+
+
+    pageLayer.id =
+      "mh-page-layer";
+
+
+    pageLayer.style.cssText = [
+
+      "position:fixed",
+
+      "inset:0",
+
+      "z-index:90",
+
+      "display:none",
+
+      "background:#08080d",
+
+      "overflow:hidden"
+
+    ].join(";");
+
+
+
+    pageFrame =
+      document.createElement(
+        "iframe"
+      );
+
+
+    pageFrame.id =
+      "mh-page-frame";
+
+
+    pageFrame.title =
+      "Midnight Hour content";
+
+
+    pageFrame.setAttribute(
+      "loading",
+      "eager"
+    );
+
+
+    pageFrame.style.cssText = [
+
+      "display:block",
+
+      "width:100%",
+
+      "height:100%",
+
+      "margin:0",
+
+      "padding:0",
+
+      "border:0",
+
+      "background:#08080d"
+
+    ].join(";");
+
+
+
+    pageLayer.appendChild(
+      pageFrame
+    );
+
+
+    document.body.appendChild(
+      pageLayer
+    );
+
+  }
+
+
+
+  /* =======================================================
+     GET ROUTE
+  ======================================================== */
+
+  function getCategoryRoute(
+    url
+  ) {
+
+    if (
+      url.origin !==
+      window.location.origin
+    ) {
+      return null;
+    }
+
+
+    const parts =
+      url.pathname
+        .split("/")
+        .filter(Boolean);
+
+
+    if (!parts.length) {
+      return null;
+    }
+
+
+    const route =
+      parts[
+        parts.length - 1
+      ] === "index.html"
+
+        ? parts[
+            parts.length - 2
+          ]
+
+        : parts[
+            parts.length - 1
+          ];
+
+
+    return CATEGORY_ROUTES.has(
+      route
+    )
+      ? route
+      : null;
+
+  }
+
+
+
+  /* =======================================================
+     OPEN CATEGORY
+  ======================================================== */
+
+  function openCategory(
+    route,
+    pushHistory = true
+  ) {
+
+    if (
+      !CATEGORY_ROUTES.has(
+        route
+      )
+    ) {
+      return;
+    }
+
+
+    createPageLayer();
+
+
+    activeRoute =
+      route;
+
+
+    oldBodyOverflow =
+      document.body.style.overflow;
+
+
+    document.body.style.overflow =
+      "hidden";
+
+
+    pageFrame.src =
+      "/" +
+      route +
+      "/";
+
+
+    pageLayer.style.display =
+      "block";
+
+
+    /*
+      음악 플레이어는 iframe보다 위에 남겨둔다.
+    */
+
+    if (musicPlayer) {
+
+      musicPlayer.style.zIndex =
+        "110";
+
+    }
+
+
+    if (pushHistory) {
+
+      history.pushState(
+        {
+          midnightHourRoute:
+            route
+        },
+
+        "",
+
+        "/" +
+        route +
+        "/"
+      );
+
+    }
+
+  }
+
+
+
+  /* =======================================================
+     CLOSE CATEGORY
+  ======================================================== */
+
+  function closeCategory(
+    pushHistory = true
+  ) {
+
+    if (!pageLayer) {
+      return;
+    }
+
+
+    pageLayer.style.display =
+      "none";
+
+
+    if (pageFrame) {
+
+      pageFrame.src =
+        "about:blank";
+
+    }
+
+
+    activeRoute =
+      null;
+
+
+    document.body.style.overflow =
+      oldBodyOverflow;
+
+
+    if (musicPlayer) {
+
+      musicPlayer.style.zIndex =
+        "100";
+
+    }
+
+
+    if (pushHistory) {
+
+      history.pushState(
+        {
+          midnightHourRoute:
+            null
+        },
+
+        "",
+
+        "/"
+      );
+
+    }
+
+  }
+
+
+
+  /* =======================================================
+     INTERCEPT CATEGORY LINKS
+  ======================================================== */
+
+  document.addEventListener(
+    "click",
+    function(event) {
+
+      const anchor =
+        event.target.closest("a");
+
+
+      if (!anchor) {
+        return;
+      }
+
+
+      /*
+        Ctrl / Cmd 클릭 등은 원래 동작 유지
+      */
+
+      if (
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+
+      if (
+        anchor.target === "_blank"
+      ) {
+        return;
+      }
+
+
+      let url;
+
+
+      try {
+
+        url =
+          new URL(
+            anchor.href,
+            window.location.href
+          );
+
+      }
+
+      catch (error) {
+
+        return;
+
+      }
+
+
+      const route =
+        getCategoryRoute(
+          url
+        );
+
+
+      if (!route) {
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      openCategory(
+        route,
+        true
+      );
+
+    }
+  );
+
+
+
+  /* =======================================================
+     MESSAGE FROM SUBPAGE
+  ======================================================== */
+
+  window.addEventListener(
+    "message",
+    function(event) {
+
+      if (
+        event.origin !==
+        window.location.origin
+      ) {
+        return;
+      }
+
+
+      if (
+        !event.data ||
+        event.data.type !==
+          "midnight-hour-close-page"
+      ) {
+        return;
+      }
+
+
+      closeCategory(true);
+
+    }
+  );
+
+
+
+  /* =======================================================
+     BROWSER BACK BUTTON
+  ======================================================== */
+
+  window.addEventListener(
+    "popstate",
+    function() {
+
+      const path =
+        window.location.pathname;
+
+
+      const parts =
+        path
+          .split("/")
+          .filter(Boolean);
+
+
+      const route =
+        parts.length
+          ? parts[0]
+          : null;
+
+
+      if (
+        route &&
+        CATEGORY_ROUTES.has(
+          route
+        )
+      ) {
+
+        if (
+          activeRoute !==
+          route
+        ) {
+
+          openCategory(
+            route,
+            false
+          );
+
+        }
+
+      }
+
+      else {
+
+        if (activeRoute) {
+
+          closeCategory(false);
+
+        }
+
+      }
+
+    }
+  );
+
+}
