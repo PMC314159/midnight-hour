@@ -10,45 +10,124 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>Personnel File | Midnight Hour</title>
+  <meta
+    name="theme-color"
+    content="#08080d"
+  />
+
+  <title>Personnel | Midnight Hour</title>
+
+
+  <!-- =========================================================
+       FAVICON
+  ========================================================== -->
+
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="/favicon.ico?v=9"
+  />
+
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="/favicon.ico?v=9"
+  />
 
 
   <style>
 
+    /* =========================================================
+       FONT
+    ========================================================== */
+
     @font-face {
-      font-family: "GmarketSans";
-      src: url("../GmarketSansTTFLight.ttf") format("truetype");
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
+
+      font-family:
+        "GmarketSans";
+
+      src:
+        url("../GmarketSansTTFLight.ttf")
+        format("truetype");
+
+      font-weight:
+        300;
+
+      font-style:
+        normal;
+
+      font-display:
+        swap;
+
     }
 
+
+
+    /* =========================================================
+       ROOT
+    ========================================================== */
 
     :root {
-      --bg: #08080d;
 
-      --purple: #aa9bf0;
+      --bg:
+        #08080d;
 
-      --profile-size: 360px;
+      --text:
+        #f3f2f7;
+
+      --purple:
+        #9580f2;
+
+      --purple-light:
+        #c1b5f7;
+
+      --purple-soft:
+        #b7abf4;
+
+      --line:
+        rgba(255,255,255,.10);
+
+      --panel:
+        linear-gradient(
+          110deg,
+          rgba(120,95,185,.06),
+          rgba(255,255,255,.018)
+        );
+
     }
 
 
+
+    /* =========================================================
+       RESET
+    ========================================================== */
+
     * {
-      box-sizing: border-box;
+
+      box-sizing:
+        border-box;
+
     }
 
 
     html {
-      scroll-behavior: smooth;
+
+      scroll-behavior:
+        smooth;
+
     }
 
 
     body {
-      margin: 0;
 
-      min-height: 100vh;
+      margin:
+        0;
 
-      color: #f2f1f6;
+      min-height:
+        100vh;
+
+      color:
+        var(--text);
 
       font-family:
         "GmarketSans",
@@ -57,46 +136,72 @@
         "Segoe UI",
         sans-serif;
 
-      font-weight: 300;
+      font-weight:
+        300;
 
       background:
 
         radial-gradient(
-          circle at 88% 8%,
-          rgba(86,77,158,.14),
-          transparent 33%
+          circle at 8% 4%,
+          rgba(101,91,181,.13),
+          transparent 30%
         ),
 
         radial-gradient(
-          circle at 5% 80%,
-          rgba(74,95,180,.07),
-          transparent 28%
+          circle at 91% 34%,
+          rgba(125,81,167,.09),
+          transparent 29%
+        ),
+
+        radial-gradient(
+          circle at 14% 88%,
+          rgba(97,75,154,.06),
+          transparent 26%
         ),
 
         var(--bg);
+
     }
 
 
     a {
-      color: inherit;
-      text-decoration: none;
+
+      color:
+        inherit;
+
+      text-decoration:
+        none;
+
     }
 
 
     button {
-      font: inherit;
+
+      font:
+        inherit;
+
     }
+
+
+    img {
+
+      display:
+        block;
+
+    }
+
 
 
     /* =========================================================
        PAGE
-    ========================================================= */
+    ========================================================== */
 
-    .mh-person-page {
+    .personnel-wrap {
+
       width:
         min(
-          1160px,
-          calc(100% - 58px)
+          1220px,
+          calc(100% - 40px)
         );
 
       margin:
@@ -106,376 +211,588 @@
         38px
         0
         145px;
+
     }
+
 
 
     /* =========================================================
        TOP
-    ========================================================= */
+    ========================================================== */
 
-    .mh-person-top {
-      display: flex;
+    .personnel-top {
 
-      align-items: center;
-      justify-content: space-between;
+      display:
+        flex;
 
-      gap: 30px;
+      align-items:
+        center;
 
-      padding-bottom: 22px;
+      justify-content:
+        space-between;
+
+      gap:
+        30px;
+
+      padding-bottom:
+        22px;
 
       border-bottom:
         1px solid
-        rgba(255,255,255,.11);
+        var(--line);
+
     }
 
 
-    .mh-person-back {
+    .personnel-back {
+
+      display:
+        inline-flex !important;
+
+      align-items:
+        center !important;
+
+      position:
+        relative !important;
+
+      z-index:
+        20 !important;
+
+      visibility:
+        visible !important;
+
+      opacity:
+        1 !important;
+
       color:
-        rgba(255,255,255,.56);
+        rgba(255,255,255,.58) !important;
 
-      font-size: 11px;
+      background:
+        transparent !important;
 
-      letter-spacing: .14em;
+      font-family:
+        "GmarketSans",
+        sans-serif !important;
+
+      font-size:
+        11px !important;
+
+      font-weight:
+        300 !important;
+
+      line-height:
+        1.4 !important;
+
+      letter-spacing:
+        .14em !important;
+
+      text-decoration:
+        none !important;
+
+      white-space:
+        nowrap !important;
+
+      cursor:
+        pointer !important;
 
       transition:
         color .2s ease,
         transform .2s ease;
+
     }
 
 
-    .mh-person-back:hover {
-      color: #fff;
+    .personnel-back:hover {
+
+      color:
+        #fff !important;
 
       transform:
         translateX(-3px);
+
     }
 
 
-    .mh-person-index {
+    .personnel-index {
+
       color:
-        rgba(174,162,232,.72);
+        rgba(182,168,239,.72);
 
-      font-size: 10px;
+      font-size:
+        10px;
 
-      letter-spacing: .23em;
+      letter-spacing:
+        .23em;
+
     }
+
 
 
     /* =========================================================
        HEADER
-    ========================================================= */
+    ========================================================== */
 
-    .mh-person-header {
+    .personnel-heading {
+
+      display:
+        flex;
+
+      align-items:
+        flex-end;
+
+      justify-content:
+        space-between;
+
+      gap:
+        40px;
+
       padding:
-        54px
+        62px
         0
-        48px;
+        52px;
+
     }
 
 
-    .mh-person-kicker {
-      margin-bottom: 12px;
+    .personnel-kicker {
+
+      margin-bottom:
+        13px;
 
       color:
-        #b6a8ff;
+        var(--purple-light);
 
-      font-size: 11px;
+      font-size:
+        12px;
 
-      letter-spacing: .24em;
+      letter-spacing:
+        .24em;
+
     }
 
 
-    .mh-person-page-title {
-      margin: 0;
+    .personnel-title {
+
+      margin:
+        0;
+
+      color:
+        #f3f2f7;
 
       font-size:
         clamp(
-          50px,
-          6vw,
-          82px
+          60px,
+          8vw,
+          104px
         );
 
-      line-height: .92;
+      font-weight:
+        300;
 
-      letter-spacing: -.057em;
+      line-height:
+        .88;
 
-      font-weight: 300;
+      letter-spacing:
+        -.068em;
+
     }
 
 
-    .mh-person-subtitle {
-      margin-top: 17px;
+    .personnel-title span {
 
       color:
-        rgba(255,255,255,.40);
+        rgba(255,255,255,.34);
 
-      font-size: 12px;
-
-      letter-spacing: .12em;
     }
+
+
+    .personnel-description {
+
+      padding-bottom:
+        7px;
+
+      color:
+        rgba(255,255,255,.37);
+
+      font-size:
+        10px;
+
+      line-height:
+        1.85;
+
+      letter-spacing:
+        .14em;
+
+      text-align:
+        right;
+
+    }
+
 
 
     /* =========================================================
-       PROFILE ROW
-    ========================================================= */
+       PERSON LIST
+    ========================================================== */
 
-    .mh-person-profile {
-      display: grid;
+    .person-list {
+
+      display:
+        grid;
+
+      gap:
+        18px;
+
+    }
+
+
+
+    /* =========================================================
+       PERSON BLOCK
+    ========================================================== */
+
+    .person-block {
+
+      display:
+        grid;
 
       grid-template-columns:
-        var(--profile-size)
+        minmax(260px, 460px)
         minmax(0, 1fr);
 
-      gap: 30px;
+      gap:
+        26px;
 
-      align-items: stretch;
+      align-items:
+        stretch;
 
       padding:
-        32px
-        0;
+        0
+        0
+        18px;
 
       border-top:
         1px solid
-        rgba(255,255,255,.10);
+        var(--line);
+
+      min-width:
+        0;
+
     }
 
 
-    /*
-      정희솔은 열 자체를 뒤집는다.
+    .person-block.reverse {
 
-      넓은 설명칸 | 정사각형 사진
-    */
-
-    .mh-person-profile.mh-person-reverse {
       grid-template-columns:
         minmax(0, 1fr)
-        var(--profile-size);
+        minmax(260px, 460px);
+
     }
 
-
-    .mh-person-profile:last-child {
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.10);
-    }
-
-
-    .mh-person-profile.mh-person-reverse
-    .mh-person-copy {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-
-    .mh-person-profile.mh-person-reverse
-    .mh-person-image {
-      grid-column: 2;
-      grid-row: 1;
-    }
 
 
     /* =========================================================
        IMAGE
-    ========================================================= */
+    ========================================================== */
 
-    .mh-person-image {
-      width:
-        var(--profile-size);
+    .person-visual {
 
-      height:
-        var(--profile-size);
+      min-width:
+        0;
 
-      aspect-ratio:
-        1 / 1;
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
-      border-radius:
-        24px;
-
-      background:
-        #111118;
-    }
-
-
-    .mh-person-image img {
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      object-position: center;
-    }
-
-
-    /* =========================================================
-       COPY PANEL
-    ========================================================= */
-
-    .mh-person-copy {
-      width: 100%;
-
-      height:
-        var(--profile-size);
-
-      min-width: 0;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: center;
-
-      padding:
-        16px
-        26px;
+      overflow:
+        hidden;
 
       border:
         1px solid
         rgba(255,255,255,.09);
 
       border-radius:
-        24px;
+        28px;
 
       background:
+        #111016;
 
-        linear-gradient(
-          135deg,
-          rgba(123,98,191,.046),
-          rgba(255,255,255,.014)
-        );
+      aspect-ratio:
+        1 / 1;
+
     }
 
 
-    .mh-person-number {
-      margin-bottom: 5px;
+    .person-visual img {
 
-      color:
-        var(--purple);
+      width:
+        100%;
 
-      font-size: 9px;
+      height:
+        100%;
 
-      letter-spacing: .20em;
+      object-fit:
+        cover;
+
+      object-position:
+        center;
+
     }
 
-
-    .mh-person-name {
-      margin:
-        0
-        0
-        6px;
-
-      font-size:
-        clamp(
-          29px,
-          3.1vw,
-          40px
-        );
-
-      font-weight: 300;
-
-      line-height: 1;
-
-      letter-spacing: -.05em;
-    }
-
-
-    .mh-person-name a {
-      transition:
-        opacity .2s ease;
-    }
-
-
-    .mh-person-name a:hover {
-      opacity: .68;
-    }
-
-
-    .mh-person-role {
-      margin-bottom: 8px;
-
-      color:
-        rgba(255,255,255,.64);
-
-      font-size: 12.5px;
-
-      line-height: 1.45;
-
-      word-break: keep-all;
-    }
 
 
     /* =========================================================
-       INFO
-    ========================================================= */
+       CARD
+    ========================================================== */
 
-    .mh-person-info {
-      display: grid;
+    .person-card {
 
-      grid-template-columns:
-        82px
-        minmax(0, 1fr);
+      min-width:
+        0;
 
-      gap: 13px;
+      overflow:
+        hidden;
 
       padding:
-        7px
+        26px
+        34px
+        28px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.09);
+
+      border-radius:
+        28px;
+
+      background:
+        var(--panel);
+
+    }
+
+
+
+    /* =========================================================
+       PERSON HEADER
+    ========================================================== */
+
+    .person-meta {
+
+      margin-bottom:
+        6px;
+
+      color:
+        var(--purple-light);
+
+      font-size:
+        11px;
+
+      line-height:
+        1.4;
+
+      letter-spacing:
+        .18em;
+
+    }
+
+
+    .person-name {
+
+      margin:
+        0
+        0
+        14px;
+
+      max-width:
+        100%;
+
+      color:
+        #f4f3f7;
+
+      font-size:
+        clamp(
+          38px,
+          4.3vw,
+          62px
+        );
+
+      font-weight:
+        300;
+
+      line-height:
+        .96;
+
+      letter-spacing:
+        -.055em;
+
+      word-break:
+        keep-all;
+
+      overflow-wrap:
+        anywhere;
+
+    }
+
+
+    .person-name a {
+
+      display:
+        inline;
+
+      transition:
+        color .2s ease;
+
+    }
+
+
+    .person-name a:hover {
+
+      color:
+        var(--purple-light);
+
+    }
+
+
+    .person-role {
+
+      margin:
+        0
+        0
+        17px;
+
+      max-width:
+        100%;
+
+      color:
+        rgba(255,255,255,.82);
+
+      font-size:
+        clamp(
+          14px,
+          1.25vw,
+          17px
+        );
+
+      line-height:
+        1.6;
+
+      word-break:
+        keep-all;
+
+      overflow-wrap:
+        anywhere;
+
+    }
+
+
+
+    /* =========================================================
+       INFORMATION
+    ========================================================== */
+
+    .person-info {
+
+      display:
+        grid;
+
+      min-width:
+        0;
+
+    }
+
+
+    .person-row {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        100px
+        minmax(0, 1fr);
+
+      gap:
+        14px;
+
+      min-width:
+        0;
+
+      padding:
+        13px
         0;
 
       border-top:
         1px solid
         rgba(255,255,255,.09);
+
     }
 
 
-    .mh-person-label {
+    .person-label {
+
+      min-width:
+        0;
+
       color:
-        #aca1ee;
+        var(--purple-light);
 
-      font-size: 9.5px;
+      font-size:
+        12px;
 
-      letter-spacing: .13em;
+      line-height:
+        1.55;
 
-      line-height: 1.4;
+      letter-spacing:
+        .10em;
 
-      padding-top: 1px;
+      white-space:
+        nowrap;
+
     }
 
 
-    .mh-person-text {
+    .person-text {
+
+      min-width:
+        0;
+
+      max-width:
+        100%;
+
       color:
-        rgba(255,255,255,.79);
+        rgba(245,244,249,.88);
 
       font-size:
         clamp(
-          11.6px,
-          1vw,
-          12.6px
+          13.5px,
+          1.08vw,
+          16px
         );
 
-      line-height: 1.43;
+      line-height:
+        1.68;
 
-      word-break: keep-all;
+      word-break:
+        keep-all;
+
+      overflow-wrap:
+        anywhere;
+
     }
 
 
+
     /* =========================================================
-       MUSIC
-    ========================================================= */
+       MUSIC PLAYER
+    ========================================================== */
 
     .music-player {
-      position: fixed;
 
-      z-index: 100;
+      position:
+        fixed;
 
-      left: 50%;
-      bottom: 17px;
+      z-index:
+        100;
+
+      left:
+        50%;
+
+      bottom:
+        17px;
 
       transform:
         translateX(-50%);
@@ -486,14 +803,20 @@
           calc(100% - 36px)
         );
 
-      min-height: 61px;
+      min-height:
+        61px;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
-      justify-content: space-between;
+      align-items:
+        center;
 
-      gap: 16px;
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
 
       padding:
         9px
@@ -507,9 +830,6 @@
 
       border-radius:
         999px;
-
-      color:
-        white;
 
       background:
         rgba(20,18,29,.89);
@@ -525,254 +845,534 @@
 
       -webkit-backdrop-filter:
         blur(20px);
+
     }
 
 
     .music-left,
     .music-controls {
-      display: flex;
-      align-items: center;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
     }
 
 
     .music-left {
-      min-width: 0;
-      gap: 11px;
+
+      min-width:
+        0;
+
+      gap:
+        11px;
+
     }
 
 
     .music-icon {
-      color: #a998ff;
 
-      font-size: 17px;
+      color:
+        #a998ff;
+
+      font-size:
+        17px;
+
     }
 
 
     .music-title {
-      overflow: hidden;
 
-      white-space: nowrap;
+      overflow:
+        hidden;
 
-      text-overflow: ellipsis;
+      white-space:
+        nowrap;
+
+      text-overflow:
+        ellipsis;
 
       color:
         rgba(255,255,255,.72);
 
-      font-size: 11px;
+      font-size:
+        11px;
+
     }
 
 
     .music-controls {
+
       flex:
         0
         0
         auto;
 
-      gap: 3px;
+      gap:
+        3px;
+
     }
 
 
     .music-btn {
-      width: 39px;
-      height: 39px;
 
-      display: grid;
+      width:
+        39px;
 
-      place-items: center;
+      height:
+        39px;
 
-      padding: 0;
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      padding:
+        0;
 
       border:
         1px solid
         rgba(255,255,255,.14);
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
-      color: white;
+      color:
+        white;
 
       background:
         rgba(255,255,255,.045);
 
-      cursor: pointer;
+      cursor:
+        pointer;
+
     }
 
 
     .music-btn.small {
-      width: 31px;
-      height: 31px;
 
-      border: 0;
+      width:
+        31px;
+
+      height:
+        31px;
+
+      border:
+        0;
 
       background:
         transparent;
 
       color:
         rgba(255,255,255,.55);
+
     }
+
 
 
     /* =========================================================
-       TABLET
-    ========================================================= */
+       NARROW DESKTOP
+    ========================================================== */
 
-    @media (max-width: 960px) {
+    @media (max-width: 1180px) {
 
-      :root {
-        --profile-size:
-          300px;
+      .personnel-wrap {
+
+        width:
+          calc(100% - 32px);
+
       }
 
 
-      .mh-person-profile {
-        gap: 22px;
-      }
+      .person-block {
 
-
-      .mh-person-copy {
-        padding:
-          13px
-          18px;
-      }
-
-
-      .mh-person-name {
-        font-size: 28px;
-      }
-
-
-      .mh-person-role {
-        margin-bottom: 5px;
-
-        font-size: 10.5px;
-      }
-
-
-      .mh-person-info {
         grid-template-columns:
-          67px
-          1fr;
+          minmax(250px, 38%)
+          minmax(0, 1fr);
 
-        gap: 8px;
+        gap:
+          20px;
+
+      }
+
+
+      .person-block.reverse {
+
+        grid-template-columns:
+          minmax(0, 1fr)
+          minmax(250px, 38%);
+
+      }
+
+
+      .person-card {
 
         padding:
-          5px
+          23px
+          26px
+          25px;
+
+      }
+
+
+      .person-name {
+
+        font-size:
+          clamp(
+            34px,
+            4vw,
+            50px
+          );
+
+      }
+
+
+      .person-role {
+
+        font-size:
+          14px;
+
+      }
+
+
+      .person-row {
+
+        grid-template-columns:
+          88px
+          minmax(0,1fr);
+
+        gap:
+          12px;
+
+        padding:
+          11px
           0;
+
       }
 
 
-      .mh-person-label {
-        font-size: 8px;
+      .person-label {
+
+        font-size:
+          11px;
+
       }
 
 
-      .mh-person-text {
-        font-size: 10.3px;
+      .person-text {
 
-        line-height: 1.38;
+        font-size:
+          13.2px;
+
+        line-height:
+          1.62;
+
       }
 
     }
+
+
+
+    /* =========================================================
+       COMPACT DESKTOP / TABLET
+    ========================================================== */
+
+    @media (max-width: 930px) {
+
+      .person-block,
+      .person-block.reverse {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          15px;
+
+      }
+
+
+      .person-block.reverse
+      .person-card {
+
+        order:
+          2;
+
+      }
+
+
+      .person-block.reverse
+      .person-visual {
+
+        order:
+          1;
+
+      }
+
+
+      .person-visual {
+
+        width:
+          min(
+            100%,
+            560px
+          );
+
+      }
+
+
+      .person-card {
+
+        width:
+          100%;
+
+      }
+
+
+      .person-name {
+
+        font-size:
+          clamp(
+            38px,
+            6vw,
+            54px
+          );
+
+      }
+
+
+      .person-row {
+
+        grid-template-columns:
+          105px
+          minmax(0,1fr);
+
+      }
+
+
+      .person-text {
+
+        font-size:
+          14.5px;
+
+        line-height:
+          1.72;
+
+      }
+
+    }
+
 
 
     /* =========================================================
        MOBILE
-    ========================================================= */
+    ========================================================== */
 
     @media (max-width: 720px) {
 
-      .mh-person-page {
+      .personnel-wrap {
+
         width:
           calc(100% - 28px);
+
+        padding-top:
+          25px;
+
       }
 
 
-      .mh-person-header {
+      .personnel-heading {
+
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        gap:
+          24px;
+
         padding:
-          44px
+          48px
           0
           42px;
+
       }
 
 
-      .mh-person-profile,
-      .mh-person-profile.mh-person-reverse {
-        display: grid;
+      .personnel-title {
+
+        font-size:
+          18vw;
+
+      }
+
+
+      .personnel-description {
+
+        padding:
+          0;
+
+        text-align:
+          left;
+
+      }
+
+
+      .person-list {
+
+        gap:
+          14px;
+
+      }
+
+
+      .person-block {
+
+        padding-bottom:
+          12px;
+
+      }
+
+
+      .person-visual {
+
+        width:
+          100%;
+
+        max-width:
+          none;
+
+        border-radius:
+          22px;
+
+      }
+
+
+      .person-card {
+
+        padding:
+          22px
+          20px
+          24px;
+
+        border-radius:
+          22px;
+
+      }
+
+
+      .person-meta {
+
+        font-size:
+          10px;
+
+      }
+
+
+      .person-name {
+
+        margin-bottom:
+          12px;
+
+        font-size:
+          clamp(
+            34px,
+            11vw,
+            50px
+          );
+
+      }
+
+
+      .person-role {
+
+        margin-bottom:
+          12px;
+
+        font-size:
+          14px;
+
+        line-height:
+          1.65;
+
+      }
+
+
+      .person-row {
 
         grid-template-columns:
           1fr;
 
-        grid-template-rows:
-          auto auto;
-
-        gap: 13px;
+        gap:
+          6px;
 
         padding:
-          27px
+          14px
           0;
+
       }
 
 
-      .mh-person-profile.mh-person-reverse
-      .mh-person-copy,
+      .person-label {
 
-      .mh-person-profile.mh-person-reverse
-      .mh-person-image {
-        grid-column: 1;
-        grid-row: auto;
+        font-size:
+          11px;
+
       }
 
 
-      .mh-person-image {
-        width: 100%;
-        height: auto;
+      .person-text {
 
-        aspect-ratio:
-          1 / 1;
+        font-size:
+          14px;
+
+        line-height:
+          1.75;
+
       }
 
 
-      .mh-person-copy {
-        height: auto;
+      .music-player {
+
+        bottom:
+          12px;
+
+        min-height:
+          57px;
 
         padding:
-          25px
-          23px;
+          8px
+          10px
+          8px
+          15px;
+
       }
 
 
-      .mh-person-info {
-        grid-template-columns:
-          1fr;
+      .music-title {
 
-        gap: 6px;
+        max-width:
+          185px;
 
-        padding:
-          13px
-          0;
+        font-size:
+          10px;
+
       }
 
-
-      .mh-person-label {
-        font-size: 10px;
-      }
+    }
 
 
-      .mh-person-name {
-        font-size: 34px;
-      }
 
+    @media (max-width: 400px) {
 
-      .mh-person-role {
-        margin-bottom: 15px;
+      .music-title {
 
-        font-size: 13.5px;
-      }
+        max-width:
+          135px;
 
-
-      .mh-person-text {
-        font-size: 14px;
-
-        line-height: 1.7;
       }
 
     }
@@ -785,19 +1385,29 @@
 <body>
 
 
-<main class="mh-person-page">
+<!-- =========================================================
+     PAGE
+========================================================= -->
+
+<main class="personnel-wrap">
 
 
-  <nav class="mh-person-top">
+  <!-- =======================================================
+       TOP
+  ======================================================== -->
+
+  <nav class="personnel-top">
 
     <a
-      class="mh-person-back"
+      class="personnel-back"
+      data-mh-back
       href="../index.html"
     >
       ← BACK TO MAIN
     </a>
 
-    <span class="mh-person-index">
+
+    <span class="personnel-index">
       01 · PERSONNEL
     </span>
 
@@ -805,227 +1415,268 @@
 
 
 
-  <header class="mh-person-header">
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
 
-    <div class="mh-person-kicker">
-      PERSONNEL FILE
+  <header class="personnel-heading">
+
+    <div>
+
+      <div class="personnel-kicker">
+        CHARACTER FILE
+      </div>
+
+
+      <h1 class="personnel-title">
+        Personne<span>l.</span>
+      </h1>
+
     </div>
 
-    <h1 class="mh-person-page-title">
-      Two people<br>
-      after midnight.
-    </h1>
 
-    <div class="mh-person-subtitle">
-      MIDNIGHT HOUR / 자정의 시간
+    <div class="personnel-description">
+      reader · character<br>
+      observer · observed
     </div>
 
   </header>
 
 
 
-  <!-- =====================================================
-       이자헌
-  ====================================================== -->
+  <!-- =======================================================
+       PERSON LIST
+  ======================================================== -->
 
-  <article class="mh-person-profile">
-
-
-    <div class="mh-person-image">
-
-      <img
-        src="../profile3.jpg"
-        alt="이자헌"
-      />
-
-    </div>
+  <section class="person-list">
 
 
 
-    <div class="mh-person-copy">
+    <!-- =====================================================
+         01 · 이자헌
+    ====================================================== -->
+
+    <section class="person-block">
 
 
-      <div class="mh-person-number">
-        PERSONNEL · 01
-      </div>
+      <!-- IMAGE -->
 
+      <div class="person-visual">
 
-      <h2 class="mh-person-name">
-
-        <a
-          href="https://namu.wiki/w/%EC%9D%B4%EC%9E%90%ED%97%8C(%EA%B4%B4%EB%8B%B4%EC%97%90%20%EB%96%A8%EC%96%B4%EC%A0%B8%EB%8F%84%20%EC%B6%9C%EA%B7%BC%EC%9D%84%20%ED%95%B4%EC%95%BC%20%ED%95%98%EB%8A%94%EA%B5%AC%EB%82%98)"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          이자헌 ↗
-        </a>
-
-      </h2>
-
-
-      <div class="mh-person-role">
-        백일몽 주식회사 D조 조장, 도마뱀 과장
-      </div>
-
-
-
-      <div class="mh-person-info">
-
-        <div class="mh-person-label">
-          POSITION
-        </div>
-
-        <div class="mh-person-text">
-          백일몽 주식회사 현장탐사팀 D조 조장.
-          원래 세계로 돌아갈 때마다 모두에게 잊히는 정희솔을 유일하게 기억하는 인물이며,
-          반복해서 남겨진 그 기억을 통해 연합의 ‘우리’와 자신을 분리하고
-          독립된 자아와 욕망을 갖기 시작한다.
-        </div>
+        <img
+          src="../profile3.jpg"
+          alt="이자헌"
+        />
 
       </div>
 
 
 
-      <div class="mh-person-info">
+      <!-- CONTENT -->
 
-        <div class="mh-person-label">
-          CHARACTER
+      <article class="person-card">
+
+
+        <div class="person-meta">
+          PERSONNEL · 01
         </div>
 
-        <div class="mh-person-text">
-          효율과 합리성을 우선하는 원칙주의자.
-          말투는 딱딱하고 타인의 복잡한 속내에는 둔하지만,
-          자신의 책임 아래에 들어온 사람은 끝까지 보호한다.
-          정희솔 역시 처음에는 관리해야 할 이레귤러에 불과했으나,
-          사라지고 다시 돌아오는 시간을 거치며 그 책임은 개인적인 관심과 애착으로 변한다.
+
+        <h2 class="person-name">
+
+          <a
+            href="https://namu.wiki/w/%EC%9D%B4%EC%9E%90%ED%97%8C(%EA%B4%B4%EB%8B%B4%EC%97%90%20%EB%96%A8%EC%96%B4%EC%A0%B8%EB%8F%84%20%EC%B6%9C%EA%B7%BC%EC%9D%84%20%ED%95%B4%EC%95%BC%20%ED%95%98%EB%8A%94%EA%B5%AC%EB%82%98)"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            이자헌 ↗
+          </a>
+
+        </h2>
+
+
+        <p class="person-role">
+          백일몽 주식회사 D조 조장, 도마뱀 과장
+        </p>
+
+
+
+        <div class="person-info">
+
+
+          <!-- POSITION -->
+
+          <div class="person-row">
+
+            <div class="person-label">
+              POSITION
+            </div>
+
+
+            <div class="person-text">
+              백일몽 주식회사 현장탐사팀 D조 조장. 원래 세계로 돌아갈 때마다 모두에게 잊히는 정희솔을 유일하게 기억하는 인물이며, 반복해서 남겨진 그 기억을 통해 연합의 ‘우리’와 자신을 분리하고 독립된 자아와 욕망을 갖기 시작한다.
+            </div>
+
+          </div>
+
+
+
+          <!-- CHARACTER -->
+
+          <div class="person-row">
+
+            <div class="person-label">
+              CHARACTER
+            </div>
+
+
+            <div class="person-text">
+              효율과 합리성을 우선하는 원칙주의자. 말투는 딱딱하고 타인의 복잡한 속내에는 둔하지만, 자신의 책임 아래에 들어온 사람은 끝까지 보호한다. 정희솔 역시 처음에는 관리해야 할 이레귤러에 불과했으나, 사라지고 다시 돌아오는 시간을 거치며 그 책임은 개인적인 관심과 애착으로 변한다.
+            </div>
+
+          </div>
+
+
+
+          <!-- RELATION -->
+
+          <div class="person-row">
+
+            <div class="person-label">
+              RELATION
+            </div>
+
+
+            <div class="person-text">
+              자신을 사랑하면서도 끝내 ‘등장인물’이라는 선 밖에 세워두려는 정희솔에게 동등한 관계를 요구한다. 정희솔의 속내를 알 수 없다는 사실과 자신만 그녀를 기억한다는 사실을 점차 의식하며, 자신이 무엇을 바라는지 자각한 뒤 정희솔이 그어둔 선 앞으로 직접 들어간다.
+            </div>
+
+          </div>
+
+
         </div>
+
+
+      </article>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         02 · 정희솔
+    ====================================================== -->
+
+    <section class="person-block reverse">
+
+
+      <!-- CONTENT -->
+
+      <article class="person-card">
+
+
+        <div class="person-meta">
+          PERSONNEL · 02
+        </div>
+
+
+        <h2 class="person-name">
+
+          <a
+            href="https://some-love-story.tistory.com/71"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            정희솔 ↗
+          </a>
+
+        </h2>
+
+
+        <p class="person-role">
+          백일몽 주식회사 D조 흰담비 대리.<br>
+          어둠으로서 등록된 코드는 Qterw-E-513 &lt;자정의 시간&gt;.
+        </p>
+
+
+
+        <div class="person-info">
+
+
+          <!-- POSITION -->
+
+          <div class="person-row">
+
+            <div class="person-label">
+              POSITION
+            </div>
+
+
+            <div class="person-text">
+              &lt;상영관 0번&gt; 괴담을 통해 『괴담에 떨어져도 출근을 해야 하는구나』의 세계로 트립한 인물. 이자헌의 관리 하에 있는 비공식 어둠이자 D조 사원으로 등록되어 현실과 괴담 세계를 자정마다 오간다.
+            </div>
+
+          </div>
+
+
+
+          <!-- CHARACTER -->
+
+          <div class="person-row">
+
+            <div class="person-label">
+              CHARACTER
+            </div>
+
+
+            <div class="person-text">
+              논리와 효율을 중시하지만 근본적으로는 정이 많고 선의를 믿는다. 위험에 처한 사람을 외면하지 못하면서도 자신의 몸은 쉽게 내던지는 편이며, 괴담 세계를 현실의 외로움에서 벗어나 사랑하는 이야기 속에 머물 수 있는 장소로 여긴다.
+            </div>
+
+          </div>
+
+
+
+          <!-- RELATION -->
+
+          <div class="person-row">
+
+            <div class="person-label">
+              RELATION
+            </div>
+
+
+            <div class="person-text">
+              이자헌을 자신의 최애이자 이상적인 보호자로 사랑하며 적극적으로 애정을 표현하지만, 그가 자신과 동등한 한 사람으로 가까워지는 것은 경계한다. 그러나 자신만을 기억하고 계속해서 자신을 붙잡는 이자헌과 시간이 쌓이며 ‘독자와 등장인물’이라는 안전한 거리가 무너지고 있음을 점차 깨닫는다.
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </article>
+
+
+
+      <!-- IMAGE -->
+
+      <div class="person-visual">
+
+        <img
+          src="../profile4.jpg"
+          alt="정희솔"
+        />
 
       </div>
 
 
-
-      <div class="mh-person-info">
-
-        <div class="mh-person-label">
-          RELATION
-        </div>
-
-        <div class="mh-person-text">
-          자신을 사랑하면서도 끝내 ‘등장인물’이라는 선 밖에 세워두려는 정희솔에게 동등한 관계를 요구한다.
-          정희솔의 속내를 알 수 없다는 사실과 자신만 그녀를 기억한다는 사실을 점차 의식하며,
-          자신이 무엇을 바라는지 자각한 뒤 정희솔이 그어둔 선 앞으로 직접 들어간다.
-        </div>
-
-      </div>
+    </section>
 
 
-    </div>
-
-
-  </article>
-
-
-
-  <!-- =====================================================
-       정희솔
-  ====================================================== -->
-
-  <article class="mh-person-profile mh-person-reverse">
-
-
-    <div class="mh-person-image">
-
-      <img
-        src="../profile4.jpg"
-        alt="정희솔"
-      />
-
-    </div>
-
-
-
-    <div class="mh-person-copy">
-
-
-      <div class="mh-person-number">
-        PERSONNEL · 02
-      </div>
-
-
-      <h2 class="mh-person-name">
-
-        <a
-          href="https://some-love-story.tistory.com/71"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          정희솔 ↗
-        </a>
-
-      </h2>
-
-
-      <div class="mh-person-role">
-        백일몽 주식회사 D조 흰담비 대리.<br>
-        어둠으로서 등록된 코드는
-        Qterw-E-513 &lt;자정의 시간&gt;.
-      </div>
-
-
-
-      <div class="mh-person-info">
-
-        <div class="mh-person-label">
-          POSITION
-        </div>
-
-        <div class="mh-person-text">
-          &lt;상영관 0번&gt; 괴담을 통해
-          『괴담에 떨어져도 출근을 해야 하는구나』의 세계로 트립한 인물.
-          이자헌의 관리 하에 있는 비공식 어둠이자 D조 사원으로 등록되어
-          현실과 괴담 세계를 자정마다 오간다.
-        </div>
-
-      </div>
-
-
-
-      <div class="mh-person-info">
-
-        <div class="mh-person-label">
-          CHARACTER
-        </div>
-
-        <div class="mh-person-text">
-          논리와 효율을 중시하지만 근본적으로는 정이 많고 선의를 믿는다.
-          위험에 처한 사람을 외면하지 못하면서도 자신의 몸은 쉽게 내던지는 편이며,
-          괴담 세계를 현실의 외로움에서 벗어나 사랑하는 이야기 속에 머물 수 있는 장소로 여긴다.
-        </div>
-
-      </div>
-
-
-
-      <div class="mh-person-info">
-
-        <div class="mh-person-label">
-          RELATION
-        </div>
-
-        <div class="mh-person-text">
-          이자헌을 자신의 최애이자 이상적인 보호자로 사랑하며 적극적으로 애정을 표현하지만,
-          그가 자신과 동등한 한 사람으로 가까워지는 것은 경계한다.
-          그러나 자신만을 기억하고 계속해서 자신을 붙잡는 이자헌과 시간이 쌓이며
-          ‘독자와 등장인물’이라는 안전한 거리가 무너지고 있음을 점차 깨닫는다.
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-  </article>
+  </section>
 
 
 </main>
@@ -1033,7 +1684,7 @@
 
 
 <!-- =========================================================
-     MUSIC
+     MUSIC PLAYER
 ========================================================= -->
 
 <div
@@ -1046,6 +1697,7 @@
     <span class="music-icon">
       ♫
     </span>
+
 
     <span
       class="music-title"
@@ -1060,6 +1712,7 @@
   <div class="music-controls">
 
     <button
+      type="button"
       class="music-btn small"
       onclick="prevTrack()"
       aria-label="previous track"
@@ -1067,7 +1720,9 @@
       ‹
     </button>
 
+
     <button
+      type="button"
       class="music-btn"
       id="music-btn"
       onclick="toggleMusic()"
@@ -1076,7 +1731,9 @@
       ▶
     </button>
 
+
     <button
+      type="button"
       class="music-btn small"
       onclick="nextTrack()"
       aria-label="next track"
@@ -1090,13 +1747,20 @@
   <audio
     id="bgm"
     preload="metadata"
+    playsinline
   ></audio>
 
 </div>
 
 
-<script src="../common.js"></script>
+
+<!-- =========================================================
+     COMMON
+========================================================= -->
+
+<script src="../common.js?v=9"></script>
 
 
 </body>
+
 </html>
