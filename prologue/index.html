@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#08080d">
+<title>Prologue | Midnight Hour</title>
+<link rel="icon" type="image/x-icon" href="../favicon.ico?v=7">
+<style>
+
+    /* =========================================================
+       FONT
+    ========================================================== */
+
+    @font-face {
+
+      font-family:
+        "GmarketSans";
+
+      src:
+        url("../GmarketSansTTFLight.ttf")
+        format("truetype");
+
+      font-weight:
+        300;
+
+      font-style:
+        normal;
+
+      font-display:
+        swap;
+
+    }
+
+
+
+    /* =========================================================
+       ROOT
+    ========================================================== */
+
+    :root {
+
+      --bg:
+        #08080d;
+
+      --text:
+        #f3f2f7;
+
+      --purple:
+        #9580f2;
+
+      --purple-light:
+        #c1b5f7;
+
+      --purple-soft:
+        #b7abf4;
+
+      --line:
+        rgba(255,255,255,.10);
+
+      --card:
+        rgba(255,255,255,.025);
+
+    }
+
+
+
+    /* =========================================================
+       RESET
+    ========================================================== */
+
+    * {
+
+      box-sizing:
+        border-box;
+
+    }
+
+
+    html {
+
+      scroll-behavior:
+        smooth;
+
+    }
+
+
+    body {
+
+      margin:
+        0;
+
+      min-height:
+        100vh;
+
+      color:
+        var(--text);
+
+      font-family:
+        "GmarketSans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      font-weight:
+        300;
+
+      background:
+
+        radial-gradient(
+          circle at 8% 4%,
+          rgba(101,91,181,.13),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 91% 34%,
+          rgba(125,81,167,.09),
+          transparent 29%
+        ),
+
+        radial-gradient(
+          circle at 14% 88%,
+          rgba(97,75,154,.06),
+          transparent 26%
+        ),
+
+        var(--bg);
+
+    }
+
+
+    a {
+
+      color:
+        inherit;
+
+      text-decoration:
+        none;
+
+    }
+
+
+    button {
+
+      font:
+        inherit;
+
+    }
+
+
+
+    /* =========================================================
+       PAGE
+    ========================================================== */
+
+    .fragments-wrap {
+
+      width:
+        min(
+          1120px,
+          calc(100% - 58px)
+        );
+
+      margin:
+        0 auto;
+
+      padding:
+        38px
+        0
+        145px;
+
+    }
+
+
+
+    /* =========================================================
+       TOP
+    ========================================================== */
+
+    .fragments-top {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        30px;
+
+      padding-bottom:
+        22px;
+
+      border-bottom:
+        1px solid
+        var(--line);
+
+    }
+
+
+    .fragments-back {
+
+      color:
+        rgba(255,255,255,.58);
+
+      font-size:
+        11px;
+
+      letter-spacing:
+        .14em;
+
+      transition:
+        color .2s ease,
+        transform .2s ease;
+
+    }
+
+
+    .fragments-back:hover {
+
+      color:
+        #fff;
+
+      transform:
+        translateX(-3px);
+
+    }
+
+
+    .fragments-index {
+
+      color:
+        rgba(182,168,239,.72);
+
+      font-size:
+        10px;
+
+      letter-spacing:
+        .23em;
+
+    }
+
+
+
+    /* =========================================================
+       HEADER
+    ========================================================== */
+
+    .fragments-heading {
+
+      display:
+        flex;
+
+      align-items:
+        flex-end;
+
+      justify-content:
+        space-between;
+
+      gap:
+        40px;
+
+      padding:
+        62px
+        0
+        68px;
+
+    }
+
+
+    .fragments-kicker {
+
+      margin-bottom:
+        13px;
+
+      color:
+        var(--purple-light);
+
+      font-size:
+        12px;
+
+      letter-spacing:
+        .24em;
+
+    }
+
+
+    .fragments-title {
+
+      margin:
+        0;
+
+      color:
+        #f3f2f7;
+
+      font-size:
+        clamp(
+          60px,
+          8vw,
+          104px
+        );
+
+      font-weight:
+        300;
+
+      line-height:
+        .88;
+
+      letter-spacing:
+        -.068em;
+
+    }
+
+
+    .fragments-title span {
+
+      color:
+        rgba(255,255,255,.34);
+
+    }
+
+
+    .fragments-description {
+
+      padding-bottom:
+        7px;
+
+      color:
+        rgba(255,255,255,.37);
+
+      font-size:
+        10px;
+
+      line-height:
+        1.85;
+
+      letter-spacing:
+        .14em;
+
+      text-align:
+        right;
+
+    }
+
+
+
+    /* =========================================================
+       MUSIC PLAYER
+    ========================================================== */
+
+    .music-player {
+
+      position:
+        fixed;
+
+      z-index:
+        100;
+
+      left:
+        50%;
+
+      bottom:
+        17px;
+
+      transform:
+        translateX(-50%);
+
+      width:
+        min(
+          660px,
+          calc(100% - 36px)
+        );
+
+      min-height:
+        61px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
+
+      padding:
+        9px
+        13px
+        9px
+        19px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.13);
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(20,18,29,.89);
+
+      box-shadow:
+        0
+        15px
+        43px
+        rgba(0,0,0,.32);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+    }
+
+
+    .music-left,
+    .music-controls {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+    }
+
+
+    .music-left {
+
+      min-width:
+        0;
+
+      gap:
+        11px;
+
+    }
+
+
+    .music-icon {
+
+      color:
+        #a998ff;
+
+      font-size:
+        17px;
+
+    }
+
+
+    .music-title {
+
+      overflow:
+        hidden;
+
+      white-space:
+        nowrap;
+
+      text-overflow:
+        ellipsis;
+
+      color:
+        rgba(255,255,255,.72);
+
+      font-size:
+        11px;
+
+    }
+
+
+    .music-controls {
+
+      flex:
+        0
+        0
+        auto;
+
+      gap:
+        3px;
+
+    }
+
+
+    .music-btn {
+
+      width:
+        39px;
+
+      height:
+        39px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      padding:
+        0;
+
+      border:
+        1px solid
+        rgba(255,255,255,.14);
+
+      border-radius:
+        50%;
+
+      color:
+        white;
+
+      background:
+        rgba(255,255,255,.045);
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .music-btn.small {
+
+      width:
+        31px;
+
+      height:
+        31px;
+
+      border:
+        0;
+
+      background:
+        transparent;
+
+      color:
+        rgba(255,255,255,.55);
+
+    }
+
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================== */
+
+
+@media(max-width:720px){
+ .fragments-wrap{width:calc(100% - 28px);padding-top:25px}
+ .fragments-top{gap:15px}.fragments-index{font-size:9px;letter-spacing:.17em}
+ .fragments-heading{flex-direction:column;align-items:flex-start;gap:24px;padding:48px 0}
+ .fragments-title{font-size:18vw}.fragments-description{padding:0;text-align:left}
+ .writing{font-size:15px;line-height:2}
+}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--purple-light);outline-offset:5px}
+.writing{width:min(680px,100%);margin:0 auto;color:rgba(245,244,249,.82);font-size:17px;line-height:2.15;word-break:keep-all;overflow-wrap:break-word}
+.writing p{margin:0 0 1.65em}.writing p:last-child{margin-bottom:0}
+@media(max-width:720px){.writing{font-size:15px;line-height:2}}
+
+/* 화면 아래에 일정한 간격을 두고 고정 */
+:root{--player-bottom-inset:0px}
+#music-player{
+ position:fixed!important;
+ inset:auto auto calc(var(--player-bottom-inset) + max(16px,env(safe-area-inset-bottom,0px))) 50%!important;
+ transform:translateX(-50%)!important;
+ width:min(660px,calc(100% - 36px))!important;
+ margin:0!important;
+ animation:none!important;
+ z-index:100;
+}
+.fragments-wrap{padding-bottom:145px}
+</style>
+</head>
+<body>
+<main class="fragments-wrap">
+ <nav class="fragments-top" aria-label="페이지 안내">
+  <a class="fragments-back" href="../index.html">← BACK TO MAIN</a>
+  <span class="fragments-index">00 · PROLOGUE</span>
+ </nav>
+ <header class="fragments-heading">
+  <div><div class="fragments-kicker">BEFORE MIDNIGHT</div><h1 class="fragments-title">Prologue<span>.</span></h1></div>
+  <div class="fragments-description">where the waiting ends<br>and Midnight Hour begins</div>
+ </header>
+ <article class="writing" aria-label="자정의 시간">
+<p>긍정적인 사고는 늘 얼마 가지 않아 무너질 위기에 처한다.</p>
+<p>가족에 대한 믿음도 마찬가지다. 살면서 단 한 번도 믿음직한 짓을 하지 않았음에도 나 혼자 기대했다가 상처받길 반복한다. 기숙사로 돌아오는 버스에서 한참을 울며 다시금 깨달은 것이다.</p>
+<p>간만에 먹는 연어초밥은 맛있어도 기쁘지 않았고 사인실 기숙사를 홀로 사용하는 건 전처럼 편하지 않았다.</p>
+<p>인생은 홀로 사는 것이고 사람은 사람을 구원으로 여기면 안 된다지만 결국 이따금 힘든 순간 타인의 다정함이 필요한 건 어쩔 수 없다.</p>
+<p>불완전하고 부정적으로 변하길 반복하는 것들 가운데서 불변하고 다정한 것이라곤 내가 애정하는 세계와 등장인물 뿐이다.</p>
+<p>그리하여 나는 자정을 기다린다.</p>
+<p>&quot;과장님.&quot;</p>
+<p>&quot;정희솔 씨.&quot;</p>
+<p>마침내 당신을 다시 만나고야 말 자정을.</p>
+<p>&quot;기다리고 있었습니다.&quot;</p>
+</article>
+</main>
+<div
+  class="music-player"
+  id="music-player"
+>
+
+  <div class="music-left">
+
+    <span class="music-icon">
+      ♫
+    </span>
+
+
+    <span
+      class="music-title"
+      id="music-title"
+    >
+      긴 밤(feat. 기리보이) - Seori
+    </span>
+
+  </div>
+
+
+  <div class="music-controls">
+
+    <button
+      type="button"
+      aria-label="previous track"
+      class="music-btn small"
+      onclick="prevTrack()"
+    >
+      ‹
+    </button>
+
+
+    <button
+      type="button"
+      aria-label="play or pause"
+      class="music-btn"
+      id="music-btn"
+      onclick="toggleMusic()"
+    >
+      ▶
+    </button>
+
+
+    <button
+      type="button"
+      aria-label="next track"
+      class="music-btn small"
+      onclick="nextTrack()"
+    >
+      ›
+    </button>
+
+  </div>
+
+
+  <audio
+    id="bgm"
+    preload="metadata"
+    playsinline
+  ></audio>
+
+</div>
+<script src="../common.js?v=7"></script>
+
+<script>
+(()=>{
+ const player=document.getElementById('music-player');
+ // 부모 요소의 transform에 영향받지 않도록 body에 둡니다.
+ document.body.appendChild(player);
+ function placePlayer(){
+  const viewport=window.visualViewport;
+  const inset=viewport&&Math.abs(viewport.scale-1)<.01
+   ?Math.max(0,window.innerHeight-viewport.height-viewport.offsetTop):0;
+  document.documentElement.style.setProperty('--player-bottom-inset',inset+'px');
+ }
+ window.addEventListener('resize',placePlayer);
+ window.addEventListener('orientationchange',placePlayer);
+ window.visualViewport?.addEventListener('resize',placePlayer);
+ window.visualViewport?.addEventListener('scroll',placePlayer);
+ placePlayer();
+})();
+</script>
+</body>
+</html>
