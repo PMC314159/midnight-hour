@@ -1,0 +1,146 @@
+/* Shared sizing, loaded after each page's visual styles. */
+:root {
+  --content-width: 880px;
+  --reading-width: 600px;
+  --player-width: 660px;
+}
+
+.home-screen,
+.fragments-wrap,
+.personnel-wrap,
+.stills-wrap,
+.page {
+  width: min(var(--content-width), calc(100% - 48px));
+}
+
+.fragments-wrap,
+.personnel-wrap,
+.stills-wrap,
+.page { padding: 28px 0 120px; }
+
+.fragments-top,
+.personnel-top,
+.stills-top,
+.topbar { padding-bottom: 18px; }
+
+.fragments-heading,
+.personnel-heading,
+.stills-heading,
+.timeline-header { padding: 38px 0 40px; gap: 24px; }
+
+.fragments-title,
+.personnel-title,
+.stills-title,
+.timeline-title {
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -.05em;
+}
+
+.fragments-description,
+.personnel-description,
+.stills-description,
+.timeline-meta { font-size: 12px; letter-spacing: .04em; }
+
+.home-heading { font-size: clamp(21px, 3vw, 26px); }
+.tablet { border-radius: 22px; box-shadow: 0 16px 44px #05020d38; }
+.tablet img, .hero-overlay { border-radius: 16px; }
+
+.fragment-list { gap: 10px; }
+.fragment-card {
+  min-height: 110px;
+  padding: 20px 24px;
+  gap: 20px;
+  border-radius: 16px;
+}
+.fragment-card-index { margin-bottom: 8px; font-size: 12px; letter-spacing: .14em; }
+.fragment-card-title { font-size: clamp(21px, 2.6vw, 26px); }
+.fragment-card-subtitle { margin-top: 7px; font-size: 16px; line-height: 1.65; }
+.fragment-card-arrow { width: 34px; height: 34px; font-size: 14px; }
+
+.writing { width: min(var(--reading-width), 100%); font-size: 16px; line-height: 1.95; }
+.writing p { margin-bottom: 1.4em; }
+.mh-fr-modal { padding: 52px 24px 120px; }
+.mh-fr-reader {
+  width: min(700px, 100%);
+  padding: 36px 44px 44px;
+  border-radius: 18px;
+}
+.mh-fr-reader-index { font-size: 12px; letter-spacing: .14em; }
+.mh-fr-reader-title { font-size: 28px; }
+.mh-fr-reader-subtitle { padding-bottom: 22px; font-size: 16px; }
+.mh-fr-reader-body { padding-top: 24px; font-size: 16px; line-height: 1.95; overflow-wrap: anywhere; }
+.mh-fr-reader-body p { margin-bottom: 1.4em; }
+.mh-fr-close { font-size: 12px; }
+
+.mh-timeline { --track-x: 16px; }
+.act, .event { padding-left: 48px; }
+.act { min-height: 48px; margin: 16px 0; }
+.act-title { font-size: 18px; }
+.event { margin-bottom: 16px; }
+.event-card { padding: 24px 28px; border-radius: 16px; }
+.event-title { font-size: 24px; }
+.event-body { margin-top: 20px; font-size: 16px; line-height: 1.9; }
+
+.person-block { grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); column-gap: 20px; align-items: start; }
+.person-block.reverse { grid-template-columns: minmax(0, 1.28fr) minmax(0, .72fr); }
+.person-visual, .person-card { border-radius: 18px; }
+.person-card { padding: 22px 24px; }
+.person-name { font-size: 34px; line-height: 1.15; }
+.person-role { font-size: 16px; }
+.person-row { grid-template-columns: 105px minmax(0, 1fr); gap: 12px; padding: 11px 0; }
+.person-label { font-size: 12px; }
+.person-text { font-size: 16px; line-height: 1.75; }
+.still-grid { gap: 14px; }
+.still-card { border-radius: 16px; }
+
+/* One player size for the home, direct URLs and iframe navigation. */
+#music-player {
+  position: fixed !important;
+  inset: auto auto calc(max(var(--music-viewport-inset, 0px), var(--player-bottom-inset, 0px)) + max(16px, env(safe-area-inset-bottom, 0px))) 50% !important;
+  transform: translateX(-50%) !important;
+  width: min(var(--player-width), calc(100% - 32px)) !important;
+  max-width: calc(100% - 32px) !important;
+  min-height: 58px;
+  margin: 0 !important;
+  padding: 8px 12px 8px 18px;
+  gap: 14px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 999px;
+  background: rgba(20,18,29,.92);
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  animation: none !important;
+}
+#music-player .music-left { flex: 1 1 auto; min-width: 0; gap: 10px; }
+#music-player .music-icon { font-size: 19px; }
+#music-player .music-title { max-width: none; font-size: 13px; line-height: 1.5; }
+#music-player .music-controls { flex: 0 0 auto; gap: 4px; }
+#music-player .music-btn { width: 38px; height: 38px; font-size: 14px; }
+#music-player .music-btn.small { width: 30px; height: 38px; font-size: 20px; }
+
+@media (max-width: 720px) {
+  .home-screen, .fragments-wrap, .personnel-wrap, .stills-wrap, .page { width: calc(100% - 32px); }
+  .fragments-wrap, .personnel-wrap, .stills-wrap, .page { padding-top: 24px; }
+  .fragments-heading, .personnel-heading, .stills-heading, .timeline-header {
+    flex-direction: column; align-items: flex-start; padding: 30px 0; gap: 16px;
+  }
+  .fragments-description, .personnel-description, .stills-description, .timeline-meta { text-align: left; }
+  .fragment-card { padding: 18px; min-height: 108px; gap: 12px; align-items: center; }
+  .fragment-card-arrow { width: 30px; height: 30px; }
+  .mh-fr-modal { padding: 52px 16px 110px; }
+  .mh-fr-reader { padding: 28px 22px 34px; }
+  .mh-fr-reader-title { font-size: 24px; }
+  .person-block, .person-block.reverse { grid-template-columns: 1fr; gap: 14px; }
+  .person-visual { width: min(100%, 360px); }
+  .person-name { font-size: 30px; }
+  .person-row { grid-template-columns: 1fr; gap: 6px; }
+  .mh-timeline { --track-x: 10px; }
+  .act, .event { padding-left: 32px; }
+  .event-card { padding: 20px; }
+  .event-title { font-size: 22px; }
+  #music-player { min-height: 54px; padding: 7px 9px 7px 14px; gap: 8px; }
+  #music-player .music-title { font-size: 12px; }
+  #music-player .music-controls { gap: 2px; }
+  #music-player .music-btn { width: 36px; height: 36px; }
+  #music-player .music-btn.small { width: 26px; height: 36px; }
+}

@@ -507,7 +507,7 @@ body:not(.entered) { padding-bottom: 0; }
   transform: translateX(-50%) !important;
   margin: 0 !important;
   animation: none !important;
-  width: var(--music-fixed-width, min(660px, calc(100% - 36px)))) !important;
+  width: min(660px, calc(100% - 32px)) !important;
   max-width: calc(100% - 28px) !important;
   z-index: 100 !important;
 }
@@ -679,6 +679,7 @@ body:not(.entered) { padding-bottom: 0; }
   .caret { display: none; }
 }
 </style>
+<link rel="stylesheet" href="./compact.css?v=1">
 </head>
 
 <body>
@@ -1202,12 +1203,6 @@ const HOME = {
       covered + 'px'
     );
 
-    if (home && !home.hidden) {
-      player.style.setProperty(
-        '--music-fixed-width',
-        home.getBoundingClientRect().width + 'px'
-      );
-    }
   }
 
   function mount() {
